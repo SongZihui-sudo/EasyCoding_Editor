@@ -4,10 +4,11 @@
     #include <vector>
 
     using namespace std;
-    
+        
+    vector <char> space;
     string File_Name;
     vector <string> buf;
-
+    string space_string(space.begin(),space.end());
     class frame{
         private:
             vector <string> parr;
@@ -19,10 +20,11 @@
             int input(long long lines);
             int find(string find_Str);
             int read(string read_Str);
-    };
+    }; 
+    vector <string> convert;
+    vector <string> convert_parr;
     class kennel{
-        private: 
-            
+        private:     
             string title = "#";
             string img = "![img]";
             string url = "url";
@@ -30,6 +32,7 @@
             string code_begin = "```";
             string code_end = "***";
         public:
+           
             kennel() = default;
             int Title_function(string Tiltle_name);
             int img_function();
@@ -38,5 +41,6 @@
             int Gramma_analysis(string Line__);
             int code_begin_funcition();
             int code_end_function();
+            int print_convert();
     };
 #endif 

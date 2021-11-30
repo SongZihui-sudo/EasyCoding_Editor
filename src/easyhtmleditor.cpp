@@ -140,6 +140,7 @@ int frame::input(long long lines){
             cout<<"\n";
             int last = buf.size();
             frame::parr.push_back(buf[last - 1]);
+            convert_parr.push_back(convert[convert.size() - 1]);
             buf.pop_back();
             for ( int i = 0; i < buf.size(); i++){
                 cout<<buf[i]<<endl;
@@ -272,7 +273,10 @@ int kennel::Gramma_analysis(string Line__){
     else if (bit_sqite_line){
         kennel::split_line_function();
     }
-    else;
+    else{
+        convert.push_back(space_string + Line__);
+        kennel::print_convert();
+    }
     return 0;
 }
 
@@ -285,14 +289,12 @@ int kennel::Title_function(string Tiltle_name){
             break;
         }
     }
-    cout<<"Level"<<" "<<numsoft<<" "<<"heading";
-    const int numsofspace = 20;
-    for (int i = 0; i < numsofspace; i++){
-        cout<<" ";
+    for (int i = 0; i < 20; i++){
+        space.push_back(' ');
     }
-    for (int i = numsoft; i < Tiltle_name.size(); i++){
-        cout<<Tiltle_name[i];
-    }
+    convert.push_back(string("Level")+
+    to_string(numsoft)+string("heading") + space_string + Tiltle_name);
+    kennel::print_convert();
     return 0;
 }
 
@@ -311,22 +313,32 @@ int kennel::url_function(string url_things){
             continue;
         }   
     }
+    string url_name;
     for (int i = numsoft; i < url_things.size(); i++){
-        cout<<url_things[i];
+        url_name[i] = url_things[i];
     }
+    convert.push_back(space_string + url_name);
+    kennel::print_convert();
     return 0;
 }
 
 int kennel::split_line_function(){
+    vector <char> _arr;
     const int numsof_ = 50;
     for (int i = 0; i < numsof_; i++){
-        cout<<"_";
+        _arr.push_back('_');
     }
+    string __string( _arr.begin(), _arr.end());
+    convert.push_back( space_string + __string);
+    kennel::print_convert();
     return 0;
 }
 
 int kennel::img_function(){
-    cout<<"img";
+    for (int i = 0; i < 20; i++){
+    }
+    convert.push_back(space_string + string("img"));
+    kennel::print_convert();
     return 0;
 }
 
@@ -335,5 +347,12 @@ int kennel::code_begin_funcition(){
 }
 
 int kennel::code_end_function(){
+    return 0;
+}
+
+int kennel::print_convert(){
+    for (int i = 0; i < convert.size(); i++){
+        cout<<convert[i]<<endl;
+    }
     return 0;
 }
