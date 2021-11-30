@@ -16,8 +16,9 @@
             frame() = default;
             int shell(vector <string> o_line);
             int write(vector <string> print_to_file,string file_name);
-            int input();
-            string find(string find_Str);
+            int input(long long lines);
+            int find(string find_Str);
+            int read(string read_Str);
     };
     class kennel{
         private: 

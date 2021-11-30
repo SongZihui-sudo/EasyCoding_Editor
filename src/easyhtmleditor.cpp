@@ -23,46 +23,112 @@ int frame::shell(vector <string> o_line){
         string c;
         string f;
         cin>>c;
-        if (c == "\\"){
+        if (c == "/"){
             string find_s;
+            cin>>find_s;
             for (int i = 0,j = 1 ; j < c.size(); i++,j++){
                 find_s[i] = c[j];
             }
             frame::find(find_s);
         }
         else if(c == "i" ){
-            frame::input();
+            frame::input(0);
         }
         else if(c == "wq" ){
             cin>>f;
             frame::write(o_line,f);
             break;
         }
+        else if ( c == "o"){
+            cin>>f;
+            frame::read(f);
+            break;
+        }
+        
         else;
     }
     return 0;
 }
 
-string frame::find(string find_Str){
-    return find_Str;
+/*
+123456
+345
+*/
+int frame::find(string find_Str){
+    long long bit_equal = 0;
+    int k = 0;
+    for (int i = 1; i < buf.size() ; i++){
+        for (int j = 0;  j < buf[i].size() ; j++){
+            if ( buf[i][j] != find_Str[k] ){
+                bit_equal = 0;
+                j+=find_Str.size() - 1;    
+            }
+            else if(bit_equal == find_Str.size()){
+                break;
+            }
+            else{
+                bit_equal++;
+                k++;
+            }
+        }
+        if (bit_equal){
+            cout<<buf[i]<<endl;
+            break;
+        }   
+    }
+    return 0;
 }
 
 int frame::write(vector <string> print_to_file,string file_name){
     ofstream fout;
+    file_name = string("../file/") + file_name;
     fout.open(file_name);
-    for (int i = 1; i < print_to_file.size(); i++){
-        fout<<print_to_file[i]<<endl;
+    if (fout){
+        for (int i = 0; i < print_to_file.size(); i++){
+            fout<<print_to_file[i]<<endl;
+        }
+        frame::line.clear();
+        frame::parr.clear();
+        buf.clear();
+        exit(0);
     }
-    exit(0);
+    else{
+        cout<<"CAN NOT SAVE THE FILE!"<<endl;
+        return -1;
+    }
     return 0;
 }
 
-int frame::input(){
+int frame::read(string read_Str){
+    long long lines_number = 0;
+    ifstream fin;
+    read_Str=string("../file/") + read_Str;
+    fin.open(read_Str);
+    if(fin){
+        while(getline(fin,read_Str)){
+            frame::line.push_back(read_Str);
+            read_Str = string("line") + to_string(lines_number) + string(":") + read_Str;
+            buf.push_back(read_Str);
+            lines_number++;
+        }
+        for (int i = 0; i < buf.size(); i++){
+            cout<<buf[i]<<endl;
+        }
+        frame::input(lines_number);
+    }
+    else{
+        cout<<"CAN NOT OPEN THE FILE!"<<endl;
+        return -1;
+    }
+    return 0;
+}
+
+int frame::input(long long lines){
     kennel *k;
     k = new(kennel);
-    long long lines = 0;
     while (true){            
         string line_input;
+        cout<<"line"<<lines<<":";  
         getline(cin,line_input);
         if ( line_input == "e"){
             frame::shell(frame::line);
@@ -75,7 +141,7 @@ int frame::input(){
             int last = buf.size();
             frame::parr.push_back(buf[last - 1]);
             buf.pop_back();
-            for ( int i = 1; i < buf.size(); i++){
+            for ( int i = 0; i < buf.size(); i++){
                 cout<<buf[i]<<endl;
             }
             cout<<"line"<<lines<<":";  
@@ -86,7 +152,7 @@ int frame::input(){
             cout<<"\n";
             buf.push_back(parr[parr.size()-1]);
             parr.pop_back();
-            for (int i = 1; i < buf.size(); i++){
+            for (int i = 0; i < buf.size(); i++){
                 cout<<buf[i]<<endl;
             }
             k->split_line_function();
@@ -98,7 +164,7 @@ int frame::input(){
             k->split_line_function();
             cout<<"\n";
             buf.pop_back();
-            for (int i = 1; i < buf.size(); i++){
+            for (int i = 0; i < buf.size(); i++){
                 cout<<buf[i]<<endl;
             }
             k->split_line_function();
@@ -108,7 +174,7 @@ int frame::input(){
             cout<<"view all";
             k->split_line_function();
             cout<<"\n";
-            for (int i = 1; i < buf.size(); i++){
+            for (int i = 0; i < buf.size(); i++){
                 cout<<buf[i]<<endl;
             }
             k->split_line_function();
@@ -119,7 +185,6 @@ int frame::input(){
             frame::line.push_back(line_input);
             k->Gramma_analysis(line_input);
             cout<<"\n";
-            cout<<"line"<<lines<<":";  
             lines++;
         }
     }
@@ -225,7 +290,7 @@ int kennel::Title_function(string Tiltle_name){
     for (int i = 0; i < numsofspace; i++){
         cout<<" ";
     }
-    for (int i = numsoft; i < Tiltle_name.size()-1; i++){
+    for (int i = numsoft; i < Tiltle_name.size(); i++){
         cout<<Tiltle_name[i];
     }
     return 0;
