@@ -4,6 +4,7 @@
 #include "easyhtmleditor.h"
 #include <bits/stdc++.h> 
 #include <fstream>
+#include <process.h>
 
 using namespace std;
 
@@ -50,10 +51,6 @@ int frame::shell(vector <string> o_line){
     return 0;
 }
 
-/*
-123456
-345
-*/
 int frame::find(string find_Str){
     long long bit_equal = 0;
     int k = 0;
@@ -90,6 +87,7 @@ int frame::write(vector <string> print_to_file,string file_name){
         frame::line.clear();
         frame::parr.clear();
         buf.clear();
+        system("pause");
         exit(0);
     }
     else{
@@ -128,57 +126,62 @@ int frame::input(long long lines){
     k = new(kennel);
     while (true){            
         string line_input;
-        cout<<"line"<<lines<<":";  
+        if(lines == 0);
+        else cout<<"line"<<lines<<":";  
         getline(cin,line_input);
         if ( line_input == "e"){
             frame::shell(frame::line);
         }
         else if( line_input == "w"){  
+            print_enter();
             cout<<"page up";          
             lines--;
-            k->split_line_function();
-            cout<<"\n";
+            cout<<"--------------------------------"<<"\n";
             int last = buf.size();
             frame::parr.push_back(buf[last - 1]);
-            convert_parr.push_back(convert[convert.size() - 1]);
             buf.pop_back();
             for ( int i = 0; i < buf.size(); i++){
                 cout<<buf[i]<<endl;
             }
-            cout<<"line"<<lines<<":";  
+            cout<<"line"<<lines<<":"<<"\n";
+            cout<<"--------------------------------"<<"\n";
+            cout<<"\n";  
         }
         else if ( line_input == "s"){
+            print_enter();
             cout<<"page down";
-            k->split_line_function();
+            cout<<"--------------------------------"<<"\n";
             cout<<"\n";
-            buf.push_back(parr[parr.size()-1]);
+            buf.push_back(frame::parr[frame::parr.size()-1]);
             parr.pop_back();
             for (int i = 0; i < buf.size(); i++){
                 cout<<buf[i]<<endl;
             }
-            k->split_line_function();
+            cout<<"--------------------------------"<<"\n";
             cout<<"\n";
         }
-        else if ( line_input == "d" ){   
-            cout<<"delete last";         
+        else if ( line_input == "d" ){  
+            print_enter();
+            cout<<"delete last"<<"\n";         
             lines-=2;
-            k->split_line_function();
+            cout<<"--------------------------------"<<"\n";
             cout<<"\n";
             buf.pop_back();
             for (int i = 0; i < buf.size(); i++){
                 cout<<buf[i]<<endl;
             }
-            k->split_line_function();
-            cout<<"line"<<lines<<":";  
+            cout<<"--------------------------------"<<"\n";
+            cout<<"\n"<<"line"<<lines<<":";  
         }
         else if ( line_input == "a"){
-            cout<<"view all";
-            k->split_line_function();
-            cout<<"\n";
+            print_enter();
+            cout<<"view all"<<"\n";
+            cout<<"--------------------------------"<<"\n";
             for (int i = 0; i < buf.size(); i++){
                 cout<<buf[i]<<endl;
             }
-            k->split_line_function();
+            cout<<"--------------------------------"<<"\n";
+            cout<<"\n";
         }
         else{
             string line_number = string("line") + to_string(lines) + string(":") + line_input;
@@ -274,7 +277,7 @@ int kennel::Gramma_analysis(string Line__){
         kennel::split_line_function();
     }
     else{
-        convert.push_back(space_string + Line__);
+        convert.push_back(Line__);
         kennel::print_convert();
     }
     return 0;
@@ -289,11 +292,10 @@ int kennel::Title_function(string Tiltle_name){
             break;
         }
     }
-    for (int i = 0; i < 20; i++){
-        space.push_back(' ');
-    }
+    string Tiltle_Name;
+    Tiltle_Name = Tiltle_name.substr(numsoft,Tiltle_name.size());
     convert.push_back(string("Level")+
-    to_string(numsoft)+string("heading") + space_string + Tiltle_name);
+    to_string(numsoft)+string("heading") + Tiltle_Name);
     kennel::print_convert();
     return 0;
 }
@@ -317,7 +319,7 @@ int kennel::url_function(string url_things){
     for (int i = numsoft; i < url_things.size(); i++){
         url_name[i] = url_things[i];
     }
-    convert.push_back(space_string + url_name);
+    convert.push_back(url_name);
     kennel::print_convert();
     return 0;
 }
@@ -329,7 +331,7 @@ int kennel::split_line_function(){
         _arr.push_back('_');
     }
     string __string( _arr.begin(), _arr.end());
-    convert.push_back( space_string + __string);
+    convert.push_back(__string);
     kennel::print_convert();
     return 0;
 }
@@ -337,7 +339,7 @@ int kennel::split_line_function(){
 int kennel::img_function(){
     for (int i = 0; i < 20; i++){
     }
-    convert.push_back(space_string + string("img"));
+    convert.push_back(string("img"));
     kennel::print_convert();
     return 0;
 }
@@ -351,8 +353,18 @@ int kennel::code_end_function(){
 }
 
 int kennel::print_convert(){
+    for ( int i = 0; i < 20; i++){
+        cout<<" ";
+    }
     for (int i = 0; i < convert.size(); i++){
         cout<<convert[i]<<endl;
+    }
+    return 0;
+}
+
+int print_enter(){
+    for (int i = 0; i < 20; i++){
+        cout<<"\n";
     }
     return 0;
 }

@@ -4,11 +4,10 @@
     #include <vector>
 
     using namespace std;
-        
-    vector <char> space;
     string File_Name;
     vector <string> buf;
-    string space_string(space.begin(),space.end());
+    int print_enter();
+    
     class frame{
         private:
             vector <string> parr;

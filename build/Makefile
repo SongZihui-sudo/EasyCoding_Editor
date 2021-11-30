@@ -8,7 +8,7 @@ CXXFLAGS = -std=c++11 -Wall
 LDFLAGS = 
 
 # Makefile settings - Can be customized.
-APPNAME = myapp
+APPNAME = EASYHTMLEDITOR
 EXT = .cpp
 SRCDIR = ../src
 OBJDIR = ../obj
