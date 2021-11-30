@@ -7,6 +7,7 @@
     string File_Name;
     vector <string> buf;
     int print_enter();
+    int print_title(string print_title_str);
     
     class frame{
         private:

@@ -4,11 +4,13 @@
 #include "easyhtmleditor.h"
 #include <bits/stdc++.h> 
 #include <fstream>
-#include <process.h>
+#include "Character_painting.h"
 
 using namespace std;
 
 int main(){
+    Character_painting * c_p;
+    c_p = new(Character_painting);
     vector <string> nothing;
     printf(" \033[41;36m EASYHTMLEDITOR \033[0m");
     cout<<endl;
@@ -294,8 +296,7 @@ int kennel::Title_function(string Tiltle_name){
     }
     string Tiltle_Name;
     Tiltle_Name = Tiltle_name.substr(numsoft,Tiltle_name.size());
-    convert.push_back(string("Level")+
-    to_string(numsoft)+string("heading") + Tiltle_Name);
+    convert.push_back(string("$") + Tiltle_Name);
     kennel::print_convert();
     return 0;
 }
@@ -357,7 +358,12 @@ int kennel::print_convert(){
         cout<<" ";
     }
     for (int i = 0; i < convert.size(); i++){
-        cout<<convert[i]<<endl;
+        if ( convert[i][0] == '$' ){
+            print_title(convert[i]);
+            continue;
+        }
+        else
+            cout<<convert[i]<<endl;
     }
     return 0;
 }
