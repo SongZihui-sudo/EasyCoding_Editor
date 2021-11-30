@@ -29,5 +29,5 @@ It is very like vim
 ``` s ``` page down   
 ``` a ``` view the file   
 ``` d ``` delete the last line    
-``` e ``` back to the commander
+``` e ``` back to the commander      
 ``` \ \n string name ``` find a string in the file   
