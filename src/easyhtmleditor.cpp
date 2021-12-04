@@ -166,6 +166,7 @@ int frame::input(long long lines){
             cout<<"--------------------------------"<<"\n";
             cout<<"\n";
             buf.pop_back();
+            convert.pop_back();
             for (int i = 0; i < buf.size(); i++){
                 cout<<buf[i]<<endl;
             }
