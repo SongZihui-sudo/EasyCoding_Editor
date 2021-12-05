@@ -1,4 +1,4 @@
-# easyhtmleaitor
+# easyhtmleditor
 
 It is a tool that you can write easyhtml-language.      
 you can see the Effect with you writing,and it is run in the terminal.You can run it on Linux or Windows.
