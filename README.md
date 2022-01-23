@@ -2,8 +2,6 @@
 
 这是一个简单的文本编辑器，仿照vim。
 
-[About easyhtml-language-html-maker](https://github.com/SongZihui-sudo/EasyHtml-language-HTML-MAKER)         
-
 ## Get starting 
 
 Linux
