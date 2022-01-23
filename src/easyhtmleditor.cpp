@@ -1,367 +1,249 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include "easyhtmleditor.h"
-#include <bits/stdc++.h> 
-#include <fstream>
+#include "../include/easyhtmleditor.h"
+#include<stdio.h>
+#include <conio.h>
+#include <Windows.h>
 
+using namespace edt;
 using namespace std;
 
-int main(){
-    vector <string> nothing;
-    printf(" \033[41;36m EASYHTMLEDITOR \033[0m");
-    cout<<endl;
-    frame *p;
-    p = new(frame);
-    p->shell(nothing);
-    return 0;
+//打开文件
+bool easyhtmleditor::open_files(string filename){
+    fstream out;
+    out.open(filename);
+    string file_data;
+    if (out){
+        while (getline(out,file_data)){
+            cout<<file_data<<endl;
+            out_data.push_back(file_data);
+        }
+        for (int i = 0; i < 29 - pos_y; i++){
+            cout<<"~"<<endl;
+        }
+    }
+    else{
+        cerr<<"open files error!!!"<<endl;
+        return false;
+    }
+    return true;
 }
-
-int frame::shell(vector <string> o_line){
-    while (true){
-        cout<<":";
-        string c;
-        string f;
-        cin>>c;
-        if (c == "/"){
-            string find_s;
-            cin>>find_s;
-            for (int i = 0,j = 1 ; j < c.size(); i++,j++){
-                find_s[i] = c[j];
+//设置光标位置
+void easyhtmleditor::SetPos( short int  x , short int  y ){
+        COORD  point = {  x ,  y  }; //光标要设置的位置x,y
+        HANDLE  HOutput = GetStdHandle( STD_OUTPUT_HANDLE ); //使用GetStdHandle(STD_OUTPUT_HANDLE)来获取标准输出的句柄
+        SetConsoleCursorPosition(HOutput, point); //设置光标位置
+}
+//命令行
+int easyhtmleditor::commander(){
+    int nHeight = GetSystemMetrics(SM_CYSCREEN); //屏幕高度
+    string input;
+    string key_words;
+    while(true){
+        if (pos_y){
+            SetPos(0,pos_y+1);
+        }
+        else{
+            for (int i = 0; i < 28; i++){
+                cout<<"~"<<endl;
             }
-            frame::find(find_s);
         }
-        else if(c == "i" ){
-            frame::input(0);
+        cout<<":";
+        cin>>input>>key_words;
+        if (input == key[0])
+        {
+            cout<<"NOW YOU WILL EXIT WHIHOUT SAVE!!!"<<endl;
+            return -1;
         }
-        else if(c == "wq" ){
-            cin>>f;
-            frame::write(o_line,f);
-            break;
+        else if(input == key[4]){
+            save_files(key_words,out_data);
+            return 1;
         }
-        else if ( c == "o"){
-            cin>>f;
-            frame::read(f);
-            break;
+        else if(input == key[1] || input == key[2]){
+            system("cls");
+            creat_files();
         }
-        
-        else;
+        else if(input == key[5]){
+            system("cls");
+            if(open_files(key_words)) 
+                creat_files();
+            else;
+        }
+        else if(input == key[3]){
+            find(key_words);
+        }
+        else{
+            cerr<<"command not find!!!"<<endl;
+        }
     }
     return 0;
 }
-
-int frame::find(string find_Str){
-    long long bit_equal = 0;
-    int k = 0;
-    for (int i = 1; i < buf.size() ; i++){
-        for (int j = 0;  j < buf[i].size() ; j++){
-            if ( buf[i][j] != find_Str[k] ){
-                bit_equal = 0;
-                j+=find_Str.size() - 1;    
+//查找
+bool easyhtmleditor::find(string finding){
+    int bit = 0;
+    for (int i = 0; i < out_data.size(); i++){
+        for ( int j = 0; j < out_data[i].size(); j++){
+            for (int k = 0; k < finding.size(); k++){
+                if (out_data[i][j+k] != finding[k]){
+                    j += finding.size()-1;
+                }
+                else if(bit == finding.size()){
+                    cout<<"line"<<i<<endl;
+                    cout<<j<<"th"<<endl;
+                    break;
+                }
+                else{
+                    bit++;
+                }
             }
-            else if(bit_equal == find_Str.size()){
+            if (bit){
                 break;
             }
-            else{
-                bit_equal++;
-                k++;
-            }
+            else;
         }
-        if (bit_equal){
-            cout<<buf[i]<<endl;
+        if (bit){
             break;
-        }   
-    }
-    return 0;
-}
-
-int frame::write(vector <string> print_to_file,string file_name){
-    ofstream fout;
-    file_name = string("../file/") + file_name;
-    fout.open(file_name);
-    if (fout){
-        for (int i = 0; i < print_to_file.size(); i++){
-            fout<<print_to_file[i]<<endl;
         }
-        frame::line.clear();
-        frame::parr.clear();
-        buf.clear();
-        system("pause");
-        exit(0);
+        else;
+    }   
+    return false;
+}
+//创建编辑
+bool easyhtmleditor::creat_files(){ 
+    string str;
+    int ch2 = 0;
+    int ch1 = 0;
+    SetPos(0,0);
+    pos_x = 0;
+    pos_y = 0;
+    int num = 0;        
+    while (true){    
+        ch1 = getch();            
+        ch2 = getch();
+        string Parr_str;
+        switch (ch2){
+            case 8:
+                cout<<" ";
+                if (pos_x){
+                    pos_x--; 
+                    SetPos(pos_x,pos_y);
+                    if (pos_x<=out_data[pos_y].size()&&pos_y<=out_data.size()){
+                        Parr_str = out_data[pos_y].substr(pos_x+1);
+                        out_data[pos_y].erase(pos_x);
+                        out_data[pos_y] += Parr_str; 
+                    }
+                    else;
+                    SetPos(0,pos_y);
+                    for (int i = 0; i < 20; i++){
+                        cout<<" ";
+                    }
+                    SetPos(0,pos_y);
+                    cout<<out_data[pos_y];
+                    SetPos(pos_x,pos_y);
+                    }
+                else if(pos_x==0){
+                    pos_x = out_data[pos_y-1].size();                    
+                    out_data[pos_y-1] += out_data[pos_y];
+                    out_data[pos_y] = " ";
+                    for (int i = pos_y; i < out_data.size()-1; i++){
+                        out_data[i] = out_data[i+1];
+                    }
+                    system("cls");
+                    SetPos(0,0);
+                    for (int i = 0; i < out_data.size(); i++){
+                        cout<<out_data[i]<<endl;
+                    }
+                    pos_y--;
+                    SetPos(pos_x,pos_y);
+                    }            
+                else;   
+                break;
+            case 13:
+                num = int(pos_y);
+                out_data.insert(out_data.begin()+num,"\0");
+                system("cls");
+                for (int i = 0; i < out_data.size(); i++){
+                    cout<<out_data[i]<<endl;
+                }
+                for (int i = 0; i < 30; i++){
+                    cout<<"~"<<endl;
+                }
+                SetPos(pos_x,pos_y+1);                
+                break;
+            case 32:
+                num = int(pos_x);
+                out_data[pos_y].insert(out_data[pos_y].begin()+num,' ');
+                SetPos(0,pos_y);
+                for (int i = 0; i < 20; i++){
+                    cout<<" ";
+                }
+                SetPos(0,pos_y);
+                cout<<out_data[pos_y];
+                SetPos(pos_x,pos_y);
+                break;
+            case 72: 
+                if (pos_y){
+                    pos_y--;
+                }
+                else;
+                SetPos(pos_x,pos_y);
+                break;  
+            case 80: 
+                pos_y++;
+                SetPos(pos_x,pos_y);
+                break; 
+            case 75: 
+                if (pos_x){
+                    pos_x--;
+                }
+                else;                    
+                SetPos(pos_x,pos_y);
+                break;
+            case 77: 
+                pos_x++;
+                SetPos(pos_x,pos_y);
+                break;     
+            case 58:
+                return true;
+            default: 
+                string input_str;
+                input_str.append(1,ch2);
+                if (pos_y>out_data.size()){
+                    cout<<ch2;
+                    out_data.push_back(input_str);
+                }
+                else if (pos_y<=out_data.size()&&pos_x==0){
+                    cout<<ch2;
+                    num = int(pos_y);
+                    out_data.insert(out_data.begin()+num,input_str);
+                }
+                else if (pos_y<=out_data.size()&&pos_x!=0){
+                    num = int(pos_x);
+                    out_data[pos_y].insert(out_data[pos_y].begin()+num,ch2);
+                    SetPos(0,pos_y);
+                    for (int i = 0; i < 20; i++){
+                        cout<<" ";
+                    }
+                    SetPos(0,pos_y);
+                    cout<<out_data[pos_y];
+                    SetPos(pos_x,pos_y);
+                }
+                else;
+                break;
+        }
+        Sleep(10);  
+    }
+    return true;
+}
+//保存
+bool easyhtmleditor::save_files(string filename,deque <string> save_Data){
+    ofstream in;
+    in.open(filename);
+    if (in){
+       for (int i = 0; i < save_Data.size(); i++){
+        in<<save_Data[i]<<"\n";
+        }
     }
     else{
-        cout<<"CAN NOT SAVE THE FILE!"<<endl;
-        return -1;
+        cerr<<"can save the files!!!"<<endl;   
     }
-    return 0;
-}
-
-int frame::read(string read_Str){
-    long long lines_number = 0;
-    ifstream fin;
-    read_Str=string("../file/") + read_Str;
-    fin.open(read_Str);
-    if(fin){
-        while(getline(fin,read_Str)){
-            frame::line.push_back(read_Str);
-            read_Str = string("line") + to_string(lines_number) + string(":") + read_Str;
-            buf.push_back(read_Str);
-            lines_number++;
-        }
-        for (int i = 0; i < buf.size(); i++){
-            cout<<buf[i]<<endl;
-        }
-        frame::input(lines_number);
-    }
-    else{
-        cout<<"CAN NOT OPEN THE FILE!"<<endl;
-        return -1;
-    }
-    return 0;
-}
-
-int frame::input(long long lines){
-    kennel *k;
-    k = new(kennel);
-    while (true){            
-        string line_input;
-        if(lines == 0);
-        else cout<<"line"<<lines<<":";  
-        getline(cin,line_input);
-        if ( line_input == "e"){
-            frame::shell(frame::line);
-        }
-        else if( line_input == "w"){  
-            print_enter();
-            cout<<"page up";          
-            lines--;
-            cout<<"--------------------------------"<<"\n";
-            int last = buf.size();
-            frame::parr.push_back(buf[last - 1]);
-            buf.pop_back();
-            for ( int i = 0; i < buf.size(); i++){
-                cout<<buf[i]<<endl;
-            }
-            cout<<"line"<<lines<<":"<<"\n";
-            cout<<"--------------------------------"<<"\n";
-            cout<<"\n";  
-        }
-        else if ( line_input == "s"){
-            print_enter();
-            cout<<"page down";
-            cout<<"--------------------------------"<<"\n";
-            cout<<"\n";
-            buf.push_back(frame::parr[frame::parr.size()-1]);
-            parr.pop_back();
-            for (int i = 0; i < buf.size(); i++){
-                cout<<buf[i]<<endl;
-            }
-            cout<<"--------------------------------"<<"\n";
-            cout<<"\n";
-        }
-        else if ( line_input == "d" ){  
-            print_enter();
-            cout<<"delete last"<<"\n";         
-            lines-=2;
-            cout<<"--------------------------------"<<"\n";
-            cout<<"\n";
-            buf.pop_back();
-            convert.pop_back();
-            for (int i = 0; i < buf.size(); i++){
-                cout<<buf[i]<<endl;
-            }
-            cout<<"--------------------------------"<<"\n";
-            cout<<"\n"<<"line"<<lines<<":";  
-        }
-        else if ( line_input == "a"){
-            print_enter();
-            cout<<"view all"<<"\n";
-            cout<<"--------------------------------"<<"\n";
-            for (int i = 0; i < buf.size(); i++){
-                cout<<buf[i]<<endl;
-            }
-            cout<<"--------------------------------"<<"\n";
-            cout<<"\n";
-        }
-        else{
-            string line_number = string("line") + to_string(lines) + string(":") + line_input;
-            buf.push_back(line_number);
-            frame::line.push_back(line_input);
-            k->Gramma_analysis(line_input);
-            cout<<"\n";
-            lines++;
-        }
-    }
-    return 0;
-}
-int kennel::Gramma_analysis(string Line__){
-    int bit_title = 0;
-    for( int i = 0; i < Line__.size();i++ ){
-        if ( Line__[i] == kennel::title[0] ){
-            bit_title = 1;    
-        }
-        else if(Line__[i] == ' '){
-            break;
-        }
-        else{
-            bit_title = 0;
-            break;
-        }
-    }
-    int bit_url = 0;
-    for (int i = 0 ; i < kennel::url.size();i++) {
-        if (Line__[i] == kennel::url[i]){
-            bit_url = 1;        
-        }
-        else{
-            bit_url = 0;
-            break;
-        }
-    }
-    int bit_img = 0;
-    for(int i = 0; i < kennel::img.size(); i++ ){
-        if ( Line__[i] == kennel::img[i] ){
-            bit_img = 1;
-        }
-        else{
-            bit_img = 0;
-            break;
-        }
-    } 
-    int bit_code_begin = 0;
-    for (int i = 0; i < kennel::code_begin.size(); i++){
-        if (Line__[i] == kennel::code_begin[i] ){
-            bit_code_begin = 1;
-        }
-        else{
-            bit_code_begin = 0;
-            break;
-        }
-    }
-    int bit_code_end = 0;
-    for (int i = 0; i < kennel::code_end.size(); i++){
-        if (Line__[i] == kennel::code_end[i] ){
-            bit_code_end = 1;
-        }
-        else{
-            bit_code_end = 0;
-            break;
-        }
-    }
-    int bit_sqite_line = 0;
-    for (int i = 0; i < kennel::split_line.size(); i++){
-        if (Line__[i] == kennel::split_line[i]){
-            bit_sqite_line = 1;
-        }
-        else{
-            bit_sqite_line = 0;
-            break;
-        }    
-    }
-    if (bit_title){
-        kennel::Title_function(Line__);   
-    }
-    else if (bit_url){
-        kennel::url_function(Line__);
-    }
-    else if (bit_img){
-        kennel::img_function();
-    }
-    else if (bit_code_begin){
-        kennel::code_begin_funcition();
-    }
-    else if (bit_code_end){
-        kennel::code_end_function();
-    }
-    else if (bit_sqite_line){
-        kennel::split_line_function();
-    }
-    else{
-        convert.push_back(Line__);
-        kennel::print_convert();
-    }
-    return 0;
-}
-
-int kennel::Title_function(string Tiltle_name){
-    long long numsoft;
-    cout<<"\n";
-    for (int i = 0; i < Tiltle_name.size(); i++){
-        if (Tiltle_name[i] == ' '){
-            numsoft = i;
-            break;
-        }
-    }
-    string Tiltle_Name;
-    Tiltle_Name = Tiltle_name.substr(numsoft,Tiltle_name.size());
-    convert.push_back(Tiltle_Name);
-    kennel::print_convert();
-    return 0;
-}
-
-int kennel::url_function(string url_things){
-    int numsofspace = 0;
-    long long numsoft;
-    for (int i = 0; i < url_things.size(); i++){
-        if ( url_things[i] == ' ' ){
-            numsofspace++;
-        } 
-        else if ( numsofspace == 2){
-            numsoft = i;
-            break;
-        }
-        else{
-            continue;
-        }   
-    }
-    string url_name;
-    for (int i = numsoft; i < url_things.size(); i++){
-        url_name[i] = url_things[i];
-    }
-    convert.push_back(url_name);
-    kennel::print_convert();
-    return 0;
-}
-
-int kennel::split_line_function(){
-    vector <char> _arr;
-    const int numsof_ = 50;
-    for (int i = 0; i < numsof_; i++){
-        _arr.push_back('_');
-    }
-    string __string( _arr.begin(), _arr.end());
-    convert.push_back(__string);
-    kennel::print_convert();
-    return 0;
-}
-
-int kennel::img_function(){
-    for (int i = 0; i < 20; i++){
-    }
-    convert.push_back(string("img"));
-    kennel::print_convert();
-    return 0;
-}
-
-int kennel::code_begin_funcition(){
-    return 0;
-}
-
-int kennel::code_end_function(){
-    return 0;
-}
-
-int kennel::print_convert(){
-    cout<<"\n";
-    for (int i = 0; i < convert.size(); i++){
-        cout<<convert[i]<<endl;
-    }
-    return 0;
-}
-
-int print_enter(){
-    for (int i = 0; i < 20; i++){
-        cout<<"\n";
-    }
-    return 0;
+    return true;
 }

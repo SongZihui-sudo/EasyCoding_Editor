@@ -15,6 +15,7 @@
         "sstream": "cpp",
         "streambuf": "cpp",
         "regex": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "stack": "cpp"
     }
 }
