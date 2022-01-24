@@ -36,10 +36,9 @@ int easyhtmleditor::commander(){
     string key_words;
     string language;
     while(true){
-        if (pos_y){
-            SetPos(0,pos_y+1);
+        for (int i = 0; i < 29; i++){
+            cout<<"~\n";
         }
-        else;
         cout<<":";
         cin>>input;
         if (input == key[0]){
@@ -119,6 +118,7 @@ bool easyhtmleditor::creat_files(){
     int num = 0;        
     while (true){    
         if(_kbhit()){
+            SetPos(0,0);          
             //ch1 = _getch();
             ch2 = _getch();
             string Parr_str;
@@ -208,13 +208,17 @@ bool easyhtmleditor::creat_files(){
                     if (pos_y){
                         pos_y--;
                     }
-                    else;
+                    else; 
+                    SetPos(170,59);
+                    cout<<"Line:"<<pos_y; 
                     SetPos(pos_x,pos_y);
                     break;  
                 //下
                 case 80: 
                     if (pos_y>=out_data.size()-1);
                     else pos_y++;
+                    SetPos(170,59);
+                    cout<<"Line:"<<pos_y; 
                     SetPos(pos_x,pos_y);
                     break; 
                 //左
