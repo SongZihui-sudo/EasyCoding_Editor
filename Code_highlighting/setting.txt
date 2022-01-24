@@ -1,0 +1,16 @@
+for
+while
+if
+else if
+else
+main
+int
+char
+float
+double
+#include
+cout
+cin
+printf
+scanf
+getline

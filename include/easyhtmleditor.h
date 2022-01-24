@@ -6,6 +6,7 @@
 #include <deque>
 #include <string>
 #include <Windows.h>
+#include <vector>
 
 using namespace std;
 
@@ -18,7 +19,12 @@ private:
     deque <string> out_data;
     deque <string> parr3;
     string key[6] = {"q","i","a","/","wq","v"};
-public:
+public: 
+    //字符集
+    vector <int> word = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+                    'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+                    '1','2','3','4','5','6','7','8','9','0',
+                    ':',',','{','}','=','+','-','_','\\',';','?','/','>','<','.','\'','\"','@','|','!','$','%','^','&','*','(',')','~','`'};
     //打开文件
     bool open_files(string filename);
     //保存文件
