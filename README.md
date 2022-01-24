@@ -1,4 +1,4 @@
-# EasyCoding编译器
+# EasyCoding编辑器 
 
 这是一个简单的文本编辑器，仿照vim。
 
