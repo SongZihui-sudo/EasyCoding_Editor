@@ -10,6 +10,7 @@
 				"-g",
 				"${fileDirname}\\easyhtmleditor.cpp",
 				"${fileDirname}\\Markdown_parser.cpp",
+				"${fileDirname}\\Code_highlighting.cpp",
 				"${file}",
 				"-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe"
