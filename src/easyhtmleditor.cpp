@@ -122,7 +122,6 @@ bool easyhtmleditor::creat_files(){
             switch(ch2){
                 //删除
                 case 8:
-                    //cout<<" ";
                     if (pos_x){
                         pos_x--; 
                         SetPos(pos_x,pos_y);
@@ -140,6 +139,7 @@ bool easyhtmleditor::creat_files(){
                         cout<<out_data[pos_y];
                         }
                         else if(pos_x==0){
+                            pos_x = 0;
                             pos_x = out_data[pos_y-1].size();                    
                             out_data[pos_y-1] += out_data[pos_y];
                             out_data[pos_y] = "\0";
@@ -151,7 +151,7 @@ bool easyhtmleditor::creat_files(){
                             cout<<out_data[i]<<endl;
                         }
                         pos_y--;
-                        }            
+                        }      
                     else;   
                     SetPos(0,out_data.size());
                     cout<<endl;
@@ -203,7 +203,7 @@ bool easyhtmleditor::creat_files(){
                     else; 
                     SetPos(90,39);
                     cout<<"Line:"<<pos_y; 
-                    SetPos(pos_x,pos_y);
+                    SetPos(out_data[pos_y].size(),pos_y);
                     break;  
                 //下
                 case 80: 
@@ -211,7 +211,7 @@ bool easyhtmleditor::creat_files(){
                     else pos_y++;
                     SetPos(90,39);
                     cout<<"Line:"<<pos_y; 
-                    SetPos(pos_x,pos_y);
+                    SetPos(out_data[pos_y].size(),pos_y);
                     break; 
                 //左
                 case 75: 
@@ -225,7 +225,7 @@ bool easyhtmleditor::creat_files(){
                     break;
                 //右
                 case 77: 
-                    if (pos_x>=out_data[pos_y].size());
+                    if (pos_x>=out_data[pos_y].size()) pos_x = out_data[pos_y].size();
                     else pos_x++;
                     SetPos(80,39);
                     cout<<pos_x<<"th"; 
