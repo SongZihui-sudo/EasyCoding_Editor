@@ -1,9 +1,11 @@
 #include <iostream>
 #include "../include/easyhtmleditor.h"
 #include <Windows.h>
+#include "../include/Code_highlighting.h"
 
 using namespace edt;
 using namespace std;
+using namespace cht;
 
 void SetSize(unsigned uCol,unsigned uLine);
 

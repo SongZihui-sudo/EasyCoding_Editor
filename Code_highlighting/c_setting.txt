@@ -1,3 +1,4 @@
+c_highlighting:
 for
 while
 if

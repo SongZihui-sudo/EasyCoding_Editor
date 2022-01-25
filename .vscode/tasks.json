@@ -12,6 +12,7 @@
 				"${fileDirname}\\easyhtmleditor.cpp",
 				"${fileDirname}\\Markdown_parser.cpp",
 				"${fileDirname}\\Code_highlighting.cpp",
+				"${fileDirname}\\Code_completion.cpp",
 				"${file}",
 				"-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe"

@@ -2,9 +2,13 @@
 #include<stdio.h>
 #include <conio.h>
 #include <Windows.h>
+#include "../include/Code_highlighting.h"
 
 using namespace edt;
 using namespace std;
+using namespace cht;
+
+cht::Code_highlighting C;
 
 //打开文件
 bool easyhtmleditor::open_files(string filename){
@@ -52,10 +56,13 @@ int easyhtmleditor::commander(){
         }
         else if(input == key[1] || input == key[2]){
             language = key_words;
+            C.read_setting_files(language);
             creat_files();
         }
         else if(input == key[5]){
             system("cls");
+            language = key_words;
+            C.read_setting_files(language);
             if(open_files(key_words)){
                 creat_files();
             }
@@ -289,6 +296,8 @@ bool easyhtmleditor::creat_files(){
                         else;
                     }
                     else;
+                    SetPos(pos_x,pos_y);        
+                    C.Lexical_analysis(out_data);
                     SetPos(pos_x,pos_y);
                     break;
             }

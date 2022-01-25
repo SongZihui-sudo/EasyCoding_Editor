@@ -14,12 +14,13 @@ namespace edt{
 
 class easyhtmleditor{  
 private:
-    short int pos_x = 0;
-    short int pos_y = 0;
     deque <string> out_data;
     deque <string> parr3;
     string key[6] = {"q","i","a","/","wq","v"};
-public: 
+    string language[2] = {"c","cpp"};
+public:
+    short int pos_x = 0;
+    short int pos_y = 0; 
     //字符集
     vector <int> word = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
                     'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
