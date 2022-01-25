@@ -16,11 +16,13 @@ bool easyhtmleditor::open_files(string filename){
             cout<<file_data<<endl;
             out_data.push_back(file_data);
         }
+      
     }
     else{
         cerr<<"open files error!!!"<<endl;
         return false;
-    }
+    }  
+    SetPos(0,0);
     return true;
 }
 //设置光标位置
@@ -35,10 +37,8 @@ int easyhtmleditor::commander(){
     string input;
     string key_words;
     string language;
-    while(true){
-        for (int i = 0; i < 29; i++){
-            cout<<"~\n";
-        }
+    while(true){    
+        SetPos(0,39);
         cout<<":";
         cin>>input;
         if (input == key[0]){
@@ -57,9 +57,6 @@ int easyhtmleditor::commander(){
         else if(input == key[5]){
             system("cls");
             if(open_files(key_words)){
-                for (int i = 0; i < 100; i++){
-                    cout<<"~"<<endl;
-                }
                 creat_files();
             }
             else;
@@ -158,9 +155,6 @@ bool easyhtmleditor::creat_files(){
                     else;   
                     SetPos(0,out_data.size());
                     cout<<endl;
-                    for (int i = 0; i < 30; i++){
-                        cout<<"~"<<endl;
-                    }
                     SetPos(pos_x,pos_y);
                     break;
                 //回车
@@ -180,9 +174,6 @@ bool easyhtmleditor::creat_files(){
                     }
                     pos_x = 0;
                     pos_y++;
-                    for (int i = 0; i < 100; i++){
-                        cout<<"~"<<endl;
-                    }
                     SetPos(pos_x,pos_y);
                     break;
                 //空格
@@ -209,7 +200,7 @@ bool easyhtmleditor::creat_files(){
                         pos_y--;
                     }
                     else; 
-                    SetPos(170,59);
+                    SetPos(90,39);
                     cout<<"Line:"<<pos_y; 
                     SetPos(pos_x,pos_y);
                     break;  
@@ -217,7 +208,7 @@ bool easyhtmleditor::creat_files(){
                 case 80: 
                     if (pos_y>=out_data.size()-1);
                     else pos_y++;
-                    SetPos(170,59);
+                    SetPos(90,39);
                     cout<<"Line:"<<pos_y; 
                     SetPos(pos_x,pos_y);
                     break; 
@@ -226,13 +217,17 @@ bool easyhtmleditor::creat_files(){
                     if (pos_x){
                         pos_x--;
                     }
-                    else;                    
+                    else;    
+                    SetPos(80,39);
+                    cout<<pos_x<<"th";                
                     SetPos(pos_x,pos_y);
                     break;
                 //右
                 case 77: 
                     if (pos_x>=out_data[pos_y].size());
                     else pos_x++;
+                    SetPos(80,39);
+                    cout<<pos_x<<"th"; 
                     SetPos(pos_x,pos_y);
                     break;     
                 //esc
@@ -243,7 +238,7 @@ bool easyhtmleditor::creat_files(){
                     string input_str;
                     int mid = 0;
                     int left = word[0];
-                    int right = word[word.size()];
+                    int right = word[word.size()-1];                            
                     for (int i = 0; i < word.size(); i++){
                         mid = (left+right)/2;
                         if (ch2>mid){
@@ -253,8 +248,9 @@ bool easyhtmleditor::creat_files(){
                             right = mid -1;
                         }
                         else{
-                            bit =1;
-                            cout<<ch2;
+                            bit =1; 
+                            SetPos(pos_x,pos_y);                             
+                            cout<<ch2;                            
                             pos_x++;
                             break;
                         }
