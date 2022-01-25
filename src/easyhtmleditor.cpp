@@ -122,7 +122,7 @@ bool easyhtmleditor::creat_files(){
             switch(ch2){
                 //删除
                 case 8:
-                    cout<<" ";
+                    //cout<<" ";
                     if (pos_x){
                         pos_x--; 
                         SetPos(pos_x,pos_y);
@@ -178,7 +178,7 @@ bool easyhtmleditor::creat_files(){
                     break;
                 //空格
                 case 32:
-                    cout<<" ";
+                    //cout<<" ";
                     if (pos_x){                    
                         num = pos_x;                    
                     }
@@ -193,6 +193,7 @@ bool easyhtmleditor::creat_files(){
                     }
                     SetPos(0,pos_y);
                     cout<<out_data[pos_y];
+                    SetPos(pos_x,pos_y);
                     break;
                 //上
                 case 72: 
