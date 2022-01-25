@@ -1,9 +1,8 @@
-#include <iostream> 
+#include <iostream>
 
 using namespace std;
-int test();
 
-int test(){
+int main(){
     cout<<"hello world!!!"<<endl;
     return 0;
 }

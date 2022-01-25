@@ -15,3 +15,12 @@ cin
 printf
 scanf
 getline
+return
+using
+namespace
+struct
+typedef
+class
+public
+private
+endl
