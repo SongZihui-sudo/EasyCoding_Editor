@@ -20,12 +20,12 @@ bool easyhtmleditor::open_files(string filename){
             cout<<file_data<<endl;
             out_data.push_back(file_data);
         }
-      
     }
     else{
         cerr<<"open files error!!!"<<endl;
         return false;
     }  
+    C.Lexical_analysis(out_data);
     SetPos(0,0);
     return true;
 }
@@ -62,6 +62,15 @@ int easyhtmleditor::commander(){
         else if(input == key[5]){
             system("cls");
             language = key_words;
+            int bit = 0;
+            for (int i = 0; i < language.size(); i++){
+                if (language[i] == '.'&& i!=0&&i!=1){
+                    bit = i;
+                    break;
+                }
+                else;
+            }
+            language = language.substr(bit+1,language.size()-1);
             C.read_setting_files(language);
             if(open_files(key_words)){
                 creat_files();
