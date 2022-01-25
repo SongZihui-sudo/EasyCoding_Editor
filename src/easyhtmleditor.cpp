@@ -188,6 +188,27 @@ bool easyhtmleditor::creat_files(){
                     pos_y++;
                     SetPos(pos_x,pos_y);
                     break;
+                //TAB
+                case 9:
+                    if (pos_x){                    
+                        num = pos_x;                    
+                    }
+                    else{
+                        num = 0;
+                    }
+                    pos_x +=4;
+                    out_data[pos_y].insert(out_data[pos_y].begin()+num,' ');
+                    out_data[pos_y].insert(out_data[pos_y].begin()+num+1,' ');
+                    out_data[pos_y].insert(out_data[pos_y].begin()+num+2,' ');
+                    out_data[pos_y].insert(out_data[pos_y].begin()+num+3,' ');
+                    SetPos(0,pos_y);
+                    for (int i = 0; i < 30; i++){
+                        cout<<" ";
+                    }
+                    SetPos(0,pos_y);
+                    cout<<out_data[pos_y];
+                    SetPos(pos_x,pos_y);
+                    break;
                 //空格
                 case 32:
                     //cout<<" ";
