@@ -138,19 +138,24 @@ bool easyhtmleditor::creat_files(){
                         SetPos(0,pos_y);
                         cout<<out_data[pos_y];
                         }
+                        else if(pos_x == 0 && pos_y == 0){
+                            pos_x = 0;
+                            pos_y = 0;
+                        }
                         else if(pos_x==0){
                             pos_x = 0;
                             pos_x = out_data[pos_y-1].size();                    
                             out_data[pos_y-1] += out_data[pos_y];
                             out_data[pos_y] = "\0";
                             for (int i = pos_y; i < out_data.size()-1; i++){
-                            out_data[i] = out_data[i+1];
-                        }
-                        system("cls");
-                        for (int i = 0; i < out_data.size(); i++){
-                            cout<<out_data[i]<<endl;
-                        }
-                        pos_y--;
+                                out_data[i] = out_data[i+1];
+                                out_data.pop_back();
+                            }
+                            system("cls");
+                            for (int i = 0; i < out_data.size(); i++){
+                                cout<<out_data[i]<<endl;
+                            }
+                            pos_y--;
                         }      
                     else;   
                     SetPos(0,out_data.size());
@@ -203,7 +208,8 @@ bool easyhtmleditor::creat_files(){
                     else; 
                     SetPos(90,39);
                     cout<<"Line:"<<pos_y; 
-                    SetPos(out_data[pos_y].size(),pos_y);
+                    pos_x = out_data[pos_y].size();
+                    SetPos(pos_x,pos_y);
                     break;  
                 //下
                 case 80: 
@@ -211,7 +217,8 @@ bool easyhtmleditor::creat_files(){
                     else pos_y++;
                     SetPos(90,39);
                     cout<<"Line:"<<pos_y; 
-                    SetPos(out_data[pos_y].size(),pos_y);
+                    pos_x = out_data[pos_y].size();
+                    SetPos(pos_x,pos_y);
                     break; 
                 //左
                 case 75: 
@@ -225,7 +232,7 @@ bool easyhtmleditor::creat_files(){
                     break;
                 //右
                 case 77: 
-                    if (pos_x>=out_data[pos_y].size()) pos_x = out_data[pos_y].size();
+                    if (pos_x>=out_data[pos_y].size()) pos_x = out_data[pos_y].size()-1;
                     else pos_x++;
                     SetPos(80,39);
                     cout<<pos_x<<"th"; 
@@ -305,3 +312,7 @@ bool easyhtmleditor::save_files(string filename,deque <string> save_Data){
     }
     return true;
 }
+/*
+1 2 3 4 5
+1 2 4 5 
+*/
