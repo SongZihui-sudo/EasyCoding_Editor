@@ -162,11 +162,7 @@ bool easyhtmleditor::creat_files(){
                             pos_x = 0;
                             pos_x = out_data[pos_y-1].size();                    
                             out_data[pos_y-1] += out_data[pos_y];
-                            out_data[pos_y] = "\0";
-                            for (int i = pos_y; i < out_data.size()-1; i++){
-                                out_data[i] = out_data[i+1];
-                                out_data.pop_back();
-                            }
+                            out_data.erase(out_data.begin()+pos_y);
                             system("cls");
                             for (int i = 0; i < out_data.size(); i++){
                                 cout<<out_data[i]<<endl;
