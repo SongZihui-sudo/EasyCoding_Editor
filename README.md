@@ -4,7 +4,7 @@
 目前简单支持c/c++的代码高亮。     
 [已解决：关于文件显示不全](https://github.com/SongZihui-sudo/EasyCoding_editor/issues/2)
 ## 运行截图
-![img](https://pcsdata.baidu.com/thumbnail/246a1455dn7d77714e267c92410d3759?fid=3125802318-16051585-975733413132021&rt=pr&sign=FDTAER-yUdy3dSFZ0SVxtzShv1zcMqd-TPXbS05%2Fdj3%2BXhtyG%2BTgP1sBwY4%3D&expires=2h&chkv=0&chkbd=0&chkpc=&dp-logid=8647160053375944444&dp-callid=0&time=1643112000&bus_no=26&size=c1600_u1600&quality=100&vuk=-&ft=video)   
+![img](https://cdn.jsdelivr.net/gh/SongZihui-sudo/EasyCoding_editor@master/test/Screenshot%202022-01-27%20221722.png)   
 
 ## Get starting 
 
