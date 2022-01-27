@@ -46,6 +46,9 @@ bool easyhtmleditor::open_files(string filename){
     if (page<=1){
         page_arr.push_back(out_data);
     }
+    else if (page*38 < i){
+        page_arr.push_back(out_data);
+    }
     else;
     C.Lexical_analysis(page_arr[0]);
     SetPos(0,0);
@@ -326,10 +329,16 @@ bool easyhtmleditor::creat_files(){
                     break;
                 //上
                 case 72: 
-                    if (pos_y){
-                        pos_y--;
+                    if (pos_y < (page_now-1)*38){
+                        pos_y = pos_y;
+                        break;
                     }
-                    else; 
+                    else{
+                        if (pos_y){
+                            pos_y--;
+                        }
+                        else;
+                    }
                     SetPos(140,39);
                     cout<<"Line:"<<pos_y; 
                     pos_x = page_arr[page_now-1][pos_y-  (page_now-1)*38].size();
