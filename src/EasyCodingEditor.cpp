@@ -285,7 +285,7 @@ bool easyhtmleditor::creat_files(){
                     cout<<page_arr[page_now-1][pos_y -  (page_now-1)*38];
                     SetPos(pos_x,pos_y -  (page_now-1)*38);
                     break;
-                case 59:
+                case 73:
                     if (page_now==1){
                         page_now = page_now;
                     }
@@ -308,7 +308,7 @@ bool easyhtmleditor::creat_files(){
                     }
                     else;
                     break;
-                case 60:
+                case 81:
                     if (page_now<page){                   
                         page_now++;
                         pos_y+=38;
@@ -433,6 +433,7 @@ bool easyhtmleditor::creat_files(){
         else;
         Sleep(10);  
     }
+    
     return true;
 }
 //保存
