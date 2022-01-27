@@ -39,7 +39,10 @@ bool easyhtmleditor::open_files(string filename){
         }
     }
     else{
+        SetPos(0,39);
+        C.Set_color(238,44,44,0,0,0);
         cerr<<"open files error!!!"<<endl;
+        C.Set_color(255,255,255,0,0,0);	
         return false;
     }      
     page = j;
@@ -107,40 +110,53 @@ int easyhtmleditor::commander(){
         else if(input == key[3]){
             find(key_words);
         }
+        else if(input == key[6]){
+            system("cls");
+            for (int i = 0; i < page_arr[page_now-1].size(); i++){
+                cout<<page_arr[page_now-1][i]<<endl;
+            }
+            C.Lexical_analysis(page_arr[page_now-1]);
+            SetPos(0,0);
+            creat_files();
+        }
         else{
+            SetPos(0,39);
+            C.Set_color(238,44,44,0,0,0);
             cerr<<"command not find!!!"<<endl;
+            C.Set_color(255,255,255,0,0,0);	
         }
     }
     return 0;
 }
 //查找
 bool easyhtmleditor::find(string finding){
-    int bit = 0;
-    for (int i = 0; i < out_data.size(); i++){
-        for ( int j = 0; j < out_data[i].size(); j++){
-            for (int k = 0; k < finding.size(); k++){
-                if (out_data[i][j+k] != finding[k]){
-                    j += finding.size()-1;
-                }
-                else if(bit == finding.size()){
-                    cout<<"line"<<i<<endl;
-                    cout<<j<<"th"<<endl;
-                    break;
-                }
-                else{
-                    bit++;
-                }
-            }
-            if (bit){
-                break;
-            }
-            else;
-        }
-        if (bit){
-            break;
-        }
-        else;
-    }   
+    vector <int> state;
+    for (int i = 0; i < page_arr[page_now-1].size(); i = i+2){
+        int k = 0;int n = 0;
+		while(page_arr[page_now-1][i][k]!='\0'&&finding[n]!='\0'){
+			if(page_arr[page_now-1][i][k]==finding[n]){
+				k++;
+				n++;
+			}
+			else{
+				k=k-n+1;
+				n=0;
+			}
+		}
+		if(finding[n]=='\0'){
+			state.push_back(i);
+		}  
+		else;  
+    }
+    SetPos(0,39);
+    for (int i = 0; i < 100; i++){
+        cout<<" ";
+    }
+    cout<<"find"<<" "<<state.size()<<" Lines:";
+    for (int i = 0; i < state.size(); i++){
+        cout<<" "<<state[i];
+    }
+    SetPos(0,0);
     return false;
 }
 //创建编辑
@@ -155,8 +171,6 @@ bool easyhtmleditor::creat_files(){
     int ch1 = 0;
     char ch2 = 0;
     SetPos(0,0);
-    pos_x = 0;
-    pos_y = 0;
     int num = 0;        
     while (true){    
         if(_kbhit()){
@@ -433,10 +447,8 @@ bool easyhtmleditor::creat_files(){
         else;
         Sleep(10);  
     }
-    
     return true;
 }
-//保存
 bool easyhtmleditor::save_files(string filename,deque < deque <string> > save_Data){
     ofstream in;
     in.open(filename);
