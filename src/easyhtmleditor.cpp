@@ -3,13 +3,15 @@
 #include <conio.h>
 #include <Windows.h>
 #include "../include/Code_highlighting.h"
+#include "../include/Code_completion.h"
 
 using namespace edt;
 using namespace std;
 using namespace cht;
+using namespace cct;
 
 cht::Code_highlighting C;
-
+cct::Code_completion cc;
 //打开文件
 bool easyhtmleditor::open_files(string filename){
     fstream out;
@@ -56,6 +58,7 @@ int easyhtmleditor::commander(){
         }
         else if(input == key[1] || input == key[2]){
             language = key_words;
+            cc.read_outfiles(language);
             C.read_setting_files(language);
             creat_files();
         }
@@ -72,6 +75,7 @@ int easyhtmleditor::commander(){
             }
             language = language.substr(bit+1,language.size()-1);
             C.read_setting_files(language);
+            cc.read_outfiles(language);
             if(open_files(key_words)){
                 creat_files();
             }
@@ -138,6 +142,10 @@ bool easyhtmleditor::creat_files(){
             switch(ch2){
                 //删除
                 case 8:
+                    if (cc.c_str.empty());
+                    else{
+                        cc.c_str.pop_back();
+                    }
                     if (pos_x){
                         pos_x--; 
                         SetPos(pos_x,pos_y);
@@ -195,6 +203,10 @@ bool easyhtmleditor::creat_files(){
                     break;
                 //TAB
                 case 9:
+                    if (cc.c_str.empty());
+                    else{
+                        cc.c_str.clear();
+                    }
                     if (pos_x){                    
                         num = pos_x;                    
                     }
@@ -216,6 +228,10 @@ bool easyhtmleditor::creat_files(){
                     break;
                 //空格
                 case 32:
+                    if (cc.c_str.empty());
+                    else{
+                        cc.c_str.clear();
+                    }
                     //cout<<" ";
                     if (pos_x){                    
                         num = pos_x;                    
@@ -274,7 +290,7 @@ bool easyhtmleditor::creat_files(){
                 //esc
                 case 27:
                     return true;
-                default:
+                default:                    
                     int bit = 0;
                     string input_str;
                     int mid = 0;
@@ -320,11 +336,13 @@ bool easyhtmleditor::creat_files(){
                             out_data[pos_y].push_back(ch2);
                         }
                         else;
+                        SetPos(0,39);
+                        SetPos(pos_x,pos_y);        
+                        C.Lexical_analysis(out_data);
+                        cc.Lexical_analysis(ch2,pos_y);
+                        SetPos(pos_x,pos_y);
                     }
                     else;
-                    SetPos(pos_x,pos_y);        
-                    C.Lexical_analysis(out_data);
-                    SetPos(pos_x,pos_y);
                     break;
             }
         }     

@@ -14,11 +14,12 @@ namespace edt{
 
 class easyhtmleditor{  
 private:
-    deque <string> out_data;
     deque <string> parr3;
     string key[6] = {"q","i","a","/","wq","v"};
     string language[2] = {"c","cpp"};
-public:
+public:    
+    char ch2 = 0;
+    deque <string> out_data;
     short int pos_x = 0;
     short int pos_y = 0; 
     //字符集

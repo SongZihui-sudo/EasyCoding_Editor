@@ -2,12 +2,15 @@
 #include "../include/easyhtmleditor.h"
 #include <Windows.h>
 #include "../include/Code_highlighting.h"
+#include "../include/Code_completion.h"
 
 using namespace edt;
 using namespace std;
 using namespace cht;
+using namespace cct;
 
 void SetSize(unsigned uCol,unsigned uLine);
+void SetConsoleWindowSize( SHORT width, SHORT height );
 
 int main(){
     system("title EasyCodingEditor");
@@ -15,6 +18,7 @@ int main(){
     unsigned y = 40;
     SetSize(x,y);
     edt::easyhtmleditor e;
+    cct::Code_completion c2;
     //初始化字符集
     int k = 0;
     for (int i = 0; i < e.word.size()-1; i++){

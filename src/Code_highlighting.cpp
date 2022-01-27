@@ -59,12 +59,14 @@ bool Code_highlighting::Lexical_analysis(deque <string> ready_highlight){
 	for (int i = 0; i < state.size(); i++){
 		if (state[i]){
 			e1.SetPos(postion[i].x,postion[i].y);
-			Set_color(255,255,255,1,186,200);
+			Set_color(1,186,200,0,0,0);
 			cout<<key_words[state[i]];
 			Set_color(255,255,255,0,0,0);	
 		}
 		else;
 	}
+	postion.clear();
+	state.clear();
     return false;
 }
 //读取文件

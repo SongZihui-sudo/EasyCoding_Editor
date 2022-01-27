@@ -1,0 +1,53 @@
+C/C++_Code_completion
+(
+()
+{
+{}
+"
+""
+'
+''
+<
+<>
+for
+for(int i;i<size;i++){}
+while
+while(true){}
+elif
+else if()
+if
+if()
+else
+else{}
+main
+int main(){return 0;}
+class
+class name{private: public:name();~name();};
+struct
+struct{};
+typedef
+typedef
+getline
+getline()
+cin
+cin>>
+cout
+cout<<
+endl
+endl
+int
+int
+char
+char
+float
+float
+#include
+#include
+string
+string
+return
+return
+using
+using
+namespace
+namespace
