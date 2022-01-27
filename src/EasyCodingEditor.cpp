@@ -202,8 +202,8 @@ bool easyhtmleditor::creat_files(){
                         pos_y--;
                     }      
                     else;   
-                    SetPos(0,page_arr[page_now-1].size());
-                    cout<<endl;
+                    SetPos(0,38);
+                    cout<<"\n";
                     SetPos(pos_x,pos_y -  (page_now-1)*38);
                     break;
                 //回车
