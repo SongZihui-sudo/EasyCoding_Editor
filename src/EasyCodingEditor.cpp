@@ -43,6 +43,7 @@ bool easyhtmleditor::open_files(string filename){
         C.Set_color(238,44,44,0,0,0);
         cerr<<"open files error!!!"<<endl;
         C.Set_color(255,255,255,0,0,0);	
+        SetPos(0,0);
         return false;
     }      
     page = j;
@@ -124,6 +125,7 @@ int easyhtmleditor::commander(){
             C.Set_color(238,44,44,0,0,0);
             cerr<<"command not find!!!"<<endl;
             C.Set_color(255,255,255,0,0,0);	
+            SetPos(0,0);
         }
     }
     return 0;
@@ -185,10 +187,11 @@ bool easyhtmleditor::creat_files(){
                         cc.c_str.pop_back();
                     }
                     if (pos_x){
+                        num = pos_x;
                         pos_x--; 
                         SetPos(pos_x,pos_y -  (page_now-1)*38);
                         if (pos_x<=page_arr[page_now-1][pos_y -  (page_now-1)*38].size()&&pos_y- (page_now-1)*38<=page_arr[page_now-1].size()){
-                            Parr_str =page_arr[page_now-1][pos_y -  (page_now-1)*38].substr(pos_x+1);
+                            Parr_str =page_arr[page_now-1][pos_y -  (page_now-1)*38].substr(num);
                             page_arr[page_now-1][pos_y -  (page_now-1)*38].erase(pos_x);
                             page_arr[page_now-1][pos_y -  (page_now-1)*38] += Parr_str; 
                         }
@@ -323,7 +326,7 @@ bool easyhtmleditor::creat_files(){
                     else;
                     break;
                 case 81:
-                    if (page_now<page){                   
+                    if (page_now<=page){                   
                         page_now++;
                         pos_y+=38;
                     }
@@ -355,7 +358,7 @@ bool easyhtmleditor::creat_files(){
                     }
                     SetPos(140,39);
                     cout<<"Line:"<<pos_y; 
-                    pos_x = page_arr[page_now-1][pos_y-  (page_now-1)*38].size();
+                    pos_x = page_arr[page_now-1][pos_y-  (page_now-1)*38].size()-1;
                     SetPos(pos_x,pos_y -  (page_now-1)*38);
                     break;   
                 //下
@@ -364,7 +367,7 @@ bool easyhtmleditor::creat_files(){
                     else pos_y++;
                     SetPos(140,39);
                     cout<<"Line:"<<pos_y; 
-                    pos_x = page_arr[page_now-1][pos_y-  (page_now-1)*38].size();
+                    pos_x = page_arr[page_now-1][pos_y-  (page_now-1)*38].size()-1;
                     SetPos(pos_x,pos_y -  (page_now-1)*38);
                     break; 
                 //左
@@ -379,7 +382,7 @@ bool easyhtmleditor::creat_files(){
                     break;
                 //右
                 case 77: 
-                    if (pos_x>=page_arr[page_now-1][pos_y-  (page_now-1)*38].size()) pos_x = page_arr[page_now-1][pos_y-  (page_now-1)*38].size();
+                    if (pos_x>=page_arr[page_now-1][pos_y-  (page_now-1)*38].size()-1) pos_x = page_arr[page_now-1][pos_y-  (page_now-1)*38].size()-1;
                     else pos_x++;
                     SetPos(120,39);
                     cout<<pos_x<<"th"; 
@@ -411,20 +414,20 @@ bool easyhtmleditor::creat_files(){
                         }
                     }
                     if (bit){
-                        if (pos_x==1&&pos_y>page_arr[page_now-1].size()){
+                        if (pos_x==1&&pos_y-  (page_now-1)*38>page_arr[page_now-1].size()){
                             input_str.push_back(ch2);
-                            page_arr[page_now] .push_back(input_str);
+                            page_arr[page_now-1] .push_back(input_str);
                             input_str.clear();
                         }
-                        else if(pos_x==1&&pos_y<=page_arr[page_now-1].size()){
+                        else if(pos_x==1&&pos_y-  (page_now-1)*38<=page_arr[page_now-1].size()){
                             page_arr[page_now-1][pos_y -  (page_now-1)*38].insert(page_arr[page_now-1][pos_y -  (page_now-1)*38].begin(),ch2);
                             SetPos(0,pos_y -  (page_now-1)*38);
                             cout<<page_arr[page_now-1][pos_y -  (page_now-1)*38];
                         }                 
-                        else if(pos_y<=page_arr[page_now-1].size()&&pos_x<=page_arr[page_now-1][pos_y -  (page_now-1)*38].size()){
+                        else if(pos_y-  (page_now-1)*38<=page_arr[page_now-1].size()&&pos_x<=page_arr[page_now-1][pos_y -  (page_now-1)*38].size()){
                             num = int(pos_x);
                             page_arr[page_now-1][pos_y -  (page_now-1)*38].insert(page_arr[page_now-1][pos_y -  (page_now-1)*38].begin()+num-1,ch2);
-                            for (int i = 0; i < 30; i++){
+                            for (int i = 0; i < 100; i++){
                                 cout<<" ";
                             }
                             SetPos(0,pos_y -  (page_now-1)*38);
