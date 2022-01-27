@@ -35,3 +35,5 @@ git clone https://github.com/SongZihui-sudo/easyhtmleaitor
 ``` q ``` 不保存直接退出    
 ``` \ 字符串 ``` 在文件中进行查照   
 ``` v 文件名 ``` 打开一个文件
+```page up ``` 上一页   
+```page down ``` 下一页
