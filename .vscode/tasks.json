@@ -9,7 +9,7 @@
 			"args": [
 				"-fdiagnostics-color=always",
 				"-g",
-				"${fileDirname}\\easyhtmleditor.cpp",
+				"${fileDirname}\\EasyCodingEditor.cpp",
 				"${fileDirname}\\Markdown_parser.cpp",
 				"${fileDirname}\\Code_highlighting.cpp",
 				"${fileDirname}\\Code_completion.cpp",

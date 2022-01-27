@@ -7,16 +7,24 @@
 #include <string>
 #include <Windows.h>
 #include <vector>
+#include <stack>
 
 using namespace std;
 
 namespace edt{
 
 class easyhtmleditor{  
+
 private:
+    int page = 0;
+    int page_now = 1;
+
+private:
+    deque < deque <string> > page_arr;
     deque <string> parr3;
     string key[6] = {"q","i","a","/","wq","v"};
     string language[2] = {"c","cpp"};
+    stack <string> exact_buffer;
 public:    
     char ch2 = 0;
     deque <string> out_data;
@@ -30,7 +38,7 @@ public:
     //打开文件
     bool open_files(string filename);
     //保存文件
-    bool save_files(string filename,deque <string> save_Data);
+    bool save_files(string filename,deque < deque <string> > save_Data);
     //新建文件
     bool creat_files();
     //设置光标位置

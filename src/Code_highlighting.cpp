@@ -1,5 +1,5 @@
 #include "../include/Code_highlighting.h"
-#include "../include/easyhtmleditor.h"
+#include "../include/EasyCodingEditor.h"
 
 using namespace cht;
 using namespace edt;
@@ -67,6 +67,7 @@ bool Code_highlighting::Lexical_analysis(deque <string> ready_highlight){
 	}
 	postion.clear();
 	state.clear();
+	ready_highlight.clear();
     return false;
 }
 //读取文件

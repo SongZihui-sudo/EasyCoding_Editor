@@ -1,6 +1,6 @@
 #include "../include/Code_completion.h"
 #include <vector>
-#include "../include/easyhtmleditor.h"
+#include "../include/EasyCodingEditor.h"
 #include "../include/Code_highlighting.h"
 #include <conio.h>
 

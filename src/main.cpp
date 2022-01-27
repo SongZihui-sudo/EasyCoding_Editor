@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/easyhtmleditor.h"
+#include "../include/EasyCodingEditor.h"
 #include <Windows.h>
 #include "../include/Code_highlighting.h"
 #include "../include/Code_completion.h"
@@ -14,7 +14,7 @@ void SetConsoleWindowSize( SHORT width, SHORT height );
 
 int main(){
     system("title EasyCodingEditor");
-    unsigned x = 100;
+    unsigned x = 150;
     unsigned y = 40;
     SetSize(x,y);
     edt::easyhtmleditor e;
