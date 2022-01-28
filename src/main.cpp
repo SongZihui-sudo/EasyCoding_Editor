@@ -13,6 +13,7 @@ void SetSize(unsigned uCol,unsigned uLine);
 void SetConsoleWindowSize( SHORT width, SHORT height );
 
 int main(){
+    SetConsoleOutputCP(65001);
     system("title EasyCodingEditor");
     unsigned x = 150;
     unsigned y = 40;
