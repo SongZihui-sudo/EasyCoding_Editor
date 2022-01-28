@@ -1,7 +1,7 @@
 # EasyCoding编辑器 
 
 这是一个简单的文本编辑器，仿照vim。  
-目前简单支持c/c++的代码高亮。     
+目前简单支持c/c++的代码高亮与简单的代码补全。     
 [已解决：关于文件显示不全](https://github.com/SongZihui-sudo/EasyCoding_editor/issues/2)     
 [已解决：中文的显示问题](https://github.com/SongZihui-sudo/EasyCoding_editor/issues/3)  
 ## 运行截图
