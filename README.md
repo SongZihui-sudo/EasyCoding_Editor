@@ -5,7 +5,7 @@
 [已解决：关于文件显示不全](https://github.com/SongZihui-sudo/EasyCoding_editor/issues/2)     
 [已解决：中文的显示问题](https://github.com/SongZihui-sudo/EasyCoding_editor/issues/3)  
 ## 运行截图
-![img](https://cdn.jsdelivr.net/gh/SongZihui-sudo/EasyCoding_editor@master/test/Screenshot%202022-01-27%20221722.png)   
+![img](https://cdn.jsdelivr.net/gh/SongZihui-sudo/EasyCoding_editor@master/test/Screenshot%202022-01-28%20205824.png)   
 
 ## Get starting 
 
