@@ -374,7 +374,7 @@ bool easyhtmleditor::creat_files(){
                     break;
                 //上
                 case 72: 
-                    if (pos_y < (page_now-1)*38){
+                    if (pos_y <= (page_now-1)*38){
                         pos_y = pos_y;
                         break;
                     }
