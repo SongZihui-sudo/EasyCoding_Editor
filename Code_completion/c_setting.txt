@@ -3,6 +3,8 @@ for
 for(int i;i<size;i++){}
 while
 while(true){}
+wwwwwwwwwwww
+wwwwwwwwwwww
 elif
 else if()
 if
