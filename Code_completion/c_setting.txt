@@ -19,10 +19,6 @@ typedef
 typedef
 getline
 getline()
-cin
-cin>>
-cout
-cout<<
 endl
 endl
 int
