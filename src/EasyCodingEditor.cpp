@@ -191,9 +191,15 @@ bool easyhtmleditor::creat_files(){
                     else{
                         cc.c_str.pop_back();
                     }
+                    if (last_str.empty());
+                    else{                                           
+                        last_str.pop_back();
+                    }
+
                     if (pos_x){                        
                         num = pos_x;
-                        pos_x--;                         
+                        pos_x--;   
+                        last_x--;                      
                         SetPos(pos_x,pos_y -  (page_now-1)*38);
                         if (num<page_arr[page_now-1][pos_y -  (page_now-1)*38].size()&&pos_y- (page_now-1)*38<=page_arr[page_now-1].size()){
                             Parr_str =page_arr[page_now-1][pos_y -  (page_now-1)*38].substr(num);
@@ -214,6 +220,7 @@ bool easyhtmleditor::creat_files(){
                     }
                     else if(pos_x == 0 && pos_y -  (page_now-1)*38 == 0){
                         pos_x = 0;
+                        last_x = 0;
                         pos_y = (page_now-1)*38;
                     }
                     else if(pos_x==0){
@@ -224,6 +231,7 @@ bool easyhtmleditor::creat_files(){
                             page_arr[page_now-1].push_back(exact_buffer.top());
                             exact_buffer.pop();
                         }    
+                        last_str = "";
                         system("cls");
                         for (int i = 0; i < page_arr[page_now-1].size(); i++){
                             cout<<page_arr[page_now-1][i]<<endl;
@@ -236,7 +244,8 @@ bool easyhtmleditor::creat_files(){
                     SetPos(pos_x,pos_y -  (page_now-1)*38);
                     break;
                 //回车
-                case 13:                        
+                case 13:     
+                    last_str = "";                   
                     num = int(pos_y) -  (page_now-1)*38;
                     if (pos_x>=page_arr[page_now-1][pos_y -  (page_now-1)*38].size()){
                         page_arr[page_now-1].insert(page_arr[page_now-1].begin()+num+1,""); 
@@ -254,7 +263,8 @@ bool easyhtmleditor::creat_files(){
                     for (int i = 0; i < page_arr[page_now-1].size(); i++){
                         cout<<page_arr[page_now-1][i]<<endl;
                     }
-                    pos_x = 0;                    
+                    pos_x = 0;
+                    last_x = 0;                    
                     pos_y++;
                     if (pos_y>=38*(page_now)){
                         pos_y--;
@@ -269,6 +279,12 @@ bool easyhtmleditor::creat_files(){
                     if (cc.c_str.empty());
                     else{
                         cc.c_str.clear();
+                        cc.c_str = "";
+                        last_x = 0;
+                        last_str.push_back(' ');
+                        last_str.push_back(' ');
+                        last_str.push_back(' ');
+                        last_str.push_back(' ');
                     }
                     if (pos_x){                    
                         num = pos_x;                    
@@ -294,6 +310,9 @@ bool easyhtmleditor::creat_files(){
                     if (cc.c_str.empty());
                     else{
                         cc.c_str.clear();
+                        cc.c_str = "";
+                        last_x = 0;
+                        last_str.push_back(' ');
                     }
                     if (pos_x){                    
                         num = pos_x;                    
@@ -368,6 +387,7 @@ bool easyhtmleditor::creat_files(){
                     SetPos(140,39);
                     cout<<"Line:"<<pos_y; 
                     pos_x = page_arr[page_now-1][pos_y-  (page_now-1)*38].size();
+                    last_x = page_arr[page_now-1][pos_y-  (page_now-1)*38].size();
                     SetPos(pos_x,pos_y -  (page_now-1)*38);
                     break;   
                 //下
@@ -383,6 +403,7 @@ bool easyhtmleditor::creat_files(){
                 case 75: 
                     if (pos_x){
                         pos_x--;
+                        last_x--;
                     }
                     else;    
                     SetPos(120,39);
@@ -392,7 +413,10 @@ bool easyhtmleditor::creat_files(){
                 //右
                 case 77: 
                     if (pos_x>=page_arr[page_now-1][pos_y-  (page_now-1)*38].size()) pos_x = page_arr[page_now-1][pos_y-  (page_now-1)*38].size();
-                    else pos_x++;
+                    else{
+                        pos_x++;
+                        last_x++;                    
+                    } 
                     SetPos(120,39);
                     cout<<pos_x<<"th"; 
                     SetPos(pos_x,pos_y -  (page_now-1)*38);
@@ -419,6 +443,7 @@ bool easyhtmleditor::creat_files(){
                             SetPos(pos_x,pos_y -  (page_now-1)*38);                             
                             cout<<ch2;                            
                             pos_x++;
+                            last_x++;
                             break;
                         }
                     }
@@ -428,7 +453,7 @@ bool easyhtmleditor::creat_files(){
                             page_arr[page_now-1] .push_back(input_str);
                             input_str.clear();
                         }
-                        else if(pos_x==1&&pos_y-  (page_now-1)*38<=page_arr[page_now-1].size()){
+                        else if(pos_x==1&&pos_y -  (page_now-1)*38<=page_arr[page_now-1].size()){
                             page_arr[page_now-1][pos_y -  (page_now-1)*38].insert(page_arr[page_now-1][pos_y -  (page_now-1)*38].begin(),ch2);
                             SetPos(0,pos_y -  (page_now-1)*38);
                             cout<<page_arr[page_now-1][pos_y -  (page_now-1)*38];
@@ -443,12 +468,24 @@ bool easyhtmleditor::creat_files(){
                             cout<<page_arr[page_now-1][pos_y -  (page_now-1)*38];
                         }
                         else if(pos_x > page_arr[page_now-1][pos_y -  (page_now-1)*38].size()&&pos_y -  (page_now-1)*38<=page_arr[page_now-1].size()){
-                            //cout<<page_arr[page_now-1][pos_y -  (page_now-1)*38].size();
                             page_arr[page_now-1][pos_y -  (page_now-1)*38].push_back(ch2);
                         }
-                        else;
-                        cc.Lexical_analysis(ch2,pos_y -  (page_now-1)*38,pos_x);
-                        C.Lexical_analysis(page_arr[page_now-1]);
+                        else;      
+                        string code_compl = cc.Lexical_analysis(ch2,pos_y -  (page_now-1)*38,last_x);
+                        if (last_x-1  < cc.c_str.size()){   
+                            if (code_compl[code_compl.length()-1]!=ch2){
+                                SetPos(0,pos_y - (page_now-1)*38);   
+                                for (int i = 0; i < 100; i++){
+                                    cout<<" ";
+                                }                                  
+                                page_arr[page_now-1][pos_y - (page_now-1)*38].clear();
+                                last_str+=code_compl;                            
+                                page_arr[page_now-1][pos_y - (page_now-1)*38] = last_str ;
+                                SetPos(0 ,pos_y - (page_now-1)*38);    
+                                cout<<page_arr[page_now-1][pos_y - (page_now-1)*38];
+                            }
+                        }                                
+                        C.Lexical_analysis(page_arr[page_now-1]);                                
                         SetPos(pos_x,pos_y -  (page_now-1)*38);
                     }
                     else;
@@ -465,7 +502,7 @@ bool easyhtmleditor::save_files(string filename,deque < deque <string> > save_Da
     in.open(filename);
     if (in){
        for (int i = 0; i < save_Data.size(); i++){
-            for (int j = 0; i < save_Data[i].size(); i++){
+            for (int j = 0; i < save_Data[i].size(); j++){
                     in<<save_Data[i][j]<<"\n";
             }
         }

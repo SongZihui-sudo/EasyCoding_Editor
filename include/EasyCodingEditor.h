@@ -18,7 +18,6 @@ class easyhtmleditor{
 private:
     int page = 0;
     int page_now = 1;
-
 private:
     deque < deque <string> > page_arr;
     deque <string> parr3;
@@ -26,15 +25,18 @@ private:
     string language[2] = {"c","cpp"};
     stack <string> exact_buffer;
 public:    
+    string last_str = "";    
     char ch2 = 0;
     deque <string> out_data;
     short int pos_x = 0;
     short int pos_y = 0; 
+    int last_x = 0;
     //字符集
     vector <int> word = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
                     'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
                     '1','2','3','4','5','6','7','8','9','0',
                     ':',',','{','}','=','+','-','_','\\',';','?','/','>','<','.','\'','\"','@','|','!','$','%','^','&','*','(',')','~','`'};
+public:
     //打开文件
     bool open_files(string filename);
     //保存文件
