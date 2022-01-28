@@ -17,6 +17,12 @@
         "regex": "cpp",
         "valarray": "cpp",
         "stack": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "stdexcept": "cpp",
+        "string": "cpp",
+        "xlocale": "cpp",
+        "xlocinfo": "cpp",
+        "xlocnum": "cpp",
+        "xstring": "cpp"
     }
 }

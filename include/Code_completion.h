@@ -19,7 +19,7 @@ namespace cct{
         //读取文件
         bool read_outfiles(string language);
         //词法分析
-        int Lexical_analysis(char c,int pos_y);
+        int Lexical_analysis(char c,int pos_y,int pos_x);
         Code_completion() = default;
         ~Code_completion() = default;
     };

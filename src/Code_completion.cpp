@@ -31,7 +31,8 @@ bool Code_completion::read_outfiles(string language){
     return true;
 }
 //词法分析
-int Code_completion::Lexical_analysis(char c,int pos_y){
+int Code_completion::Lexical_analysis(char c,int pos_y,int pos_x){
+    int bit = 0;
     if (last_y!=pos_y){
         c_str.clear();
         c_str.push_back(c);
@@ -68,14 +69,37 @@ int Code_completion::Lexical_analysis(char c,int pos_y){
             c2.Set_color(255,215,0,0,0,0);
             cout<<code_completion[state[i]]<<" ";    
             c2.Set_color(255,255,255,0,0,0);
-        }  
+        }
+        if(state.size()==1){
+            bit  = 1;
+            pos_x = pos_x - c_str.size();
+            e2.SetPos(0,pos_y);
+            for (int i = 0; i < 150; i++){
+                cout<<" ";
+            }   
+            e2.SetPos(pos_x,pos_y);
+            cout<<code_completion[state[0]+1];
+            pos_x+=code_completion[state[0]+1].size();
+        }    
     }
     else{
+        if (bit){
+            e2.SetPos(0,pos_y);
+            for (int i = 0; i < 150; i++){
+                cout<<" ";           
+            } 
+            pos_x = pos_x - code_completion[state[0]+1].size();
+            e2.SetPos(pos_x ,pos_y);        
+            cout<<c_str;
+            bit = 0;
+            state.pop_back();
+        }
         e2.SetPos(0,39);
         for (int i = 0; i < 100; i++){
             cout<<" ";
         }
-        size = 0;            
+        size = 0;    
+        state.clear();    
         return 0;
     }
     last_y = pos_y;

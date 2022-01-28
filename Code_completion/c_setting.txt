@@ -1,14 +1,4 @@
 C/C++_Code_completion
-(
-()
-{
-{}
-"
-""
-'
-''
-<
-<>
 for
 for(int i;i<size;i++){}
 while
