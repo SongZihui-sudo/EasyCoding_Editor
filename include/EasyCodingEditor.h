@@ -21,7 +21,7 @@ private:
 private:
     deque < deque <string> > page_arr;
     deque <string> parr3;
-    string key[7] = {"q","i","a","/","wq","v","b"};
+    string key[8] = {"q","i","a","/","wq","v","b","g"};
     string language[2] = {"c","cpp"};
     stack <string> exact_buffer;
 public:    

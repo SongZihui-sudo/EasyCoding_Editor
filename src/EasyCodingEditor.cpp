@@ -82,7 +82,7 @@ int easyhtmleditor::commander(){
             cout<<"NOW YOU WILL EXIT WHIHOUT SAVE!!!"<<endl;
             return -1;
         }
-        cin>>key_words;
+        getline(cin,key_words);
         if(input == key[4]){
             save_files(key_words,page_arr);
             return 1;
@@ -124,6 +124,11 @@ int easyhtmleditor::commander(){
             C.Lexical_analysis(page_arr[page_now-1]);
             SetPos(0,0);
             creat_files();
+        }
+        else if(input == key[7]){
+            const char* c_command;
+            c_command = key_words.c_str();
+            system(c_command);
         }
         else{
             SetPos(0,39);
