@@ -10,8 +10,8 @@ LDFLAGS =
 # Makefile settings - Can be customized.
 APPNAME = EasyCoding_Editor
 EXT = .cpp
-SRCDIR = src
-OBJDIR = obj
+SRCDIR = ../src
+OBJDIR = ../obj
 
 ############## Do not change anything from here downwards! #############
 SRC = $(wildcard $(SRCDIR)/*$(EXT))
