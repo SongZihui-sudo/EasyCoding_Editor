@@ -354,15 +354,24 @@ bool easyhtmleditor::creat_files(){
                     else;
                     break;
                 case 81:
-                    if (page_now<=page){                   
+                    if (page_now<=page&&page){ 
                         page_now++;
+                        pos_y+=38;           
+                    }
+                    else{
+                        deque <string> space_line;
+                        space_line.push_back("");
+                        page_now++;
+                        page++;
                         pos_y+=38;
+                        page_arr.push_back(space_line);
+                        pos_x = 0;
                     }
                     system("cls");
                     for (int i = 0; i < page_arr[page_now-1].size(); i++){
                         cout<<page_arr[page_now-1][i]<<endl;
                     }
-                    C.Lexical_analysis(page_arr[page_now-1]);     
+                    C.Lexical_analysis(page_arr[page_now-1]);  
                     SetPos(130,39);
                     cout<<"Page"<<page_now;
                     SetPos(0,0);
