@@ -57,6 +57,7 @@ bool easyhtmleditor::open_files(string filename){
     C.Lexical_analysis(page_arr[0]);
     SetPos(0,0);
     return true;
+    
 }
 //设置光标位置
 void easyhtmleditor::SetPos( short int  x , short int  y ){
