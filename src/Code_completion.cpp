@@ -2,7 +2,7 @@
 #include <vector>
 #include "../include/EasyCodingEditor.h"
 #include "../include/Code_highlighting.h"
-#include <conio.h>
+
 
 using namespace cct;
 using namespace edt;
@@ -59,15 +59,15 @@ string Code_completion::Lexical_analysis(char c,int pos_y,int pos_x){
 		else;     //主串中不存在该模式 
     }     
     if (!state.empty()){
-        e2.SetPos(0,39);
-        for (int i = 0; i < 150; i++){
+        e2.SetPos(0,e2.y-1);
+        for (int i = 0; i < e2.x; i++){
             cout<<" ";
         }
-        e2.SetPos(0,39);
+        e2.SetPos(0,e2.y-1);
         for (int i = 0; i < state.size(); i++){
-            c2.Set_color(255,215,0,0,0,0);
+            c2.Set_color(c2.F_YELLOW);
             cout<<code_completion[state[i]]<<" ";    
-            c2.Set_color(255,255,255,0,0,0);
+            c2.resetFColor();
         }
         if(state.size()==1){
             bit  = 1;
@@ -80,8 +80,8 @@ string Code_completion::Lexical_analysis(char c,int pos_y,int pos_x){
             state.pop_back();
             return c_str;
         }
-        e2.SetPos(0,39);
-        for (int i = 0; i < 150; i++){
+        e2.SetPos(0,e2.y-1);
+        for (int i = 0; i < 100; i++){
             cout<<" ";
         }
         return c_str;
