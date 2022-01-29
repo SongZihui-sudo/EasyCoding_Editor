@@ -498,6 +498,7 @@ bool easyhtmleditor::creat_files(){
     }
     return true;
 }
+//保存
 bool easyhtmleditor::save_files(string filename,deque < deque <string> > save_Data){
     ofstream in;
     in.open(filename);
