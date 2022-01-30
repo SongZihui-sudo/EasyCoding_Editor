@@ -501,6 +501,9 @@ bool easyhtmleditor::creat_files(){
                                 page_arr[page_now-1][pos_y - (page_now-1)*38] = last_str ;
                                 SetPos(0 ,pos_y - (page_now-1)*38);    
                                 cout<<page_arr[page_now-1][pos_y - (page_now-1)*38];
+                                C.Lexical_analysis(page_arr[page_now-1]); 
+                                pos_x = page_arr[page_now-1][pos_y - (page_now-1)*38].size();                               
+                                break;
                             }
                         }                                
                         C.Lexical_analysis(page_arr[page_now-1]);                                
