@@ -82,7 +82,7 @@ int easyhtmleditor::commander(){
             cout<<"NOW YOU WILL EXIT WHIHOUT SAVE!!!"<<endl;
             return -1;
         }
-        getline(cin,key_words);
+        cin>>key_words;
         if(input == key[4]){
             save_files(key_words,page_arr);
             return 1;
@@ -113,8 +113,14 @@ int easyhtmleditor::commander(){
             }
             else;
         }
-        else if(input == key[3]){
-            find(key_words);
+        else if(input == key[7]){
+            cin.sync();
+            string cmd;
+            cout<<"\n";
+            getline(cin,cmd);
+            const char* c_command;
+            c_command = cmd.c_str();
+            system(c_command);
         }
         else if(input == key[6]){
             system("cls");
@@ -125,10 +131,8 @@ int easyhtmleditor::commander(){
             SetPos(0,0);
             creat_files();
         }
-        else if(input == key[7]){
-            const char* c_command;
-            c_command = key_words.c_str();
-            system(c_command);
+        else if(input == key[3]){
+            find(key_words);
         }
         else{
             SetPos(0,39);
@@ -486,7 +490,7 @@ bool easyhtmleditor::creat_files(){
                         }
                         else;      
                         string code_compl = cc.Lexical_analysis(ch2,pos_y -  (page_now-1)*38,last_x);
-                        if (last_x-1  < cc.c_str.size()){   
+                        if (last_x-1  <= cc.c_str.size()){   
                             if (code_compl[code_compl.length()-1]!=ch2){
                                 SetPos(0,pos_y - (page_now-1)*38);   
                                 for (int i = 0; i < 100; i++){

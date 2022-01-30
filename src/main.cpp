@@ -10,7 +10,6 @@ using namespace cht;
 using namespace cct;
 
 void SetSize(unsigned uCol,unsigned uLine);
-void SetConsoleWindowSize( SHORT width, SHORT height );
 
 int main(){
     SetConsoleOutputCP(65001);
