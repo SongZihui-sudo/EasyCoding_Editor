@@ -38,4 +38,5 @@ git clone https://github.com/SongZihui-sudo/easyhtmleaitor
 ``` \ 字符串 ``` 在文件中进行查照   
 ``` v 文件名 ``` 打开一个文件   
 ```page up ``` 上一页   
-```page down ``` 下一页
+```page down ``` 下一页   
+```g \n xxxx``` ```gcc命令```编译C/C++代码
