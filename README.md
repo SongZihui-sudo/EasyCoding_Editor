@@ -7,7 +7,7 @@
 [已解决：中文的显示问题](https://github.com/SongZihui-sudo/EasyCoding_editor/issues/3)  
 ## 运行截图
 ![img](https://cdn.jsdelivr.net/gh/SongZihui-sudo/EasyCoding_editor@master/test/Screenshot%202022-01-28%20205824.png)   
-
+![img](https://cdn.jsdelivr.net/gh/SongZihui-sudo/EasyCoding_Editor@Windows/test/Screenshot%202022-01-30%20230439.png)
 ## Get starting 
 
 Linux
