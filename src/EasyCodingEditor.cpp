@@ -114,6 +114,7 @@ int easyhtmleditor::commander(){
             else;
         }
         else if(input == key[7]){
+            save_files(key_words,page_arr);
             cin.sync();
             string cmd;
             cout<<"\n";
@@ -250,6 +251,7 @@ bool easyhtmleditor::creat_files(){
                     else;   
                     SetPos(0,38);
                     cout<<"\n";
+                    C.Lexical_analysis(page_arr[page_now-1]);                                
                     SetPos(pos_x,pos_y -  (page_now-1)*38);
                     break;
                 //回车
@@ -271,7 +273,8 @@ bool easyhtmleditor::creat_files(){
                     system("cls");
                     for (int i = 0; i < page_arr[page_now-1].size(); i++){
                         cout<<page_arr[page_now-1][i]<<endl;
-                    }
+                    }                    
+                    C.Lexical_analysis(page_arr[page_now-1]);                                
                     pos_x = 0;
                     last_x = 0;                    
                     pos_y++;
@@ -312,7 +315,8 @@ bool easyhtmleditor::creat_files(){
                     }
                     SetPos(0,pos_y -  (page_now-1)*38);
                     cout<<page_arr[page_now-1][pos_y -  (page_now-1)*38];
-                    SetPos(pos_x,pos_y -  (page_now-1)*38);
+                    C.Lexical_analysis(page_arr[page_now-1]);                                
+                    SetPos(pos_x,pos_y -  (page_now-1)*38);                    
                     break;
                 //空格
                 case 32:
@@ -337,6 +341,7 @@ bool easyhtmleditor::creat_files(){
                     }
                     SetPos(0,pos_y -  (page_now-1)*38);
                     cout<<page_arr[page_now-1][pos_y -  (page_now-1)*38];
+                    C.Lexical_analysis(page_arr[page_now-1]);                                
                     SetPos(pos_x,pos_y -  (page_now-1)*38);
                     break;
                 case 73:
