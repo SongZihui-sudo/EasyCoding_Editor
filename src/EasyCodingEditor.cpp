@@ -4,14 +4,17 @@
 #include <Windows.h>
 #include "../include/Code_highlighting.h"
 #include "../include/Code_completion.h"
+#include "../include/Markdown_parser.h"
 
 using namespace edt;
 using namespace std;
 using namespace cht;
 using namespace cct;
+using namespace mpt;
 
 cht::Code_highlighting C;
 cct::Code_completion cc;
+mpt::Markdown_parser mp;
 
 //打开文件
 bool easyhtmleditor::open_files(string filename){
@@ -66,7 +69,17 @@ void easyhtmleditor::SetPos( short int  x , short int  y ){
 }
 //命令行
 int easyhtmleditor::commander(){
-    int nHeight = GetSystemMetrics(SM_CYSCREEN); //屏幕高度
+    SetPos(60,10);
+    cout<<"EasyCoding编辑器";
+    SetPos(60,12);
+    cout<<"版本：v1.0";
+    SetPos(60,14);
+    cout<<"帮助";
+    SetPos(60,16);
+    cout<<"编辑 i | a"<<endl;
+    SetPos(60,18);
+    cout<<"保存并退出wq"<<endl;
+    //int nHeight = GetSystemMetrics(SM_CYSCREEN); //屏幕高度
     string input;
     string key_words;
     string language;
@@ -134,6 +147,12 @@ int easyhtmleditor::commander(){
         }
         else if(input == key[3]){
             find(key_words);
+        }
+        else if(input == key[8]){
+            deque <deque <string>> html;
+            html = mp.syntax_conversion(mp.Lexical_analysis(page_arr),page_arr);
+            save_files(key_words,html);
+            return 1;
         }
         else{
             SetPos(0,39);
@@ -428,7 +447,7 @@ bool easyhtmleditor::creat_files(){
                         pos_x--;
                         last_x--;
                     }
-                    else;    
+                    else; 
                     SetPos(120,39);
                     cout<<pos_x<<"th";                
                     SetPos(pos_x,pos_y -  (page_now-1)*38);
