@@ -154,6 +154,41 @@ int easyhtmleditor::commander(){
             save_files(key_words,html);
             return 1;
         }
+        else if (input == key[9]){
+            system("cls");        
+            SetPos(40,2);
+            cout<<"For EasyCodeEditor version 1.0 last change 2022-1-30";    
+            SetPos(40,4);
+            cout<<"i and a 像vim一样进入编辑模式,创建一个新文件"; 
+            SetPos(40,6);   
+            cout<<"wq  filename 保存文件";  
+            SetPos(40,8);
+            cout<<"方向键上 向上移动光标";   
+            SetPos(40,10); 
+            cout<<"方向键下 向下移动光标";   
+            SetPos(40,12);
+            cout<<"方向键左 向左移动光标";   
+            SetPos(40,14);
+            cout<<"方向键右 向右移动光标";   
+            SetPos(40,16);
+            cout<<"回车 插入空行";  
+            SetPos(40,18);
+            cout<<"删除 删除";  
+            SetPos(40,20);
+            cout<<"插入空格";      
+            SetPos(40,22);
+            cout<<"q 不保存直接退出";    
+            SetPos(40,24);
+            cout<< "\\ 字符串 在文件中进行查照";   
+            SetPos(40,26);
+            cout<<" v 文件名 打开一个文件";   
+            SetPos(40,28);
+            cout<<"page up 上一页";   
+            SetPos(40,30);
+            cout<<"page down 下一页";   
+            SetPos(40,32);
+            cout<<"g++ 文件要保存到目录 gcc命令 编译C/C++代码";
+        }
         else{
             SetPos(0,39);
             C.Set_color(238,44,44,0,0,0);
