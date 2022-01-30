@@ -521,7 +521,7 @@ bool easyhtmleditor::save_files(string filename,deque < deque <string> > save_Da
     in.open(filename);
     if (in){
        for (int i = 0; i < save_Data.size(); i++){
-            for (int j = 0; i < save_Data[i].size(); j++){
+            for (int j = 0; j < save_Data[i].size(); j++){
                     in<<save_Data[i][j]<<"\n";
             }
         }
