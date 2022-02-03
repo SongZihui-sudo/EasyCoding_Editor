@@ -5,9 +5,15 @@
 #include <fstream>
 #include <deque>
 #include <string>
-#include <Windows.h>
 #include <vector>
 #include <stack>
+#include<stdio.h>
+#include<sys/types.h>
+#include<sys/ioctl.h>
+#include<unistd.h>
+#include<termios.h>
+
+#define CLEAR(); printf("\x1b[H\x1b[2J"); //清屏函数
 
 using namespace std;
 
@@ -31,6 +37,8 @@ public:
     short int pos_x = 0;
     short int pos_y = 0; 
     int last_x = 0;
+    int page_x = 0;
+    int page_y = 0;
     //字符集
     vector <int> word = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
                     'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
@@ -44,11 +52,15 @@ public:
     //新建文件
     bool creat_files();
     //设置光标位置
-    static void SetPos(short int x,short int y);
+    static void SetPos(int x,int y);
     //查找
     bool find(string finding);
     //控制台
     int commander();
+    //获取屏幕高度与宽度
+    void print_size();    
+    //获得键盘事件
+    int get_key();
     easyhtmleditor() = default;
     ~easyhtmleditor() = default;
 }; 
