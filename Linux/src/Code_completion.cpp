@@ -58,11 +58,11 @@ string Code_completion::Lexical_analysis(char c,int pos_y,int pos_x){
 		else;     //主串中不存在该模式 
     }     
     if (!state.empty()){
-        e2.SetPos(0,e2.page_y-1);
+        e2.SetPos(0,e2.page_y);
         for (int i = 0; i < 150; i++){
             cout<<" ";
         }
-        e2.SetPos(0,e2.page_y-1);
+        e2.SetPos(0,e2.page_y);
         for (int i = 0; i < state.size(); i++){
             c2.Set_color(F_YELLOW);
             cout<<code_completion[state[i]]<<" ";    
@@ -79,7 +79,7 @@ string Code_completion::Lexical_analysis(char c,int pos_y,int pos_x){
             state.pop_back();
             return c_str;
         }
-        e2.SetPos(0,e2.page_y-1);
+        e2.SetPos(0,e2.page_y);
         for (int i = 0; i < 150; i++){
             cout<<" ";
         }

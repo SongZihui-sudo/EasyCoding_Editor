@@ -12,7 +12,7 @@
 				"/home/song/桌面/EasyCoding_Editor/Linux/src/Code_completion.cpp",
 				"/home/song/桌面/EasyCoding_Editor/Linux/src/Code_highlighting.cpp",
 				"/home/song/桌面/EasyCoding_Editor/Linux/src/EasyCodingEditor.cpp",
-				"/home/song/桌面/EasyCoding_Editor/Linux/src/get_key.cpp",
+				"/home/song/桌面/EasyCoding_Editor/Linux/src/Edit_kernal.cpp",
 				"/home/song/桌面/EasyCoding_Editor/Linux/src/Markdown_parser.cpp",
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}"

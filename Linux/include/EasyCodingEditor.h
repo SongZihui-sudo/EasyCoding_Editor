@@ -13,8 +13,6 @@
 #include<unistd.h>
 #include<termios.h>
 
-#define CLEAR(); printf("\x1b[H\x1b[2J"); //清屏函数
-
 using namespace std;
 
 namespace edt{
@@ -22,7 +20,6 @@ namespace edt{
 class easyhtmleditor{  
 
 private:
-    int page = 0;
     int page_now = 1;
 private:
     deque < deque <string> > page_arr;
@@ -49,8 +46,6 @@ public:
     bool open_files(string filename);
     //保存文件
     bool save_files(string filename,deque < deque <string> > save_Data);
-    //新建文件
-    bool creat_files();
     //设置光标位置
     static void SetPos(int x,int y);
     //查找
@@ -60,7 +55,27 @@ public:
     //获取屏幕高度与宽度
     void print_size();    
     //获得键盘事件
-    int get_key();
+    int Edit_kernal();
+    //左移光标
+    void MOVELEFT(int x){
+        printf("\033[%dD", (x));
+    };
+    //右移光标
+    void MOVERIGHT(int x){
+        printf("\033[%dC",(x));
+    };
+    //上移光标
+    void MOVEUP(int y){
+        printf("\033[%dA", (y));
+    };
+    //下移光标
+    void MOVEDOWN(int y){
+        printf("\033[%dB", (y));
+    };
+    //清屏
+    void CLEAR(){
+        system("clear");
+    }
     easyhtmleditor() = default;
     ~easyhtmleditor() = default;
 }; 
