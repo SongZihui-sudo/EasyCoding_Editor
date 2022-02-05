@@ -15,7 +15,6 @@ using namespace cht;
 using namespace cct;
 using namespace mpt;
 
-#define  KEY_EVENT_DEV1_NAME    "/dev/input/event2"
 int _get_input(void);
 
 cht::Code_highlighting C3;
@@ -23,17 +22,14 @@ cct::Code_completion cc2;
 mpt::Markdown_parser mp2; 
  
 int easyhtmleditor::Edit_kernal(){
-    int bit_capslock = 0;
-    CLEAR();
+    setvbuf(stdout,NULL,_IONBF,0); 
 	if (!out_data.empty());
     else{
-        deque <string> write_page;
-        write_page.push_back("");
-        page_arr.push_back(write_page);
+        page_arr = {{""}};
     }        
     string        str;
     int 		  ch1 = 0;
-    char 		  ch2 = '0';
+    char 		  ch2 ;
     SetPos(0,0);
     int 		  num = 0;  
     string        Parr_str;
@@ -44,27 +40,19 @@ int easyhtmleditor::Edit_kernal(){
 	int           key_fd  = 0;
 	
 	int           enter_num = 0;
-	struct input_event key_event  = {0};
+		
 	
-	key_fd = open(KEY_EVENT_DEV1_NAME, O_RDONLY);
-	
-	if(key_fd <= 0)
-	{
-	    printf("---open /dev/input/event1 device error2---\n");
-	    return l_ret;
-	}
-	
-	while(ch2 = _get_input())
-	{
-	    l_ret = lseek(key_fd, 0, SEEK_SET);
-		l_ret = read(key_fd, &key_event, sizeof(key_event));
-		if(l_ret)
-		{		            
-			//if(key_event.type == EV_KEY&& (key_event.value == 0 || key_event.value == 1)){	
+	while(!kbhit()){
+	    ch2 = _get_input();
+	    //l_ret = lseek(key_fd, 0, SEEK_SET);
+		//l_ret = read(key_fd, &key_event, sizeof(key_event));
+		//if(l_ret)
+		//{		            
+			//if((key_event.type == EV_KEY&& (key_event.value == 0 || key_event.value == 1)) || ch2){	
 			//printf("key code %d\n",key_event.code);
-			//printf("key asill %d\n", ch2);
-			switch (key_event.code){		    
-            case KEY_BACKSPACE:
+		printf("key asill %d\n", ch2);
+			switch (ch2){		    
+            case BACKSPACE:
                 if (cc2.c_str.empty());
                 else{
                         cc2.c_str.pop_back();
@@ -73,8 +61,8 @@ int easyhtmleditor::Edit_kernal(){
                 else{                                           
                     last_str.pop_back();
                     }
-                if (pos_x){                        
-                    num = pos_x;
+                if (pos_x-1){                        
+                    num = pos_x-1;
                     pos_x--;   
                     last_x--;                      
                     SetPos(pos_x,pos_y -  (page_now-1)*page_y);
@@ -91,16 +79,16 @@ int easyhtmleditor::Edit_kernal(){
                     SetPos(0,pos_y -  (page_now-1)*page_y);
                     printf("\033[K");
                     SetPos(0,pos_y -  (page_now-1)*page_y);
-                    //cout<<page_arr[page_now-1][pos_y -  (page_now-1)*page_y];
-                    printf("%s",page_arr[page_now-1][pos_y -  (page_now-1)*page_y].c_str());
+                    cout<<page_arr[page_now-1][pos_y -  (page_now-1)*page_y];
+                    //printf("%s",page_arr[page_now-1][pos_y -  (page_now-1)*page_y].c_str());
                     }
-                else if(pos_x == 0 && pos_y -  (page_now-1)*page_y == 0){
+                else if(pos_x-1 == 0 && pos_y -  (page_now-1)*page_y == 0){
                     pos_x = 0;
                     last_x = 0;
                     pos_y = (page_now-1)*page_y;
                 }
-                else if(pos_x==0){
-                    pos_x = page_arr[page_now-1][pos_y-1 -  (page_now-1)*page_y].size();//  out_data[pos_y-1].size();                    
+                else if(pos_x-1==0){
+                    pos_x = page_arr[page_now-1][pos_y-1 -  (page_now-1)*page_y].size()+1;//  out_data[pos_y-1].size();                    
                     page_arr[page_now-1][pos_y-1 -  (page_now-1)*page_y] += page_arr[page_now-1][pos_y -  (page_now-1)*page_y]; //out_data[pos_y];
                     page_arr[page_now-1].erase(page_arr[page_now-1].begin()+pos_y -  (page_now-1)*page_y);
                     if (page_arr[page_now-1].size() < page_y&&exact_buffer.size()!=0){
@@ -110,7 +98,8 @@ int easyhtmleditor::Edit_kernal(){
                     last_str = "";
                     CLEAR();
                     for (int i = 0; i < page_arr[page_now-1].size(); i++){
-                        printf("%s\n",page_arr[page_now-1][i].c_str());
+                        //printf("%s\n",page_arr[page_now-1][i].c_str());
+                        cout<<page_arr[page_now-1][i]<<endl;
                     }
                     pos_y--;
                 }      
@@ -119,14 +108,10 @@ int easyhtmleditor::Edit_kernal(){
                     SetPos(pos_x,pos_y -  (page_now-1)*page_y);
                     break;
                 	//回车
-                    case KEY_ENTER:     
-                        enter_num++;
-                        if (enter_num==1){
-                            break;
-                        }                 
+                    case ENTER:                   
                         last_str = "";                   
                 	    num = int(pos_y) -  (page_now-1)*page_y;
-                	    if (pos_x>=page_arr[page_now-1][pos_y -  (page_now-1)*page_y].size()){
+                	    if (pos_x-1>=page_arr[page_now-1][pos_y -  (page_now-1)*page_y].size()){
                     	    page_arr[page_now-1].insert(page_arr[page_now-1].begin()+num+1,""); 
                 	    }         
                 	    else{
@@ -138,12 +123,19 @@ int easyhtmleditor::Edit_kernal(){
                     	    exact_buffer.push(page_arr[page_now-1][page_arr[page_now-1].size()-1]);
                     	    page_arr[page_now-1].pop_back();
                 	    }       
-                	    CLEAR();
+                	    //CLEAR();
+                	    //printf( "\33[2J" ); 
                         for (int i = 0; i < page_arr[page_now-1].size(); i++){
-                            printf("%s\n",page_arr[page_now-1][i].c_str());
+                            if (page_arr[page_now-1][i]!=""){
+                                cout<<page_arr[page_now-1][i]<<endl;
+                                //printf("%s\n",page_arr[page_now-1][i].c_str());
+                            }
+                            else{
+                                printf("\n");
+                            }
                         }                    
-                	    C3.Lexical_analysis(page_arr[page_now-1]);                                
-                	    pos_x = 0;
+                	    //C3.Lexical_analysis(page_arr[page_now-1]);                                
+                	    pos_x = 1;
                 	    last_x = 0;                    
                 	    pos_y++;
                 	    if (pos_y>=page_y*(page_now)){
@@ -155,7 +147,7 @@ int easyhtmleditor::Edit_kernal(){
                         }
                 	    break;
                     //TAB
-                case KEY_TAB:
+                case TAB:
                     if (cc2.c_str.empty());
                     else{
                         cc2.c_str.clear();
@@ -171,7 +163,7 @@ int easyhtmleditor::Edit_kernal(){
                         last_str.push_back(' ');
                     }
                     if (pos_x){                    
-                        num = pos_x;                    
+                        num = pos_x-1;                    
                     }
                     else{
                         num = 0;
@@ -188,13 +180,13 @@ int easyhtmleditor::Edit_kernal(){
                     SetPos(0,pos_y -  (page_now-1)*page_y);
                     printf("\033[K");
                     SetPos(0,pos_y -  (page_now-1)*page_y);
-                    //cout<<page_arr[page_now-1][pos_y -  (page_now-1)*page_y];
-                    printf("%s",page_arr[page_now-1][pos_y -  (page_now-1)*page_y].c_str());
+                    cout<<page_arr[page_now-1][pos_y -  (page_now-1)*page_y];
+                    //printf("%s",page_arr[page_now-1][pos_y -  (page_now-1)*page_y].c_str());
                     C3.Lexical_analysis(page_arr[page_now-1]);                                
                     SetPos(pos_x,pos_y -  (page_now-1)*page_y);                    
                     break;
                 //空格
-                case KEY_SPACE:
+                case SPACE:
                     if (cc2.c_str.empty());
                     else{
                         cc2.c_str.clear();
@@ -203,7 +195,7 @@ int easyhtmleditor::Edit_kernal(){
                         last_str.push_back(' ');
                     }
                     if (pos_x){                    
-                        num = pos_x;                    
+                        num = pos_x-1;                    
                     }
                     else{
                         num = 0;
@@ -213,12 +205,12 @@ int easyhtmleditor::Edit_kernal(){
                     SetPos(0,0);
                     printf("\033[K");
                     SetPos(0,pos_y -  (page_now-1)*page_y);
-                    //cout<<page_arr[page_now-1][pos_y -  (page_now-1)*page_y];
-                    printf("%s",page_arr[page_now-1][pos_y -  (page_now-1)*page_y].c_str());
+                    cout<<page_arr[page_now-1][pos_y -  (page_now-1)*page_y];
+                    //printf("%s",page_arr[page_now-1][pos_y -  (page_now-1)*page_y].c_str());
                     C3.Lexical_analysis(page_arr[page_now-1]);                                
                     SetPos(pos_x,pos_y -  (page_now-1)*page_y);
                     break;
-                case KEY_PAGEUP:
+                case PAGE_UP:
                         if (page_now==1){
                             page_now = page_now;
                         }
@@ -242,7 +234,7 @@ int easyhtmleditor::Edit_kernal(){
                         }
                         else;
                         break;
-                    case KEY_PAGEDOWN:
+                    case PAGE_DOWN:
                         if (page_now<=page_y&&page_y){ 
                             page_now++;
                             pos_y+=page_y;           
@@ -272,8 +264,8 @@ int easyhtmleditor::Edit_kernal(){
                         }
                         break;
                     //上
-                    case KEY_UP:
-                        CLEAR();
+                    case UP:
+                       //CLEAR();
                         if (pos_y <= (page_now-1)*page_y){
                             pos_y = pos_y;
                             break;
@@ -290,12 +282,12 @@ int easyhtmleditor::Edit_kernal(){
                         pos_x = page_arr[page_now-1][pos_y-  (page_now-1)*page_y].size();
                         last_x = page_arr[page_now-1][pos_y-  (page_now-1)*page_y].size();
                         SetPos(0,0);
-                        printg(page_arr[page_now-1]);
+                        //printg(page_arr[page_now-1]);
                         SetPos(pos_x,pos_y -  (page_now-1)*page_y);
                         break;   
                     //下
-                    case KEY_DOWN:
-                        CLEAR();
+                    case DOWN:
+                    	//CLEAR();
                         if (pos_y-  (page_now-1)*page_y>=page_arr[page_now-1].size()-1);
                         else pos_y++;
                         SetPos(page_x-10,page_y);
@@ -303,12 +295,12 @@ int easyhtmleditor::Edit_kernal(){
                         printf("Lines:%d",pos_y);
                         pos_x = page_arr[page_now-1][pos_y-  (page_now-1)*page_y].size();
                         SetPos(0,0);
-                        printg(page_arr[page_now-1]);                      
+                        //printg(page_arr[page_now-1]);                      
                         SetPos(pos_x,pos_y -  (page_now-1)*page_y);
                         break; 
                     //左
-                    case KEY_LEFT: 
-                        CLEAR();
+                    case LEFT: 
+                        //CLEAR();
                         if (pos_x){
                             pos_x--;
                             last_x--;
@@ -318,30 +310,26 @@ int easyhtmleditor::Edit_kernal(){
                         //cout<<pos_x<<"th";           
                         printf("%dth",pos_x);
                         SetPos(0,0);
-                        printg(page_arr[page_now-1]);                        
+                        //printg(page_arr[page_now-1]);                        
                         SetPos(pos_x,pos_y -  (page_now-1)*page_y);
                         break;
                     //右
-                    case KEY_RIGHT:
-                        CLEAR();
+                    case RIGHT:
+                        //CLEAR();
                         if (pos_x>=page_arr[page_now-1][pos_y-  (page_now-1)*page_y].size()) pos_x = page_arr[page_now-1][pos_y-  (page_now-1)*page_y].size();
                         else{
                             pos_x++;
                             last_x++;                    
-                        } 
+                        } //
                         SetPos(page_x-30,page_y);
                         //cout<<pos_x<<"th"; 
                         printf("%dth",pos_x);
                         SetPos(0,0);
-                        printg(page_arr[page_now-1]);                        
+                        //printg(page_arr[page_now-1]);                        
                         SetPos(pos_x,pos_y -  (page_now-1)*page_y);
                         break;     
-                    //esc
-                    case KEY_ESC:
-                        return true;
-                    case KEY_CAPSLOCK:
-                        bit_capslock++;
-                        break;
+                    //case ESC:
+                        //return true;
                     default:     
                         int bit_c = 0;
                         string input_str;
@@ -362,7 +350,6 @@ int easyhtmleditor::Edit_kernal(){
                             else{
                                 bit_c =1; 
                                 SetPos(pos_x,pos_y -  (page_now-1)*page_y);  
-                                system("stty echo");//恢复回显
                                 printf("%c",ch2);                            
                                 pos_x++;
                                 last_x++;
@@ -370,30 +357,31 @@ int easyhtmleditor::Edit_kernal(){
                             }
                         }
                         if (bit_c){
-                            if (pos_x==1&&pos_y-  (page_now-1)*page_y>page_arr[page_now-1].size()){
+                            if (pos_x==2&&pos_y-  (page_now-1)*page_y>page_arr[page_now-1].size()){
                                 input_str.push_back(ch2);
                                 page_arr[page_now-1] .push_back(input_str);
                                 input_str.clear();
                             }
-                            else if(pos_x==1&&pos_y -  (page_now-1)*page_y<=page_arr[page_now-1].size()){
+                            else if(pos_x==2&&pos_y -  (page_now-1)*page_y<=page_arr[page_now-1].size()){
                                 page_arr[page_now-1][pos_y -  (page_now-1)*page_y].insert(page_arr[page_now-1][pos_y -  (page_now-1)*page_y].begin(),ch2);
                                 SetPos(0,pos_y -  (page_now-1)*page_y);
-                                //cout<<page_arr[page_now-1][pos_y -  (page_now-1)*page_y];
-                                printf("%s",page_arr[page_now-1][pos_y -  (page_now-1)*page_y].c_str());
+                                cout<<page_arr[page_now-1][pos_y -  (page_now-1)*page_y];
+                                //printf("%s",page_arr[page_now-1][pos_y - page_y*(page_now-1)].c_str());
                             }                 
-                            else if(pos_y-  (page_now-1)*page_y<=page_arr[page_now-1].size()&&pos_x<=page_arr[page_now-1][pos_y -  (page_now-1)*page_y].size()){
-                                num = int(pos_x);
+                            else if(pos_y-  (page_now-1)*page_y<=page_arr[page_now-1].size()&&pos_x-1<=page_arr[page_now-1][pos_y -  (page_now-1)*page_y].size()){
+                                num = int(pos_x)-1;
                                 page_arr[page_now-1][pos_y -  (page_now-1)*page_y].insert(page_arr[page_now-1][pos_y -  (page_now-1)*page_y].begin()+num-1,ch2);
                                 SetPos(0,pos_y -  (page_now-1)*page_y);
                                 printf("\033[K");
                                 SetPos(0,pos_y -  (page_now-1)*page_y);
-                                //cout<<page_arr[page_now-1][pos_y -  (page_now-1)*page_y];
-                                printf("%s",page_arr[page_now-1][pos_y -  (page_now-1)*page_y].c_str());
+                                cout<<page_arr[page_now-1][pos_y -  (page_now-1)*page_y];
+                                //printf("%s",page_arr[page_now-1][pos_y -  (page_now-1)*page_y].c_str());
                             }
-                            else if(pos_x > page_arr[page_now-1][pos_y -  (page_now-1)*page_y].size()&&pos_y -  (page_now-1)*page_y<=page_arr[page_now-1].size()){
+                            else if(pos_x-1 > page_arr[page_now-1][pos_y -  (page_now-1)*page_y].size()&&pos_y -  (page_now-1)*page_y<=page_arr[page_now-1].size()){
                                 page_arr[page_now-1][pos_y -  (page_now-1)*page_y].push_back(ch2);
                             }
-                            else;      
+                            else;  
+                            /*
                             string code_compl = cc2.Lexical_analysis(ch2,pos_y -  (page_now-1)*page_y,last_x);
                             if (last_x-1  <= cc2.c_str.size()){   
                                 if (code_compl[code_compl.length()-1]!=ch2){
@@ -411,28 +399,48 @@ int easyhtmleditor::Edit_kernal(){
                                     break;
                                 }
                                 else;
-                            }        
-                            else;                        
-                            C3.Lexical_analysis(page_arr[page_now-1]);                                
+                                
+                            }       
+                            else;  */                       
+                            //C3.Lexical_analysis(page_arr[page_now-1]);                                
                             SetPos(pos_x,pos_y -  (page_now-1)*page_y);
-                        }
-                        else;  
+                        }  
                         break;
-			   // }
-            }
-        }
+			    }
+            //}
+        //}
     }
-	close(key_fd);
 	return 0;
 }
 
 //获取键盘数据
 char easyhtmleditor::_get_input(void){
     char c;
-    system("stty -echo");  //不回显
+    //不回显
+    system("stty -echo");  
     system("stty -icanon");//设置一次性读完操作，如使用getchar()读操作，不需要按enter
     c=getchar();
     system("stty icanon");//取消上面的设置
     system("stty echo");//回显
     return c;
+}
+
+int easyhtmleditor::kbhit(void){
+    struct termios oldt, newt;
+    int ch;
+    int oldf;
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
+    fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
+    ch = getchar();
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+    fcntl(STDIN_FILENO, F_SETFL, oldf);
+    if(ch != EOF){
+        ungetc(ch, stdin);
+        return 1;
+    }
+    return 0;
 }

@@ -8,7 +8,7 @@
 			"args": [
 				"-fdiagnostics-color=always",
 				"-g",
-				"${file}",
+				"/home/song/桌面/EasyCoding_Editor/Linux/src/main.cpp",
 				"/home/song/桌面/EasyCoding_Editor/Linux/src/Code_completion.cpp",
 				"/home/song/桌面/EasyCoding_Editor/Linux/src/Code_highlighting.cpp",
 				"/home/song/桌面/EasyCoding_Editor/Linux/src/EasyCodingEditor.cpp",

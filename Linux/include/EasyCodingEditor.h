@@ -29,10 +29,9 @@ private:
     stack <string> exact_buffer;
 public:    
     string last_str = "";    
-    char ch2 = 0;
     deque <string> out_data;
-    short int pos_x = 0;
-    short int pos_y = 0; 
+    int pos_x = 1;
+    int pos_y = 0; 
     int last_x = 0;
     int page_x = 0;
     int page_y = 0;
@@ -80,6 +79,8 @@ public:
     char _get_input(void);
     //显示这一整页
     int printg(deque <string> print_page);
+    //检测键盘输入
+    int kbhit(void);
     easyhtmleditor() = default;
     ~easyhtmleditor() = default;
 }; 

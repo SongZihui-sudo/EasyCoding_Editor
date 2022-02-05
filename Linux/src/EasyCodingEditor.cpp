@@ -81,9 +81,7 @@ int easyhtmleditor::commander(){
     string language;
     while(true){    
         SetPos(0,page_y);
-        for (int i = 0; i < 100; i++){
-            cout<<" ";
-        }
+        printf("\033[K");
         SetPos(0,page_y);
         cout<<":";
         cin>>input;
@@ -97,9 +95,12 @@ int easyhtmleditor::commander(){
             return 1;
         }
         else if(input == key[1] || input == key[2]){
+            char ch;
             language = key_words;
             cc.read_outfiles(language);
-            C.read_setting_files(language);            
+            C.read_setting_files(language);   
+            CLEAR();
+            while((getchar()!='\n'));
             Edit_kernal();
         }
         else if(input == key[5]){
