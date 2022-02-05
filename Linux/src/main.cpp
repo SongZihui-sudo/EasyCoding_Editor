@@ -9,7 +9,6 @@ using namespace cht;
 using namespace cct;
 
 int main(){
-    system("export TERM=linux");
     edt::easyhtmleditor e;
     cct::Code_completion c2;
     e.print_size();
@@ -25,7 +24,6 @@ int main(){
         }
     }
     e.commander();
-    system("pause");
     return 0;
-}
+}     
 

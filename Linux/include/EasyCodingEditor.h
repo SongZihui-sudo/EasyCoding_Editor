@@ -76,6 +76,10 @@ public:
     void CLEAR(){
         system("clear");
     }
+    //asill
+    char _get_input(void);
+    //显示这一整页
+    int printg(deque <string> print_page);
     easyhtmleditor() = default;
     ~easyhtmleditor() = default;
 }; 

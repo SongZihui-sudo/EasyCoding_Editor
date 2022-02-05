@@ -223,6 +223,13 @@ void easyhtmleditor::print_size(){
     page_y = size.ws_row;
 }
 
+int easyhtmleditor::printg(deque <string> print_page){
+    for (int i = 0; i < print_page.size(); i++){
+        cout<<print_page[i]<<endl;
+    }
+    return 0;
+}
+
 /*
 1 2 3 4 5
 1 2 4 5 

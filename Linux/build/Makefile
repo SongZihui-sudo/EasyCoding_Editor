@@ -3,12 +3,13 @@
 ########################################################################
 
 # Compiler settings - Can be customized.
-CC = g++
+# CC = g++
+CC = g++-11
 CXXFLAGS = -std=c++11 -Wall
 LDFLAGS = 
 
 # Makefile settings - Can be customized.
-APPNAME = EasyCoding_Editor
+APPNAME = main
 EXT = .cpp
 SRCDIR = ../src
 OBJDIR = ../obj
