@@ -225,7 +225,7 @@ void easyhtmleditor::print_size(){
 
 int easyhtmleditor::printg(deque <string> print_page){
     for (int i = 0; i < print_page.size(); i++){
-        cout<<print_page[i]<<endl;
+        printf("%s\n",print_page[i].c_str());
     }
     return 0;
 }
