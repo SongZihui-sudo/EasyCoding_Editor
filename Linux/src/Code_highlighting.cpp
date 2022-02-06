@@ -1,5 +1,6 @@
 #include "../include/Code_highlighting.h"
 #include "../include/EasyCodingEditor.h"
+#include <curses.h>
 
 using namespace cht;
 using namespace edt;
@@ -36,15 +37,18 @@ bool Code_highlighting::Set_color(int color){
 }
 
 void Code_highlighting::resetFColor(){
-	std::cout<<"\033[39m";
+	printw("\033[39m");
+	refresh();
 }
 
 void Code_highlighting::resetBColor(){
-	std::cout<<"\033[49m";
+	printw("\033[49m");
+	refresh();
 }
 
 //词法分析
 bool Code_highlighting::Lexical_analysis(deque <string> ready_highlight){
+	initscr();
 	vector <int> state;
 	vector <cht::pos> postion;
 	for (int i = 0; i < ready_highlight.size(); i++){
@@ -80,8 +84,10 @@ bool Code_highlighting::Lexical_analysis(deque <string> ready_highlight){
 		if (state[i]){
 			e1.SetPos(postion[i].x,postion[i].y);
 			Set_color(F_BLUE);
-			cout<<key_words[state[i]];
-			resetFColor();	
+			//cout<<key_words[state[i]];
+			printw("%s",key_words[state[i]].c_str());
+			refresh();
+			resetFColor();
 		}
 		else;
 	}

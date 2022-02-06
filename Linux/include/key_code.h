@@ -2,14 +2,14 @@
 #define _key_code_h
 
 #define ESC                     27
-#define BACKSPACE               127
-#define ENTER                   10
-#define UP                      65
-#define DOWN                    66
-#define LEFT                    68
-#define RIGHT                   67
-#define PAGE_UP                 126
-#define PAGE_DOWN               91
+#define BACKSPACE               8
+#define ENTER                   13
+#define UP                      3
+#define DOWN                    2
+#define LEFT                    4
+#define RIGHT                   5
+#define PAGE_UP                 83
+#define PAGE_DOWN               82
 #define TAB                     9
 #define SPACE                   32
 
