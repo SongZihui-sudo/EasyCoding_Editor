@@ -3,10 +3,10 @@
 ########################################################################
 
 # Compiler settings - Can be customized.
-# CC = g++
-CC = g++-11
+ CC = g++
+#CC = g++-11
 CXXFLAGS = -std=c++11 -Wall
-LDFLAGS = 
+LDFLAGS =  -lncurses 
 
 # Makefile settings - Can be customized.
 APPNAME = main

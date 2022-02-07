@@ -3,6 +3,7 @@
 #include "../include/Code_highlighting.h"
 #include "../include/Code_completion.h"
 #include "../include/Markdown_parser.h"
+#include <cstring>
 
 using namespace edt;
 using namespace std;
@@ -24,8 +25,9 @@ bool easyhtmleditor::open_files(string filename){
     if (out){
         while (getline(out,file_data)){
             if (i<page_y){
-                cout<<file_data<<endl;
+                printw("%s",file_data.c_str()); 
                 out_data.push_back(file_data);  
+		refresh();
             }
             else{
                 out_data.push_back(file_data);  
@@ -42,7 +44,8 @@ bool easyhtmleditor::open_files(string filename){
     else{
         SetPos(0,page_y);
         C.Set_color(F_RED);
-        cerr<<"open files error!!!"<<endl;
+        printw("open files error!!!");
+	refresh();
         C.resetFColor();	
         SetPos(0,0);
         return false;
@@ -55,118 +58,140 @@ bool easyhtmleditor::open_files(string filename){
         page_arr.push_back(out_data);
     }
     else;
-    C.Lexical_analysis(page_arr[0]);
+    //C.Lexical_analysis(page_arr[0]);
     SetPos(0,0);
     return true;
 }
 //设置光标位置
 void easyhtmleditor::SetPos( int  x , int  y ){
-    printf("\033[%d;%dH", (y), (x));
+	move(y,x);
+	//printf("\033[%d;%dH", (y), (x));
 }
 //命令行
 int easyhtmleditor::commander(){
-    CLEAR();
-    SetPos(page_x/2-5,int(page_y)/2-2);
-    cout<<"EasyCoding编辑器(Linux)";
-    SetPos(page_x/2-5,int(page_y/2-1));
-    cout<<"版本：v1.0";
-    SetPos(page_x/2-5,int(page_y/2));
-    cout<<"帮助";
-    SetPos(page_x/2-5,int(page_y/2+1));
-    cout<<"编辑 i | a";
-    SetPos(page_x/2-5,int(page_y/2+2));
-    cout<<"保存并退出wq";
-    string input;
-    string key_words;
-    string language;
-    while(true){    
-        SetPos(0,page_y);
-        printf("\033[K");
-        SetPos(0,page_y);
-        cout<<":";
-        cin>>input;
-        if (input == key[0]){
-            cout<<"NOW YOU WILL EXIT WHIHOUT SAVE!!!"<<endl;
-            return -1;
-        }
-        cin>>key_words;
-        if(input == key[4]){
-            save_files(key_words,page_arr);
-            return 1;
-        }
-        else if(input == key[1] || input == key[2]){
-            char ch;
-            language = key_words;
-            cc.read_outfiles(language);
-            C.read_setting_files(language);   
-            CLEAR();
-            while((getchar()!='\n'));
-            Edit_kernal();
-        }
-        else if(input == key[5]){
-            CLEAR();
-            language = key_words;
-            int bit = 0;
-            for (int i = 0; i < language.size(); i++){
-                if (language[i] == '.'&& i!=0&&i!=1){
-                    bit = i;
-                    break;
-                }
-                else;
-            }
-            language = language.substr(bit+1,language.size()-1);
-            C.read_setting_files(language);
-            cc.read_outfiles(language);
-            if(open_files(key_words)){
-                Edit_kernal();
-            }
-            else;
-        }
-        else if(input == key[7]){
-            save_files(key_words,page_arr);
-            cin.sync();
-            string cmd;
-            cout<<"\n";
-            getline(cin,cmd);
-            const char* c_command;
-            c_command = cmd.c_str();
-            system(c_command);
-        }
-        else if(input == key[6]){
-            CLEAR();
-            for (int i = 0; i < page_arr[page_now-1].size(); i++){
-                cout<<page_arr[page_now-1][i]<<endl;
-            }
-            C.Lexical_analysis(page_arr[page_now-1]);
-            SetPos(0,0);
-            Edit_kernal();
-        }
-        else if(input == key[3]){
-            find(key_words);
-        }
-        else if(input == key[8]){
-            deque <deque <string>> html;
-            html = mp.syntax_conversion(mp.Lexical_analysis(page_arr),page_arr);
-            save_files(key_words,html);
-            return 1;
-        }
-        else if (input == key[9]){
-            CLEAR();        
-            if (open_files("../../readme.md")){
-                Edit_kernal();
-            }
-            else;
-        }
-        else{
-            SetPos(0,page_y);
-            C.Set_color(F_RED);
-            cerr<<"command not find!!!"<<endl;
-            C.resetFColor();
-            SetPos(0,0);
-        }
-    }
-    return 0;
-}
+    	CLEAR();
+    	//initial();
+    	initscr();
+    	SetPos(page_x/2-5,int(page_y)/2-2);
+    	printw("EasyCodingEditor(Linux)");
+    	refresh();
+    	SetPos(page_x/2-5,int(page_y/2-1));
+    	printw("Version v1.0");
+    	refresh();
+    	SetPos(page_x/2-5,int(page_y/2));
+    	printw("Help");
+    	refresh();
+    	SetPos(page_x/2-5,int(page_y/2+1));
+    	printw("Edit mode i | a");
+    	refresh();
+    	SetPos(page_x/2-5,int(page_y/2+2));
+    	printw("Save and quit wq");
+    	refresh();
+    	char 		input_c[5];//C风格字符串
+    	char 		key_words_c[5];
+    	//C++ String
+    	string 		language;
+    	while(true){    
+        	SetPos(0,page_y-3);
+        	printw(":");
+		refresh();
+		scanw("%s",&input_c);
+		string input(input_c);
+        	if (input == key[0]){
+            		printw("NOW YOU WILL EXIT WHIHOUT SAVE!!!");
+	    		refresh();
+            		return -1;
+        	}
+		SetPos(0,page_y-2);
+		printw(":");
+		refresh();
+        	//getstr(key_words_c);
+    		//printw("%s",key_words_c);
+        	scanw("%s",&key_words_c);
+		string key_words(key_words_c,key_words_c+strlen(key_words_c));
+		//cout<<input<<" "<<key_words;
+		if(input == key[4]){
+            		save_files(key_words,page_arr);
+            		return 1;
+        	}
+        	else if(input == key[1] || input == key[2]){
+            		//printw("Edit mode test\n");
+                        //refresh();
+			char ch;
+            		language = key_words;
+            		cc.read_outfiles(language);
+            		C.read_setting_files(language);   
+            		//while((getchar()!='\n'));
+            		printw("Edit mode\n");
+			refresh();
+			CLEAR();
+			Edit_kernal();
+        		}
+        	else if(input == key[5]){
+            	CLEAR();
+            	language = key_words;
+            	int bit = 0;
+            	for (int i = 0; i < language.size(); i++){
+                	if (language[i] == '.'&& i!=0&&i!=1){
+                    		bit = i;
+                    		break;
+                	}
+                	else;
+            	}
+            	language = language.substr(bit+1,language.size()-1);
+            	C.read_setting_files(language);
+            	cc.read_outfiles(language);
+            	if(open_files(key_words)){
+                	Edit_kernal();
+            	}
+            	else;
+        	}
+        	else if(input == key[7]){
+            		save_files(key_words,page_arr);
+            		cin.sync();
+            		string cmd;
+            		cout<<"\n";
+            		getline(cin,cmd);
+            		const char* c_command;
+            		c_command = cmd.c_str();
+            		system(c_command);
+        	}
+        	else if(input == key[6]){
+            	CLEAR();
+            	for (int i = 0; i < page_arr[page_now-1].size(); i++){
+                	cout<<page_arr[page_now-1][i]<<endl;
+            	}
+            	C.Lexical_analysis(page_arr[page_now-1]);
+            	SetPos(0,0);
+            	Edit_kernal();
+        	}
+        	else if(input == key[3]){
+            		find(key_words);
+        	}
+        	else if(input == key[8]){
+            		deque <deque <string>> html;
+            		html = mp.syntax_conversion(mp.Lexical_analysis(page_arr),page_arr);
+            		save_files(key_words,html);
+            		return 1;
+        	}
+        	else if (input == key[9]){
+            		CLEAR();        
+            		if (open_files("../../readme.md")){
+                		Edit_kernal();
+            		}
+            	else;
+        	}
+        	else{
+            		SetPos(0,page_y);
+            		C.Set_color(F_RED);
+            		cerr<<"command "<<input<<" "<<key_words<<" not find!!!"<<endl;
+            		C.resetFColor();
+			C.resetBColor();
+            		SetPos(0,0);
+        	}
+    	}
+    	return 0;
+	}
 //查找
 bool easyhtmleditor::find(string finding){
     vector <int> state;
@@ -204,7 +229,7 @@ bool easyhtmleditor::save_files(string filename,deque < deque <string> > save_Da
     in.open(filename);
     if (in){
        for (int i = 0; i < save_Data.size(); i++){
-            for (int j = 0; j < save_Data[i].size(); j++){
+            for (int j = 0; j < save_Data[j].size(); j++){
                     in<<save_Data[i][j]<<"\n";
             }
         }
