@@ -13,16 +13,21 @@
 #include<unistd.h>
 #include<termios.h>
 #include <curses.h>
+#include "../include/Code_highlighting.h"
 
 using namespace std;
 
 namespace edt{
+
+using namespace cht;
 
 class easyhtmleditor{  
 
 private:
     int page_now = 1;
     int page = 0;
+    deque <string> ret_fileread1;
+    deque <string> ret_fileread2;
 private:
     deque < deque <string> > page_arr;
     deque <string> parr3;

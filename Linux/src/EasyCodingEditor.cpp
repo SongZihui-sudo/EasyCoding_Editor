@@ -25,9 +25,9 @@ bool easyhtmleditor::open_files(string filename){
     if (out){
         while (getline(out,file_data)){
             if (i<(page_y-2)){
-                printw("%s\n",file_data.c_str()); 
+				mvprintw(i+1,0,"%s",file_data.c_str()); 
                 out_data.push_back(file_data);  
-		refresh();
+				refresh();
             }
             else{
                 out_data.push_back(file_data);  
@@ -43,10 +43,10 @@ bool easyhtmleditor::open_files(string filename){
     }
     else{
         SetPos(0,page_y);
-        C.Set_color(F_RED);
+        C.Set_color(RB);
         printw("open files error!!!");
-	refresh();
-        C.resetFColor();	
+		C.ReSetColor();
+		refresh();
         SetPos(0,0);
         return false;
     }      
@@ -54,11 +54,11 @@ bool easyhtmleditor::open_files(string filename){
     if (page<=1){
         page_arr.push_back(out_data);
     }
-    else if (page*page_y < i){
+    else if (page*(page_y-2) < i){
         page_arr.push_back(out_data);
     }
     else;
-    //C.Lexical_analysis(page_arr[0]);
+    C.Lexical_analysis(page_arr[0],ret_fileread2);
     SetPos(0,0);
     return true;
 }
@@ -126,8 +126,8 @@ int easyhtmleditor::commander(){
                         //refresh();
 				char ch;
             	language = key_words;
-            	cc.read_outfiles(language);
-            	C.read_setting_files(language);   
+            	ret_fileread1 = cc.read_outfiles(language);
+            	ret_fileread2 =  C.read_setting_files(language);   
             	//while((getchar()!='\n'));
             	printw("Edit mode\n");
 				refresh();
@@ -146,8 +146,8 @@ int easyhtmleditor::commander(){
                 	else;
             	}
             	language = language.substr(bit+1,language.size()-1);
-            	C.read_setting_files(language);
-            	cc.read_outfiles(language);
+            	ret_fileread2 = C.read_setting_files(language);
+            	ret_fileread1 = cc.read_outfiles(language);
             	if(open_files(key_words)){
                 	Edit_kernal();
             	}
@@ -168,7 +168,7 @@ int easyhtmleditor::commander(){
             	for (int i = 0; i < page_arr[page_now-1].size(); i++){
                 	cout<<page_arr[page_now-1][i]<<endl;
             	}
-            	C.Lexical_analysis(page_arr[page_now-1]);
+            	C.Lexical_analysis(page_arr[page_now-1],ret_fileread2);
             	SetPos(0,0);
             	Edit_kernal();
         	}
@@ -190,11 +190,10 @@ int easyhtmleditor::commander(){
         	}
         	else{
             		SetPos(0,page_y);
-            		C.Set_color(F_RED);
-            		cerr<<"command "<<input<<" "<<key_words<<" not find!!!"<<endl;
-            		C.resetFColor();
-			C.resetBColor();
-            		SetPos(0,0);
+            		C.Set_color(RB);
+            		mvprintw(page_y-1,0,"command %s,%s not find!!!",input.c_str(),key_words.c_str());
+					C.ReSetColor();
+					refresh();
         	}
     	}
     	return 0;

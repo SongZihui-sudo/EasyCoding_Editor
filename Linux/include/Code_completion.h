@@ -20,7 +20,7 @@ namespace cct{
     public:        
         string c_str = "";
         //读取文件
-        bool read_outfiles(string language);
+        deque <string> read_outfiles(string language);
         //词法分析
         string Lexical_analysis(char c,int pos_y,int pos_x);
         Code_completion() = default;

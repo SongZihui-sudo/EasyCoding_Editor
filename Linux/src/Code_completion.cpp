@@ -11,7 +11,7 @@ edt::easyhtmleditor e2;
 cht::Code_highlighting c2;
 
 //读取文件
-bool Code_completion::read_outfiles(string language){
+deque <string> Code_completion::read_outfiles(string language){
     if (language == "c" || language == "cpp"){
         fstream out_files_completion;
         out_files_completion.open("../Code_completion/c_setting.txt");
@@ -23,11 +23,11 @@ bool Code_completion::read_outfiles(string language){
         }
         else{
             cerr<<"Can not open the files!!!"<<endl;
-            return false;
+            return code_completion;
         }
     }
     else;
-    return true;
+    return code_completion;
 }
 //词法分析
 string Code_completion::Lexical_analysis(char c,int pos_y,int pos_x){
@@ -64,9 +64,10 @@ string Code_completion::Lexical_analysis(char c,int pos_y,int pos_x){
         }
         e2.SetPos(0,e2.page_y);
         for (int i = 0; i < state.size(); i++){
-            c2.Set_color(F_YELLOW);
+            c2.Set_color(YB);
             cout<<code_completion[state[i]]<<" ";    
-            c2.resetFColor();
+            c2.ReSetColor();
+            refresh();
         }
         if(state.size()==1){
             bit  = 1;

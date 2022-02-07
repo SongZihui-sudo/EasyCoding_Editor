@@ -1,3 +1,5 @@
+string 
+else if 
 c_highlighting:
 endl
 using

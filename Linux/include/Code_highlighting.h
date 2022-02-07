@@ -5,25 +5,21 @@
 #include <deque>
 #include <fstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 namespace cht{
-    //前景
-    const int F_BLACK = 0x01;	// 000001
-    const int F_RED = 0x02;		// 000010
-    const int F_GREEN = 0x03;	// 000011
-    const int F_YELLOW = 0x04;	// 000100
-    const int F_BLUE = 0x05;	// 000101
-    const int F_DPURPLE = 0x06;	// 000110
-    const int F_WHITE = 0x07;	// 000111
-    //背景
-    const int B_BLACK = 0x08;	// 001000
-    const int B_RED = 0x10;		// 010000
-    const int B_GREEN = 0x18;	// 011000
-    const int B_BROWN = 0x80;	// 100000
-    const int B_BLUE = 0x88;	// 101000
-    const int B_WHITE = 0x90;	// 110000
+
+    #define RB					1
+  	#define BLB					2
+    #define GB                  3
+  	#define YB					4
+  	#define BAB					5
+  	#define MB					6
+  	#define CB					7
+    #define WB                  8
+
     //坐标
     typedef struct pos{
         int x;
@@ -31,20 +27,18 @@ namespace cht{
     }pos;
     //代码高亮类
     class Code_highlighting{
-    private:
-        deque <string> key_words;
-    public:
+    private:    
+        deque <string> key_words2;
+    public:        
         //设置字体颜色
-        bool Set_color(int color);
+        void Set_color(int color);
         //词法分析
-        bool Lexical_analysis(deque <string> ready_highlight);
+        bool Lexical_analysis(deque <string> ready_highlight,deque <string >file_data);
         //读取关键词文件
-        bool read_setting_files(string language); 
-        // 重置前景色
-        void resetFColor(); 
-        // 重置背景色
-        void resetBColor(); 
-        Code_highlighting(/* args */) = default;
+        deque <string> read_setting_files(string language);
+        void ReSetColor(); 
+        Code_highlighting(/* args */){
+        };
         ~Code_highlighting() = default;
     }; 
 } // namespace cht
