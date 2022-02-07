@@ -34,18 +34,7 @@ int main(int argc,char** argv){
                         }   
                 }
         }
-        if (argc>1){
-            string file_name = argv[1];
-            if(e.open_files(file_name));
-            else{
-                mvprintw(e.page_y-2,1,"Can not find %s",argv[1]);
-                refresh();
-            }
-            e.Edit_kernal();
-        }
-        else{
-            e.commander();
-        }
+        e.commander(argc,argv);
         erase();
         endwin();
         return 0;

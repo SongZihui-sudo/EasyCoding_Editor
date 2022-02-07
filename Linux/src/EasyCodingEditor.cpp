@@ -27,7 +27,6 @@ bool easyhtmleditor::open_files(string filename){
             if (i<(page_y-2)){
 				mvprintw(i+1,0,"%s",file_data.c_str()); 
                 out_data.push_back(file_data);  
-				refresh();
             }
             else{
                 out_data.push_back(file_data);  
@@ -59,6 +58,7 @@ bool easyhtmleditor::open_files(string filename){
     else;
     C.Lexical_analysis(page_arr[0],ret_fileread2);
     SetPos(0,0);
+	refresh();
     return true;
 }
 //设置光标位置
@@ -67,8 +67,28 @@ void easyhtmleditor::SetPos( int  x , int  y ){
 	//printf("\033[%d;%dH", (y), (x));
 }
 //命令行
-int easyhtmleditor::commander(){
-    	//CLEAR();
+int easyhtmleditor::commander(int argc,char** argv){
+	if (argc>1){
+		initscr();
+		string key_words = argv[1];
+		string language;
+        language = key_words;
+        int bit = 0;
+        for (int i = 0; i < language.size(); i++){
+            if (language[i] == '.'&& i!=0&&i!=1){
+                bit = i;
+                break;
+            }
+            else;
+        }
+        language = language.substr(bit+1,language.size()-1);
+        ret_fileread2 = C.read_setting_files(language);
+        ret_fileread1 = cc.read_outfiles(language);
+        open_files(key_words);
+        Edit_kernal();
+	}
+	else{
+		//CLEAR();
     	//initial();
     	initscr();
 		mvprintw(2,10,"\\_   _____/  \\    /  \\");
@@ -209,6 +229,9 @@ int easyhtmleditor::commander(){
         	}
 			refresh();
     	}
+	}
+	
+    	
     	return 0;
 	}
 //查找
