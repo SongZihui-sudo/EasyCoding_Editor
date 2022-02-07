@@ -12,6 +12,13 @@ using namespace cht;
 using namespace cct;
 
 int main(){
+		/*
+\_   _____/  \    /  \
+ |    __)_\   \/\/   /
+ |        \\        / 
+/_______  / \__/\  /  
+        \/       \/
+		*/
     	edt::easyhtmleditor e;
     	cct::Code_completion c2;
     	e.print_size();

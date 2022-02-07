@@ -72,6 +72,13 @@ int easyhtmleditor::commander(){
     	//CLEAR();
     	//initial();
     	initscr();
+		mvprintw(2,10,"\\_   _____/  \\    /  \\");
+		mvprintw(3,10," |    __)_\\   \\/\\/   /");
+		mvprintw(4,10," |        \\\\        /");
+		mvprintw(5,10,"/_______  / \\__/\\  /");
+		mvprintw(6,10,"        \\/       \\/");
+		refresh();
+    	//初始化字符
     	SetPos(page_x/2-5,int(page_y)/2-2);
     	printw("EasyCodingEditor(Linux)");
     	refresh();
@@ -229,8 +236,8 @@ bool easyhtmleditor::save_files(string filename,deque < deque <string> > save_Da
     in.open(filename);
     if (in){
        for (int i = 0; i < save_Data.size(); i++){
-            for (int j = 0; j < save_Data[j].size(); j++){
-                    in<<save_Data[i][j]<<"\n";
+            for (int j = 0; j < save_Data[i].size(); j++){
+                in<<save_Data[i][j]<<"\n";
             }
         }
     }
