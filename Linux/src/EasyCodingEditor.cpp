@@ -42,12 +42,11 @@ bool easyhtmleditor::open_files(string filename){
         }
     }
     else{
-        SetPos(0,page_y);
+        SetPos(1,page_y-2);
         C.Set_color(RB);
         printw("open files error!!!");
 		C.ReSetColor();
 		refresh();
-        SetPos(0,0);
         return false;
     }      
     page = j;
@@ -77,20 +76,15 @@ int easyhtmleditor::commander(){
 		mvprintw(4,10," |        \\\\        /");
 		mvprintw(5,10,"/_______  / \\__/\\  /");
 		mvprintw(6,10,"        \\/       \\/");
-		refresh();
     	//初始化字符
     	SetPos(page_x/2-5,int(page_y)/2-2);
     	printw("EasyCodingEditor(Linux)");
-    	refresh();
     	SetPos(page_x/2-5,int(page_y/2-1));
     	printw("Version v1.0");
-    	refresh();
     	SetPos(page_x/2-5,int(page_y/2));
     	printw("Help");
-    	refresh();
     	SetPos(page_x/2-5,int(page_y/2+1));
     	printw("Edit mode i | a");
-    	refresh();
     	SetPos(page_x/2-5,int(page_y/2+2));
     	printw("Save and quit wq");
     	refresh();
@@ -98,10 +92,29 @@ int easyhtmleditor::commander(){
     	char 		key_words_c[5];
     	//C++ String
     	string 		language;
+		initscr();
     	while(true){    
+			mvprintw(2,10,"\\_   _____/  \\    /  \\");
+			mvprintw(3,10," |    __)_\\   \\/\\/   /");
+			mvprintw(4,10," |        \\\\        /");
+			mvprintw(5,10,"/_______  / \\__/\\  /");
+			mvprintw(6,10,"        \\/       \\/");
+    	//初始化字符
+    		SetPos(page_x/2-5,int(page_y)/2-2);
+    		printw("EasyCodingEditor(Linux)");
+    		SetPos(page_x/2-5,int(page_y/2-1));
+    		printw("Version v1.0");
+    		SetPos(page_x/2-5,int(page_y/2));
+    		printw("Help");
+    		SetPos(page_x/2-5,int(page_y/2+1));
+    		printw("Edit mode i | a");
+    		SetPos(page_x/2-5,int(page_y/2+2));
+    		printw("Save and quit wq");
+			box(stdscr,'|','-');
+    		//refresh();
         	SetPos(1,page_y-3);
         	printw(":");
-			refresh();
+			//refresh();
 			scanw("%s",&input_c);
 			string input(input_c);
         	if (input == key[0]){
@@ -191,10 +204,10 @@ int easyhtmleditor::commander(){
         	else{
             		SetPos(0,page_y);
             		C.Set_color(RB);
-            		mvprintw(page_y-1,0,"command %s,%s not find!!!",input.c_str(),key_words.c_str());
+            		mvprintw(page_y-2,1,"command %s,%s not find!!!",input.c_str(),key_words.c_str());
 					C.ReSetColor();
-					refresh();
         	}
+			refresh();
     	}
     	return 0;
 	}

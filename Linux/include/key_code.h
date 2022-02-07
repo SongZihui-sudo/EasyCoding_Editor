@@ -2,7 +2,7 @@
 #define _key_code_h
 
 #define ESC                     27
-#define BACKSPACE               7
+#define BACKSPACE               8
 #define ENTER                   13
 #define UP                      3
 #define DOWN                    2

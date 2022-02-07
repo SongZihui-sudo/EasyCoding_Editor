@@ -12,7 +12,7 @@ using namespace cht;
 using namespace cct;
 using namespace mpt;
 
-int main(){
+int main(int argc,char** argv){
         /*
 \_   _____/  \    /  \
  |    __)_\   \/\/   /
@@ -23,9 +23,6 @@ int main(){
         edt::easyhtmleditor e;
         cct::Code_completion c2;
         e.print_size();
-        initscr();
-        box(stdscr,'|','-');
-        refresh();
         //初始化字符集
         int k = 0;
         for (int i = 0; i < e.word.size()-1; i++){
@@ -37,7 +34,18 @@ int main(){
                         }   
                 }
         }
-        e.commander();
+        if (argc>1){
+            string file_name = argv[1];
+            if(e.open_files(file_name));
+            else{
+                mvprintw(e.page_y-2,1,"Can not find %s",argv[1]);
+                refresh();
+            }
+            e.Edit_kernal();
+        }
+        else{
+            e.commander();
+        }
         erase();
         endwin();
         return 0;

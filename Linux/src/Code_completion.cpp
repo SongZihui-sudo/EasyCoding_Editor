@@ -30,7 +30,8 @@ deque <string> Code_completion::read_outfiles(string language){
     return code_completion;
 }
 //词法分析
-string Code_completion::Lexical_analysis(char c,int pos_y,int pos_x){
+string Code_completion::Lexical_analysis(char c,int pos_y,int pos_x,deque <string> file_data,int page_y,int page_x){
+    code_completion = file_data;
     if (pos_x-1>c_str.size());
     else if (last_y!=pos_y){
         c_str = "";
@@ -58,14 +59,12 @@ string Code_completion::Lexical_analysis(char c,int pos_y,int pos_x){
 		else;     //主串中不存在该模式 
     }     
     if (!state.empty()){
-        e2.SetPos(0,e2.page_y);
-        for (int i = 0; i < 150; i++){
-            cout<<" ";
-        }
-        e2.SetPos(0,e2.page_y);
+        e2.SetPos(0,page_y);
+        clrtoeol(); 
+        e2.SetPos(0,page_y);
         for (int i = 0; i < state.size(); i++){
             c2.Set_color(YB);
-            cout<<code_completion[state[i]]<<" ";    
+            mvprintw(page_y-1,i,"%s",code_completion[state[i]].c_str());    
             c2.ReSetColor();
             refresh();
         }
@@ -75,15 +74,14 @@ string Code_completion::Lexical_analysis(char c,int pos_y,int pos_x){
         }    
     }
     else{
+        mvprintw(0,page_x/2,"EasyCodingEditor(Linux) version1.0 ");
         if (bit){
             bit = 0;
             state.pop_back();
             return c_str;
         }
         e2.SetPos(0,e2.page_y);
-        for (int i = 0; i < 150; i++){
-            cout<<" ";
-        }
+        clrtoeol();
         return c_str;
     }
     last_y = pos_y;

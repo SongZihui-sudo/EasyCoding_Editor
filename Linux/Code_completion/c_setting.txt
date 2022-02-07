@@ -31,6 +31,8 @@ float
 float
 #include
 #include
+#######
+#######
 string
 string
 return
@@ -39,3 +41,13 @@ using
 using
 namespace
 namespace
+vector
+vector
+deque
+deque
+stack
+stack
+map
+map
+/*
+/* */

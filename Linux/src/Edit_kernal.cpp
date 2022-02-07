@@ -48,7 +48,7 @@ int easyhtmleditor::Edit_kernal(){
     while(ch2 = getch()){
         //printf("key asill %d\n", ch2);
             switch (ch2){
-                case BACKSPACE:
+                case BACKSPACE :
                     if (cc2.c_str.empty());
                         else{
                             cc2.c_str.pop_back();
@@ -345,7 +345,7 @@ int easyhtmleditor::Edit_kernal(){
                         if (bit_c){
                             if (pos_x==1&&pos_y-  (page_now-1)*(page_y-2)>page_arr[page_now-1].size()){
                                 input_str.push_back(ch2);
-                                   page_arr[page_now-1] .push_back(input_str);
+                                page_arr[page_now-1] .push_back(input_str);
                                 input_str.clear();
                             }
                             else if(pos_x==1&&pos_y -  (page_now-1)*(page_y-2)<=page_arr[page_now-1].size()){
@@ -360,36 +360,37 @@ int easyhtmleditor::Edit_kernal(){
                                 clrtoeol();
                                 move(pos_y -  (page_now-1)*(page_y-2)+1,0);
                                 printw("%s",page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)].c_str());
+                                refresh();
                             }
                             else if(pos_x > page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].size()&&pos_y -  (page_now-1)*(page_y-2)<=page_arr[page_now-1].size()){
                                 page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].push_back(ch2);
                             }
                             else;  
-                                /*
-                                    string code_compl = cc2.Lexical_analysis(ch2,pos_y -  (page_now-1)*(page_y-2),last_x);
-                                    if (last_x-1  <= cc2.c_str.size()){   
-                                        if (code_compl[code_compl.length()-1]!=ch2){
-                                                SetPos(0,pos_y - (page_now-1)*(page_y-2));   
-                                                printf("\033[K");                                
-                                                page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)].clear();
-                                                last_str+=code_compl;                            
-                                                page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)] = last_str ;
-                                                SetPos(0 ,pos_y - (page_now-1)*(page_y-2));    
-                                                //cout<<page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)];
-                                                printf("%s",page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)].c_str());
-                                                C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2); 
-                                                pos_x = page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)].size(); 
-                                                SetPos(pos_x,pos_y -  (page_now-1)*(page_y-2));                              
-                                                break;
-                                        }
-                                        else;
-                                
-                                    }       
-                                    else;  */                       
-                            //                      
+                            string code_compl = cc2.Lexical_analysis(ch2,pos_y -  (page_now-1)*(page_y-2),last_x,ret_fileread1,page_y,page_x);
+                            if (last_x-1  <= cc2.c_str.size()){   
+                                if (code_compl[code_compl.length()-1]!=ch2){
+                                    SetPos(0,pos_y - (page_now-1)*(page_y-2)+1);   
+                                    clrtoeol();                                
+                                    page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)].clear();
+                                    last_str+=code_compl;                            
+                                    page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)] = last_str ;
+                                    SetPos(0 ,pos_y - (page_now-1)*(page_y-2)+1);    
+                                    //cout<<page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)];
+                                    printw("%s",page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)].c_str());
+                                    C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2); 
+                                    pos_x = page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)].size(); 
+                                    mvprintw(0,page_x/2,"EasyCodingEditor(Linux) version1.0 ");
+                                    SetPos(pos_x,pos_y -  (page_now-1)*(page_y-2)+1);     
+                                    refresh();                         
+                                    break;
+                                }
+                                else;
+                            }       
+                            else;                                          
                         }							
-                        move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x);
-                        //C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2);            						
+                        C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2);
+                        mvprintw(0,page_x/2,"EasyCodingEditor(Linux) version1.0 ");                            
+                        move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x);	
                         refresh();
                         break;
                     }

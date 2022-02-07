@@ -22,7 +22,7 @@ namespace cct{
         //读取文件
         deque <string> read_outfiles(string language);
         //词法分析
-        string Lexical_analysis(char c,int pos_y,int pos_x);
+        string Lexical_analysis(char c,int pos_y,int pos_x,deque <string> file_data,int page_y,int page_x);
         Code_completion() = default;
         ~Code_completion() = default;
     };
