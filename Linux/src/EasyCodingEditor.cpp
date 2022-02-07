@@ -24,15 +24,15 @@ bool easyhtmleditor::open_files(string filename){
     string file_data;
     if (out){
         while (getline(out,file_data)){
-            if (i<page_y){
-                printw("%s",file_data.c_str()); 
+            if (i<(page_y-2)){
+                printw("%s\n",file_data.c_str()); 
                 out_data.push_back(file_data);  
 		refresh();
             }
             else{
                 out_data.push_back(file_data);  
             }
-            if ((i%page_y)==0&&i!=0){
+            if ((i%(page_y-2))==0&&i!=0){
                 page_arr.push_back(out_data);
                 j++;
                 out_data.clear();
@@ -50,11 +50,11 @@ bool easyhtmleditor::open_files(string filename){
         SetPos(0,0);
         return false;
     }      
-    page_y = j;
-    if (page_y<=1){
+    page = j;
+    if (page<=1){
         page_arr.push_back(out_data);
     }
-    else if (page_y*page_y < i){
+    else if (page*page_y < i){
         page_arr.push_back(out_data);
     }
     else;
@@ -69,7 +69,7 @@ void easyhtmleditor::SetPos( int  x , int  y ){
 }
 //命令行
 int easyhtmleditor::commander(){
-    	CLEAR();
+    	//CLEAR();
     	//initial();
     	initscr();
     	SetPos(page_x/2-5,int(page_y)/2-2);
@@ -92,40 +92,40 @@ int easyhtmleditor::commander(){
     	//C++ String
     	string 		language;
     	while(true){    
-        	SetPos(0,page_y-3);
+        	SetPos(1,page_y-3);
         	printw(":");
-		refresh();
-		scanw("%s",&input_c);
-		string input(input_c);
+			refresh();
+			scanw("%s",&input_c);
+			string input(input_c);
         	if (input == key[0]){
-            		printw("NOW YOU WILL EXIT WHIHOUT SAVE!!!");
+        		printw("NOW YOU WILL EXIT WHIHOUT SAVE!!!");
 	    		refresh();
-            		return -1;
-        	}
-		SetPos(0,page_y-2);
-		printw(":");
-		refresh();
+        		return -1;
+    		}
+			SetPos(1,page_y-2);
+			printw(":");
+			refresh();
         	//getstr(key_words_c);
     		//printw("%s",key_words_c);
         	scanw("%s",&key_words_c);
-		string key_words(key_words_c,key_words_c+strlen(key_words_c));
+			string key_words(key_words_c,key_words_c+strlen(key_words_c));
 		//cout<<input<<" "<<key_words;
-		if(input == key[4]){
-            		save_files(key_words,page_arr);
-            		return 1;
+			if(input == key[4]){
+            	save_files(key_words,page_arr);
+            	return 1;
         	}
         	else if(input == key[1] || input == key[2]){
             		//printw("Edit mode test\n");
                         //refresh();
-			char ch;
-            		language = key_words;
-            		cc.read_outfiles(language);
-            		C.read_setting_files(language);   
-            		//while((getchar()!='\n'));
-            		printw("Edit mode\n");
-			refresh();
-			CLEAR();
-			Edit_kernal();
+				char ch;
+            	language = key_words;
+            	cc.read_outfiles(language);
+            	C.read_setting_files(language);   
+            	//while((getchar()!='\n'));
+            	printw("Edit mode\n");
+				refresh();
+				CLEAR();
+				Edit_kernal();
         		}
         	else if(input == key[5]){
             	CLEAR();

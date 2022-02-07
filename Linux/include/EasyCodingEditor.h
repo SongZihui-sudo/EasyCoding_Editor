@@ -22,6 +22,7 @@ class easyhtmleditor{
 
 private:
     int page_now = 1;
+    int page = 0;
 private:
     deque < deque <string> > page_arr;
     deque <string> parr3;
@@ -56,44 +57,11 @@ public:
     void print_size();    
     //获得键盘事件
     int Edit_kernal();
-    //左移光标
-    void MOVELEFT(int x){
-        printf("\033[%dD", (x));
-    };
-    //右移光标
-    void MOVERIGHT(int x){
-        printf("\033[%dC",(x));
-    };
-    //上移光标
-    void MOVEUP(int y){
-        printf("\033[%dA", (y));
-    };
-    //下移光标
-    void MOVEDOWN(int y){
-        printf("\033[%dB", (y));
-    };
-    //清屏
     void CLEAR(){
-        system("clear");
+        erase();
     }
-    //asill
-    char _get_input(void);
     //显示这一整页
     int printg(deque <string> print_page);
-    //检测键盘输入
-    int kbhit(void);
-    //初始化
-    void initial(){
-      	initscr();                                 //开启curses模式
-      	cbreak();                               //开启cbreak模式,除了 DELETE 或 CTRL 等仍被视为特殊控制字元外一切输入的字元将立刻被一一读取
-      	//nonl();                                   //用来决定当输入资料时, 按下 RETURN 键是否被对应为 NEWLINE 字元
-      	//noecho();                             //echo() and noecho(): 此函式用来控制从键盘输入字元时是否将字元显示在终端机上
-      	nl();
-	echo();
-	intrflush(stdscr,false);
-      	keypad(stdscr,true);          //当开启 keypad 後, 可以使用键盘上的一些特殊字元, 如上下左右>等方向键
-      	refresh();                              //将做清除萤幕的工作
-    }
     easyhtmleditor() = default;
     ~easyhtmleditor() = default;
 }; 
