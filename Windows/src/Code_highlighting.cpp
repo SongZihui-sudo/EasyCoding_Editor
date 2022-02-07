@@ -1,6 +1,5 @@
 #include "../include/Code_highlighting.h"
 #include "../include/EasyCodingEditor.h"
-#include <curses.h>
 
 using namespace cht;
 using namespace edt;
@@ -8,47 +7,24 @@ using namespace edt;
 edt::easyhtmleditor e1;
 
 //设置颜色
-bool Code_highlighting::Set_color(int color){
-    bool ret = true;
-	int fore = color%8;	//取color的后3位
-	int back = (color/8)*8;	//将color的后3位清空 (即取前3位)
-	switch (fore)
-	{
-	case F_BLACK:std::cout<<"\033[30m";break;
-	case F_RED:std::cout<<"\033[31m";break;
-	case F_GREEN:std::cout<<"\033[32m";break;
-	case F_YELLOW:std::cout<<"\033[33m";break;
-	case F_BLUE:std::cout<<"\033[34m";break;
-	case F_DPURPLE:std::cout<<"\033[35m";break;
-	case F_WHITE:std::cout<<"\033[37m";break;
-	default:ret = false;
-	}
-	switch (back)
-	{
-	case B_BLACK:std::cout<<"\033[40m";break;
-	case B_RED:std::cout<<"\033[41m";break;
-	case B_GREEN:std::cout<<"\033[42m";break;
-	case B_BROWN:std::cout<<"\033[43m";break;
-	case B_BLUE:std::cout<<"\033[44m";break;
-	case B_WHITE:std::cout<<"\033[47m";break;
-	default:ret = false;
-	}
-	return ret;
+void Code_highlighting::Set_color(int wr,int wg,int wb,int br,int bg,int bb){
+    	printf("\033[38;2;%d;%d;%dm\033[48;2;%d;%d;%dm",wr,wg,wb,br,bg,bb);	
+        //\033[38表示前景，\033[48表示背景，三个%d表示混合的数
 }
-
-void Code_highlighting::resetFColor(){
-	printw("\033[39m");
-	refresh();
+//rgb初始化
+void Code_highlighting::rgb_init(){
+    HANDLE hIn = GetStdHandle(STD_INPUT_HANDLE);		//输入句柄
+	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);		//输出句柄
+	DWORD dwInMode, dwOutMode;
+	GetConsoleMode(hIn, &dwInMode);						//获取控制台输入模式
+	GetConsoleMode(hOut, &dwOutMode);					//获取控制台输出模式
+	dwInMode |= 0x0200;									//更改
+	dwOutMode |= 0x0004;
+	SetConsoleMode(hIn, dwInMode);						//设置控制台输入模式
+	SetConsoleMode(hOut, dwOutMode);					//设置控制台输出模式
 }
-
-void Code_highlighting::resetBColor(){
-	printw("\033[49m");
-	refresh();
-}
-
 //词法分析
 bool Code_highlighting::Lexical_analysis(deque <string> ready_highlight){
-	initscr();
 	vector <int> state;
 	vector <cht::pos> postion;
 	for (int i = 0; i < ready_highlight.size(); i++){
@@ -83,11 +59,9 @@ bool Code_highlighting::Lexical_analysis(deque <string> ready_highlight){
 	for (int i = 0; i < state.size(); i++){
 		if (state[i]){
 			e1.SetPos(postion[i].x,postion[i].y);
-			Set_color(F_BLUE);
-			//cout<<key_words[state[i]];
-			printw("%s",key_words[state[i]].c_str());
-			refresh();
-			resetFColor();
+			Set_color(1,186,200,0,0,0);
+			cout<<key_words[state[i]];
+			Set_color(255,255,255,0,0,0);	
 		}
 		else;
 	}
