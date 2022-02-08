@@ -28,22 +28,18 @@ int easyhtmleditor::Edit_kernal(){
     else{
         page_arr = {{""}};
     }
-    string        	  	str;
+    string          str;
     int 		  	ch1 = 0;
     char 		  	ch2 ;
     int 		  	num = 0;
-    string        		Parr_str;
-    int           		l_ret = -1;
-    int           		i = 0;
-    int           		key_fd  = 0;
-    int           		enter_num = 0;
-    struct 	      		input_event key_event  = {0};
-    int			input_num = 0;
+    string        	Parr_str;
+    int           	i = 0;
+    int			    input_num = 0;
 
     cbreak();                     
-     nonl();                       
-     noecho();                     
-     keypad(stdscr,true);          
+    nonl();                       
+    noecho();                     
+    keypad(stdscr,true);          
     move(1,0);
     while(ch2 = getch()){
         //printf("key asill %d\n", ch2);
@@ -307,10 +303,10 @@ int easyhtmleditor::Edit_kernal(){
                         refresh();
                         break;     
                     case ESC:
+                        erase();
                         nl();
                         echo();
                         nocbreak();
-                        //endwin();
                         return true;
                     default:     
                         input_num++;

@@ -16,7 +16,8 @@
 				"/home/ubuntu/EasyCoding_Editor/Linux/src/Markdown_parser.cpp",
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}",
-				"-lncurses"
+				"-lncurses",
+				"-fstack-protector"
 			],
 			"options": {
 				"cwd": "${fileDirname}"

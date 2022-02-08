@@ -24,14 +24,14 @@ bool easyhtmleditor::open_files(string filename){
     string file_data;
     if (out){
         while (getline(out,file_data)){
-            if (i<(page_y-2)){
+            if (i<(page_y-1)){
 				mvprintw(i+1,0,"%s",file_data.c_str()); 
                 out_data.push_back(file_data);  
             }
             else{
                 out_data.push_back(file_data);  
             }
-            if ((i%(page_y-2))==0&&i!=0){
+            if ((i%(page_y-1))==0&&i!=0){
                 page_arr.push_back(out_data);
                 j++;
                 out_data.clear();
@@ -41,7 +41,7 @@ bool easyhtmleditor::open_files(string filename){
         }
     }
     else{
-        SetPos(1,page_y-2);
+        SetPos(2,page_y-2);
         C.Set_color(RB);
         printw("open files error!!!");
 		C.ReSetColor();
@@ -52,7 +52,7 @@ bool easyhtmleditor::open_files(string filename){
     if (page<=1){
         page_arr.push_back(out_data);
     }
-    else if (page*(page_y-2) < i){
+    else if (page*(page_y-1) < i){
         page_arr.push_back(out_data);
     }
     else;
@@ -67,47 +67,43 @@ void easyhtmleditor::SetPos( int  x , int  y ){
 	//printf("\033[%d;%dH", (y), (x));
 }
 //命令行
-int easyhtmleditor::commander(int argc,char** argv){
+int easyhtmleditor::commander(int argc,char* argv[]){
 	if (argc>1){
-		initscr();
-		string key_words = argv[1];
-		string language;
-        language = key_words;
-        int bit = 0;
-        for (int i = 0; i < language.size(); i++){
-            if (language[i] == '.'&& i!=0&&i!=1){
-                bit = i;
-                break;
-            }
-            else;
+		string cmd = argv[1];
+        if (cmd == "-v"){
+            printf("EW:简·编辑器 Linux version:1.0\n");
+            return 0;
         }
-        language = language.substr(bit+1,language.size()-1);
-        ret_fileread2 = C.read_setting_files(language);
-        ret_fileread1 = cc.read_outfiles(language);
-        open_files(key_words);
-        Edit_kernal();
+        else if(cmd == "-h"){
+            return 0;
+        }
+		else if(cmd[0]!='-'){
+			initscr();
+			string key_words = argv[1];
+			string language;
+        	language = key_words;
+        	int bit = 0;
+        	for (int i = 0; i < language.size(); i++){
+            	if (language[i] == '.'&& i!=0&&i!=1){
+                	bit = i;
+                	break;
+            	}
+            	else;
+        	}
+        	language = language.substr(bit+1,language.size()-1);
+        	ret_fileread2 = C.read_setting_files(language);
+        	ret_fileread1 = cc.read_outfiles(language);
+        	open_files(key_words);
+        	Edit_kernal();
+			commander(0,argv);
+		}
+        else{
+            printf("EW:找不到命令参数%s\n",cmd.c_str());
+            return -1;
+        }
 	}
 	else{
-		//CLEAR();
-    	//initial();
     	initscr();
-		mvprintw(2,10,"\\_   _____/  \\    /  \\");
-		mvprintw(3,10," |    __)_\\   \\/\\/   /");
-		mvprintw(4,10," |        \\\\        /");
-		mvprintw(5,10,"/_______  / \\__/\\  /");
-		mvprintw(6,10,"        \\/       \\/");
-    	//初始化字符
-    	SetPos(page_x/2-5,int(page_y)/2-2);
-    	printw("EasyCodingEditor(Linux)");
-    	SetPos(page_x/2-5,int(page_y/2-1));
-    	printw("Version v1.0");
-    	SetPos(page_x/2-5,int(page_y/2));
-    	printw("Help");
-    	SetPos(page_x/2-5,int(page_y/2+1));
-    	printw("Edit mode i | a");
-    	SetPos(page_x/2-5,int(page_y/2+2));
-    	printw("Save and quit wq");
-    	refresh();
     	char 		input_c[5];//C风格字符串
     	char 		key_words_c[5];
     	//C++ String
@@ -142,6 +138,22 @@ int easyhtmleditor::commander(int argc,char** argv){
 	    		refresh();
         		return -1;
     		}
+			else if(input == key[6]){
+            	erase();
+            	for (int i = 0; i < page_arr[page_now-1].size(); i++){
+					mvprintw(i+1,0,"%s",page_arr[page_now-1][i]);
+            	}
+            	C.Lexical_analysis(page_arr[page_now-1],ret_fileread2);
+            	SetPos(0,0);
+            	Edit_kernal();
+        	}
+			else if (input == key[9]){
+            		if (open_files("../../../readme.md")){
+                		Edit_kernal();
+            		}
+            	else;
+        	}
+			else;
 			SetPos(1,page_y-2);
 			printw(":");
 			refresh();
@@ -196,15 +208,6 @@ int easyhtmleditor::commander(int argc,char** argv){
             		c_command = cmd.c_str();
             		system(c_command);
         	}
-        	else if(input == key[6]){
-            	CLEAR();
-            	for (int i = 0; i < page_arr[page_now-1].size(); i++){
-                	cout<<page_arr[page_now-1][i]<<endl;
-            	}
-            	C.Lexical_analysis(page_arr[page_now-1],ret_fileread2);
-            	SetPos(0,0);
-            	Edit_kernal();
-        	}
         	else if(input == key[3]){
             		find(key_words);
         	}
@@ -213,13 +216,6 @@ int easyhtmleditor::commander(int argc,char** argv){
             		html = mp.syntax_conversion(mp.Lexical_analysis(page_arr),page_arr);
             		save_files(key_words,html);
             		return 1;
-        	}
-        	else if (input == key[9]){
-            		CLEAR();        
-            		if (open_files("../../readme.md")){
-                		Edit_kernal();
-            		}
-            	else;
         	}
         	else{
             		SetPos(0,page_y);
@@ -254,14 +250,9 @@ bool easyhtmleditor::find(string finding){
 		}  
 		else;  
     }
-    SetPos(0,page_y);
-    for (int i = 0; i < 100; i++){
-        cout<<" ";
-    }
-    cout<<"find"<<" "<<state.size()<<" Lines:";
-    for (int i = 0; i < state.size(); i++){
-        cout<<" "<<state[i];
-    }
+    SetPos(0,page_y-2);
+    clrtoeol();
+	mvprintw(0,pos_y-2,"find","Lines:%d",state.size());
     SetPos(0,0);
     return false;
 }

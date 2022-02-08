@@ -57,7 +57,7 @@ public:
     //查找
     bool find(string finding);
     //控制台
-    int commander(int argc,char** argv);
+    int commander(int argc,char* argv[]);
     //获取屏幕高度与宽度
     void print_size();    
     //获得键盘事件

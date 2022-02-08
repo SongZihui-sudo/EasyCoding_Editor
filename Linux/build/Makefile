@@ -3,16 +3,18 @@
 ########################################################################
 
 # Compiler settings - Can be customized.
- CC = g++
+CC = g++
 #CC = g++-11
 CXXFLAGS = -std=c++11 -Wall
-LDFLAGS =  -lncurses 
+# 在编译时要加的两个后缀
+LDFLAGS =  -lncurses -fstack-protector
 
 # Makefile settings - Can be customized.
-APPNAME = main
+APPNAME = EW
 EXT = .cpp
 SRCDIR = ../src
 OBJDIR = ../obj
+EXEDIR = ../bin
 
 ############## Do not change anything from here downwards! #############
 SRC = $(wildcard $(SRCDIR)/*$(EXT))
@@ -68,3 +70,6 @@ cleanw:
 .PHONY: cleandepw
 cleandepw:
 	$(DEL) $(DEP)
+# 移动可执行文件到bin文件夹
+all:
+	@mv $(APPNAME) $(EXEDIR) 

@@ -12,7 +12,7 @@ using namespace cht;
 using namespace cct;
 using namespace mpt;
 
-int main(int argc,char** argv){
+int main(int argc,char* argv[]){
         /*
 \_   _____/  \    /  \
  |    __)_\   \/\/   /
