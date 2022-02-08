@@ -54,7 +54,7 @@ bool easyhtmleditor::open_files(string filename){
         page_arr.push_back(out_data);
     }
     else;
-    C.Lexical_analysis(page_arr[0],ret_fileread2);
+    C.Lexical_analysis(page_arr[0],ret_fileread2,pos_y);
     SetPos(0,0);
 	refresh();
     return true;
@@ -73,6 +73,8 @@ int easyhtmleditor::commander(int argc,char* argv[]){
             return 0;
         }
         else if(cmd == "-h"){
+			readout_emakefile();
+			Article_device_run(argv[2]);
             return 0;
         }
 		else if(cmd[0]!='-'){
@@ -141,7 +143,7 @@ int easyhtmleditor::commander(int argc,char* argv[]){
             	for (int i = 0; i < page_arr[page_now-1].size(); i++){
 					mvprintw(i+1,0,"%s",page_arr[page_now-1][i]);
             	}
-            	C.Lexical_analysis(page_arr[page_now-1],ret_fileread2);
+            	C.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);
             	SetPos(0,0);
             	Edit_kernal();
         	}
@@ -223,8 +225,6 @@ int easyhtmleditor::commander(int argc,char* argv[]){
 			refresh();
     	}
 	}
-	
-    	
     	return 0;
 	}
 //查找

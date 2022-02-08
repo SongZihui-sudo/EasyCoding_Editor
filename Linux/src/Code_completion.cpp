@@ -60,11 +60,12 @@ string Code_completion::Lexical_analysis(char c,int pos_y,int pos_x,deque <strin
     }     
     if (!state.empty()){
         e2.SetPos(0,page_y);
-        clrtoeol(); 
+        clrtoeol();
+        refresh(); 
         e2.SetPos(0,page_y);
         for (int i = 0; i < state.size(); i++){
             c2.Set_color(YB);
-            mvprintw(page_y-1,i,"%s",code_completion[state[i]].c_str());    
+            mvprintw(page_y-1,5*i,"%s ",code_completion[state[i]].c_str());    
             c2.ReSetColor();
             refresh();
         }

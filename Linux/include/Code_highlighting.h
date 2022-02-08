@@ -33,7 +33,7 @@ namespace cht{
         //设置字体颜色
         void Set_color(int color);
         //词法分析
-        bool Lexical_analysis(deque <string> ready_highlight,deque <string >file_data);
+        bool Lexical_analysis(deque <string> ready_highlight,deque <string >file_data,int pos_y);
         //读取关键词文件
         deque <string> read_setting_files(string language);
         void ReSetColor(); 

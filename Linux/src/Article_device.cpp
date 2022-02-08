@@ -352,7 +352,7 @@ int open_mdfile(string FILEPATH)
         }
         else
         {
-            cout<<"can not open the file!!!"<<endl;
+            cout<<"EW:can not open the file!!!"<<endl;
             return -1;
         }
         for (int i = 0; i < nums_of_div ; i++)
@@ -361,7 +361,7 @@ int open_mdfile(string FILEPATH)
 
         }
         toh<<"</body>"<<"</html>";
-        cout<<"ebuild finish!!!"<<endl;
+        cout<<"EW:ebuild finish!!!"<<endl;
         return 0;
     }
     int run_task(vector <string> inputarr)
@@ -741,7 +741,7 @@ int open_mdfile(string FILEPATH)
     }
 
 int Article_device_run(string filename){
-        cout<<"ebuild runing waiting while"<<endl;
+        cout<<"EW:ebuild runing waiting while"<<endl;
         readout_emakefile();
         open_mdfile(filename);                 
         return 0;

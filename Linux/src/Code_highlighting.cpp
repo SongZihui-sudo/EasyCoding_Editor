@@ -47,38 +47,38 @@ void Code_highlighting::ReSetColor(){
 }
 
 //词法分析
-bool Code_highlighting::Lexical_analysis(deque <string> ready_highlight,deque <string>file_data){
+bool Code_highlighting::Lexical_analysis(deque <string> ready_highlight,deque <string>file_data,int pos_y){
 	key_words2 = file_data;
 	vector <cht::pos> postion;
     vector <int> state; 
-	initscr();
+	initscr();		
 	for (int i = 0; i < ready_highlight.size(); i++){
-		int bit = 0;	
+		int bit = -1;	
 		int num_tab = 0;
-		int num_space = 0;
 		for (int k = 0; k < ready_highlight[i].size(); k++){
 			if (ready_highlight[i][k] == '\t'){
 				num_tab++;
-			}
-			else if(ready_highlight[i][k] == ' '){
-				num_space++;
 			}
 			else{
 				break;
 			}
 		}
-		for (int j = 0; j <key_words2.size(); j++){
-			bit = ready_highlight[i].find(key_words2[j]);
-			if (bit!=-1){
-				state.push_back(j);
-				cht::pos p1;
-				p1.x = bit+(num_tab*8);
-				p1.y = i+1; 
-				postion.push_back(p1);
+			for (int j = 0; j <key_words2.size(); j++){
+				bit = ready_highlight[i].find(key_words2[j]);
+				if (bit!=-1){
+					state.push_back(j);
+					cht::pos p1;
+					p1.x = bit+(num_tab*8);
+					p1.y = i+1; 
+					postion.push_back(p1);
+					bit = 1;
+				}
+				else{
+					;
+				}
 			}
-			else;
+			
 		}
-	}
 	for (int i = 0; i < state.size(); i++){
 		if (state[i]){
 			Set_color(BLB);
