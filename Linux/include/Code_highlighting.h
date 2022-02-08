@@ -13,17 +13,17 @@ namespace cht{
 
     #define RB					1
   	#define BLB					2
-    #define GB                  3
+    #define GB          3
   	#define YB					4
   	#define BAB					5
   	#define MB					6
   	#define CB					7
-    #define WB                  8
+    #define WB          8
 
     //坐标
     typedef struct pos{
-        int x;
-        int y;
+        int         x;
+        int         y;
     }pos;
     //代码高亮类
     class Code_highlighting{

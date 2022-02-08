@@ -1,0 +1,15 @@
+var name
+var name2
+name2 ../Website/theme/terminal
+name ../Website/html/
+int i
+i 1
+static i
+for i
+// Declare before using variables
+static name
+name name2
+#OUTPUTFILE name
+static name2
+#THEME name2
+#EXPAND ON

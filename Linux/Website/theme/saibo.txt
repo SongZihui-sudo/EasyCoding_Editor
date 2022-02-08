@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <style>
+    body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: linear-gradient(to left, rgba(255, 0, 149, 0.2), rgba(0, 247, 255, 0.2)), url("https://gmedia.playstation.com/is/image/SIEPDC/cyberpunk-texture-section-background-desktop-tablet-01-ps4-en-29may19?$native$");
+}
+.main{
+      text-align: center; /*让div内部文字居中*/
+	    border-radius: 30px;
+	    width: 750px;
+	    margin: auto;
+        height: max-content;
+	    position: absolute;
+	    top: 80px;
+	    left: 220px;
+	    right: 0px;
+	    bottom: 0px;
+    }
+    .main:hover{
+            box-shadow: 0 3px 15px 3px rgb(241, 3, 3);
+    }
+  .eat{
+    text-align: center; /*让div内部文字居中*/
+	    border-radius: 30px;
+	    width: 300px;
+	    margin: auto;
+        height: max-content;
+	    position: absolute;
+	    top: 0px;
+	    left: 0px;
+	    right: 900px;
+	    bottom: 50px;
+  }
+  .eat:hover{
+            box-shadow: 0 3px 15px 3px rgb(241, 3, 3);
+    }
+.back,.back::after{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0;
+    left: 0px;
+    width: auto;
+    height: 75px;
+    font-size: 36px;
+    font-family: 'Bebas Neuc',cursive;
+    /* 这里改为5%，可以做到只有左下角一点的颜色变化 */
+    border: 0;
+    color: #fff;
+    /* 这里设置字体间距 */
+    letter-spacing: 3px;
+    line-height: 88px;
+    box-shadow: 6px 0px 0px #00E6F6;
+    outline: transparent;
+    background-color: crimson;
+}
+/* 想要将按钮设置为一个朋克破坏风，先将上面重叠一个一摸一样的按钮 */
+.back::after{
+    /* 保存切下来的元素的数据，一共五个切片，一个预设值 */
+    --slice-0: inset(50% 50% 50% 50%);
+    --slice-1: inset(80% -6px 0 0);
+    --slice-2: inset(50% -6px 30% 0);
+    --slice-3: inset(10% -6px 85% 0);
+    --slice-4: inset(40% -6px 43% 0);
+    --slice-5: inset(80% -6px 5% 0);
+
+    content: 'WELCOME';
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+    /* 可以确定元素已经重叠 */
+    /* background: #000; */
+    background: linear-gradient(45deg,transparent 3%,#00E6F6,#00E6F6 5%,#FF013c 5%);
+    text-shadow: -3px -3px 0px #F8F005, 3px 3px 0px #00E6F6;
+    /* 四个值分别为上下左右，就是向内缩小多少的意思 */
+    /* 因为右边有一个6px的蓝色边框不在容器的计算范围之内 */
+    clip-path: var(--slice-0);
+    /* 由于元素在重叠状态所以看不出来切割的部分，可以移动一下元素就可以看到 */
+    /* transform: translate(-20px,10px); */
+}
+.back:hover::after{
+    animation: 1s glitch;
+    animation-timing-function: steps(2,end);
+}
+@keyframes glitch {
+    0%{
+        clip-path: var(--slice-1);
+        transform: translate(-20px,-10px);
+    }
+    10%{
+        clip-path: var(--slice-3);
+        transform: translate(-5px,-10px);
+        
+    }
+    20%{
+        clip-path: var(--slice-2);
+        transform: translate(-10px,-10px);
+    }
+    30%{
+        clip-path: var(--slice-4);
+        transform: translate(-5px,-5px);
+    }
+    40%{
+        clip-path: var(--slice-2);
+        transform: translate(-10px,-0px);
+    }
+    50%{
+        clip-path: var(--slice-3);
+        transform: translate(-10px,px);
+    }
+    60%{
+        clip-path: var(--slice-1);
+        transform: translate(-4px,-8px);
+    }
+    70%{
+        clip-path: var(--slice-3);
+        transform: translate(-15px,0px);
+    }
+    80%{
+        clip-path: var(--slice-4);
+        transform: translate(-15px,-10px);
+    }
+    90%{
+        clip-path: var(--slice-2);
+        transform: translate(-10px,10px);
+    }
+    100%{
+        clip-path: var(--slice-1);
+        transform: translate(-5px,0px);
+    }
+}
+</style
+</head>
+<body>
+    <div class="back">
+       My Website
+        s-zh.space Welcome to visit
+            </div>
+    <div class="eat">The man with a new idea is a crank until the idea succeeds .
+    <iframe scrolling="no" src="https://tianqiapi.com/api.php?style=tb&skin=pitaya" frameborder="0"
+                        width="350" height="24" allowtransparency="true"></iframe>
+    </div>
+    <div class="main">

@@ -11,14 +11,14 @@ using namespace std;
 namespace cct{
     class Code_completion{
     private:
-        int last_y = 0;
-        int bit = 0;
-        int last_x = 0;
-        string last_str = "";
+        int         last_y = 0;
+        int         bit = 0;
+        int         last_x = 0;
+        string      last_str = "";
         deque <string> code_completion;
         deque <string> show_code;
     public:        
-        string c_str = "";
+        string      c_str = "";
         //读取文件
         deque <string> read_outfiles(string language);
         //词法分析

@@ -1,7 +1,6 @@
 #include "../include/EasyCodingEditor.h"
 #include "../include/Code_highlighting.h"
 #include "../include/Code_completion.h"
-#include "../include/Markdown_parser.h"
 #include <termio.h>
 #include <linux/input.h>
 #include <fcntl.h>
@@ -13,13 +12,11 @@ using namespace edt;
 using namespace std;
 using namespace cht;
 using namespace cct;
-using namespace mpt;
 
 int _get_input(void);
 
 cht::Code_highlighting C3;
 cct::Code_completion cc2;
-mpt::Markdown_parser mp2;
 
 int easyhtmleditor::Edit_kernal(){
     initscr();

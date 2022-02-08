@@ -4,13 +4,11 @@
 #include "../include/Code_completion.h"
 #include <curses.h>
 #include <stdio.h>
-#include "../include/Markdown_parser.h"
 
 using namespace edt;
 using namespace std;
 using namespace cht;
 using namespace cct;
-using namespace mpt;
 
 int main(int argc,char* argv[]){
         /*

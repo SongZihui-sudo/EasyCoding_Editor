@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>s-zh.space</title>
+    <meta name="description"
+        content="个人编程知识分享">
+    <meta name="keywords" content="编程知识">
+    <link rel="stylesheet" type="text/css" href="../theme/NutssssIndex/css/FiraCode.css">
+    <link rel="stylesheet" type="text/css" href="../theme/NutssssIndex/css/nutssss.css">
+    <link rel="icon" href="./favicon.ico">
+</head>
+
+<body>
+            <div class="cmd">
+                <!-- 三个按钮 -->
+                <div class="click">
+                    <div class="red"></div>
+                    <div class="yellow"></div>
+                    <div class="green"></div>
+                </div>
+                <!-- 顶部标题 -->
+                <div class="title">
+                    <script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1280598106&web_id=1280598106"></script>
+                </div>
+                    <span style="color: rgb(0, 190, 0);">root@nutssss</span>
+                    <span style="color: blue;">~</span>
+                    <span style="color: rgb(39, 39, 39);">./tianqi.sh</span>
+                    <br />
+                    <iframe scrolling="no" src="https://tianqiapi.com/api.php?style=tb&skin=pitaya" frameborder="0"
+                        width="350" height="24" allowtransparency="true"></iframe>
+                    <br />
+                    <span style="color: rgb(0, 190, 0);">root@nutssss</span>
+                    <span style="color: blue;">~</span>
+                    <span style="color: rgb(39, 39, 39);">cat /me.txt</span>

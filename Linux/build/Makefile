@@ -10,7 +10,7 @@ CXXFLAGS = -std=c++11 -Wall
 LDFLAGS =  -lncurses -fstack-protector
 
 # Makefile settings - Can be customized.
-APPNAME = EW
+APPNAME = EC
 EXT = .cpp
 SRCDIR = ../src
 OBJDIR = ../obj
