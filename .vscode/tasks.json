@@ -14,10 +14,12 @@
 				"/home/ubuntu/EasyCoding_Editor/Linux/src/Code_highlighting.cpp",
 				"/home/ubuntu/EasyCoding_Editor/Linux/src/EasyCodingEditor.cpp",
 				"/home/ubuntu/EasyCoding_Editor/Linux/src/Edit_kernal.cpp",
+				"/home/ubuntu/EasyCoding_Editor/Linux/src/sql.cpp",
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}",
 				"-lncurses",
-				"-fstack-protector"
+				"-fstack-protector",
+				" -lsqlite3"
 			],
 			"options": {
 				"cwd": "${fileDirname}"

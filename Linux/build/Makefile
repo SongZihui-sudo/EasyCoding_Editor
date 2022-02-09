@@ -7,7 +7,7 @@ CC = g++
 #CC = g++-11
 CXXFLAGS = -std=c++11 -Wall
 # 在编译时要加的两个后缀
-LDFLAGS =  -lncurses -fstack-protector
+LDFLAGS =  -lncurses -fstack-protector -lsqlite3
 
 # Makefile settings - Can be customized.
 APPNAME = EC

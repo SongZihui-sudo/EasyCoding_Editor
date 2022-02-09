@@ -4,6 +4,7 @@
 #include "../include/Code_completion.h"
 #include <curses.h>
 #include <stdio.h>
+#include "../include/sql.h"
 
 using namespace edt;
 using namespace std;
@@ -12,12 +13,15 @@ using namespace cct;
 
 int main(int argc,char* argv[]){
         /*
-\_   _____/  \    /  \
- |    __)_\   \/\/   /
- |        \\        / 
-/_______  / \__/\  /  
-        \/       \/
+____________________  
+\_   _____/\_   ___ \ 
+ |    __)_ /    \  \/ 
+ |        \\     \____
+/_______  / \______  /
+        \/         \/ 
         */
+        //select("../data/user_file.db","COMPANY");
+        //select("../data/user_file.db","HIGHLITE_C");
         edt::easyhtmleditor e;
         cct::Code_completion c2;
         e.print_size();
