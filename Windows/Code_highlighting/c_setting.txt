@@ -94,7 +94,7 @@ using
 virtual
 void
 volatile
-wchar_t
+char
 while
 xorxor
 xor_eqxor_eq

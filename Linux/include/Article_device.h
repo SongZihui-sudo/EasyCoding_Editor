@@ -82,7 +82,6 @@ static string                          md_keyword8 = "::";
 static vector                          <Symbol_table> table2;
 static vector <int>                    state_machine;
 static vector <int>                    end_state_machine;
-static vector <string>                 data_share;
 static int                             num = 0;
 int                             open_mdfile(string FILEPATH);
 int                             trans_tohtml(string file_path);

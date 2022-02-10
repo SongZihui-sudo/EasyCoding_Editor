@@ -4,6 +4,7 @@
 #include "../include/Code_completion.h"
 #include <cstring>
 #include "../include/Article_device.h"
+#include "../include/sql.h"
 
 using namespace edt;
 using namespace std;
@@ -54,7 +55,7 @@ bool easyhtmleditor::open_files(string filename){
         page_arr.push_back(out_data);
     }
     else;
-    C.Lexical_analysis(page_arr[0],ret_fileread2);
+    C.Lexical_analysis(page_arr[0],ret_fileread2,pos_y);
     SetPos(0,0);
 	refresh();
     return true;
@@ -73,6 +74,8 @@ int easyhtmleditor::commander(int argc,char* argv[]){
             return 0;
         }
         else if(cmd == "-h"){
+			readout_emakefile();
+			Article_device_run(argv[2]);
             return 0;
         }
 		else if(cmd[0]!='-'){
@@ -89,8 +92,11 @@ int easyhtmleditor::commander(int argc,char* argv[]){
             	else;
         	}
         	language = language.substr(bit+1,language.size()-1);
-        	ret_fileread2 = C.read_setting_files(language);
-        	ret_fileread1 = cc.read_outfiles(language);
+        	//ret_fileread2 = C.read_setting_files(language);
+			if (language == "c" || language == "cpp"){
+				ret_fileread2 = select("../data/data.db","HIGHLITE_C");
+        		ret_fileread1 = select("../data/data.db","COMPANY");
+			}
         	open_files(key_words);
         	Edit_kernal();
 			commander(0,argv);
@@ -108,11 +114,12 @@ int easyhtmleditor::commander(int argc,char* argv[]){
     	string 		language;
 		initscr();
     	while(true){    
-			mvprintw(2,10,"\\_   _____/  \\    /  \\");
-			mvprintw(3,10," |    __)_\\   \\/\\/   /");
-			mvprintw(4,10," |        \\\\        /");
-			mvprintw(5,10,"/_______  / \\__/\\  /");
-			mvprintw(6,10,"        \\/       \\/");
+			mvprintw(2,10,"____________________  ");
+			mvprintw(3,10,"\\_   _____/\\_   ___ \\");
+			mvprintw(4,10," |    __)_ /    \\  \\/");
+			mvprintw(5,10," |        \\     \\____");
+			mvprintw(6,10,"/_______  / \\______  /");
+			mvprintw(7,10,"        \\/         \\/");
     	//初始化字符
     		SetPos(page_x/2-5,int(page_y)/2-2);
     		printw("EasyCodingEditor(Linux)");
@@ -141,12 +148,13 @@ int easyhtmleditor::commander(int argc,char* argv[]){
             	for (int i = 0; i < page_arr[page_now-1].size(); i++){
 					mvprintw(i+1,0,"%s",page_arr[page_now-1][i]);
             	}
-            	C.Lexical_analysis(page_arr[page_now-1],ret_fileread2);
+            	C.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);
             	SetPos(0,0);
             	Edit_kernal();
         	}
 			else if (input == key[9]){
-            		if (open_files("../../../readme.md")){
+					system("sudo chmod 777 ../../README.txt");
+            		if (open_files("../../README.txt")){
                 		Edit_kernal();
             		}
             	else;
@@ -169,8 +177,10 @@ int easyhtmleditor::commander(int argc,char* argv[]){
                         //refresh();
 				char ch;
             	language = key_words;
-            	ret_fileread1 = cc.read_outfiles(language);
-            	ret_fileread2 =  C.read_setting_files(language);   
+            	if (language == "c" || language == "cpp"){
+					ret_fileread2 = select("../data/data.db","HIGHLITE_C");
+        			ret_fileread1 = select("../data/data.db","COMPANY");
+				} 
             	//while((getchar()!='\n'));
             	printw("Edit mode\n");
 				refresh();
@@ -189,8 +199,10 @@ int easyhtmleditor::commander(int argc,char* argv[]){
                 	else;
             	}
             	language = language.substr(bit+1,language.size()-1);
-            	ret_fileread2 = C.read_setting_files(language);
-            	ret_fileread1 = cc.read_outfiles(language);
+            	if (language == "c" || language == "cpp"){
+					ret_fileread2 = select("../data/data.db","HIGHLITE_C");
+        			ret_fileread1 = select("../data/data.db","COMPANY");
+				}
             	if(open_files(key_words)){
                 	Edit_kernal();
             	}
@@ -223,8 +235,6 @@ int easyhtmleditor::commander(int argc,char* argv[]){
 			refresh();
     	}
 	}
-	
-    	
     	return 0;
 	}
 //查找

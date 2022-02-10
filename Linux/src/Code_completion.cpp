@@ -10,25 +10,6 @@ using namespace cht;
 edt::easyhtmleditor e2;
 cht::Code_highlighting c2;
 
-//读取文件
-deque <string> Code_completion::read_outfiles(string language){
-    if (language == "c" || language == "cpp"){
-        fstream out_files_completion;
-        out_files_completion.open("../Code_completion/c_setting.txt");
-        if (out_files_completion){
-            string out;
-            while (getline(out_files_completion,out)){
-                code_completion.push_back(out);
-            }
-        }
-        else{
-            cerr<<"Can not open the files!!!"<<endl;
-            return code_completion;
-        }
-    }
-    else;
-    return code_completion;
-}
 //词法分析
 string Code_completion::Lexical_analysis(char c,int pos_y,int pos_x,deque <string> file_data,int page_y,int page_x){
     code_completion = file_data;
@@ -60,11 +41,12 @@ string Code_completion::Lexical_analysis(char c,int pos_y,int pos_x,deque <strin
     }     
     if (!state.empty()){
         e2.SetPos(0,page_y);
-        clrtoeol(); 
+        clrtoeol();
+        refresh(); 
         e2.SetPos(0,page_y);
         for (int i = 0; i < state.size(); i++){
             c2.Set_color(YB);
-            mvprintw(page_y-1,i,"%s",code_completion[state[i]].c_str());    
+            mvprintw(page_y-1,5*i,"%s ",code_completion[state[i]].c_str());    
             c2.ReSetColor();
             refresh();
         }
