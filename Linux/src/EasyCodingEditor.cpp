@@ -153,6 +153,7 @@ int easyhtmleditor::commander(int argc,char* argv[]){
             	Edit_kernal();
         	}
 			else if (input == key[9]){
+					erase();
 					system("sudo chmod 777 ../../README.txt");
             		if (open_files("../../README.txt")){
                 		Edit_kernal();

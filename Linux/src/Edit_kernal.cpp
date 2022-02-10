@@ -393,8 +393,8 @@ int easyhtmleditor::Edit_kernal(){
                         break;
                         //左
                 case LEFT:
-                    if(page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)][pos_x-1]<-1&&page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)][pos_x-1] >-128&&pos_x>0){
-                        pos_x = pos_x-4;
+                    if(page_arr[page_now][pos_y-  (page_now-1)*(page_y-2)][pos_x-1]<-1&&page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)][pos_x-1] >-128&&pos_x>0){
+                        pos_x = pos_x-2;
                     }
                     else if (pos_x){
                         pos_x--;
@@ -407,9 +407,9 @@ int easyhtmleditor::Edit_kernal(){
                         break;
                         //右
                 case RIGHT:
-                        if (pos_x>=page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)].size()) pos_x = page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)].size()+1;
-                        else if(page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)][pos_x-1]<-1&&page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)][pos_x-1]>-128){
-                           pos_x = pos_x+4;
+                        if (pos_x>=page_arr[page_now+1][pos_y-  (page_now-1)*(page_y-2)].size()) pos_x = page_arr[page_now-1][pos_y-  (page_now+1)*(page_y-2)].size()+1;
+                        else if(page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)][pos_x]<-1&&page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)][pos_x]>-128){
+                           pos_x = pos_x+2;
                         }
                         else{
                             pos_x++;
