@@ -1,0 +1,2 @@
+此文件夹是makefile
+可以输入mingw32-make对代码进行编译
