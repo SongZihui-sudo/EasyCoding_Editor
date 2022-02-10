@@ -17,16 +17,10 @@
 				"/home/ubuntu/EasyCoding_Editor/Linux/src/sql.cpp",
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}",
-<<<<<<< HEAD
 				//"-lncurses",
 				"-fstack-protector",
 				" -lsqlite3",
 				"-lncursesw"
-=======
-				"-lncurses",
-				"-fstack-protector",
-				" -lsqlite3"
->>>>>>> b24a99005622586b615081b668379f6a380e5bbc
 			],
 			"options": {
 				"cwd": "${fileDirname}"

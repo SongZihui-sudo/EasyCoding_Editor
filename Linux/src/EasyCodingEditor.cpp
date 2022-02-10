@@ -94,13 +94,8 @@ int easyhtmleditor::commander(int argc,char* argv[]){
         	language = language.substr(bit+1,language.size()-1);
         	//ret_fileread2 = C.read_setting_files(language);
 			if (language == "c" || language == "cpp"){
-<<<<<<< HEAD
 				ret_fileread2 = select("../data/data.db","HIGHLITE_C");
         		ret_fileread1 = select("../data/data.db","COMPANY");
-=======
-				ret_fileread2 = select("../data/user_file.db","HIGHLITE_C");
-        		ret_fileread1 = select("../data/user_file.db","COMPANY");
->>>>>>> b24a99005622586b615081b668379f6a380e5bbc
 			}
         	open_files(key_words);
         	Edit_kernal();
@@ -158,13 +153,9 @@ int easyhtmleditor::commander(int argc,char* argv[]){
             	Edit_kernal();
         	}
 			else if (input == key[9]){
-<<<<<<< HEAD
 					erase();
 					system("sudo chmod 777 ../../README.txt");
             		if (open_files("../../README.txt")){
-=======
-            		if (open_files("../../../readme.txt")){
->>>>>>> b24a99005622586b615081b668379f6a380e5bbc
                 		Edit_kernal();
             		}
             	else;
@@ -188,13 +179,8 @@ int easyhtmleditor::commander(int argc,char* argv[]){
 				char ch;
             	language = key_words;
             	if (language == "c" || language == "cpp"){
-<<<<<<< HEAD
 					ret_fileread2 = select("../data/data.db","HIGHLITE_C");
         			ret_fileread1 = select("../data/data.db","COMPANY");
-=======
-					ret_fileread2 = select("../data/user_file.db","HIGHLITE_C");
-        			ret_fileread1 = select("../data/user_file.db","COMPANY");
->>>>>>> b24a99005622586b615081b668379f6a380e5bbc
 				} 
             	//while((getchar()!='\n'));
             	printw("Edit mode\n");
@@ -215,13 +201,8 @@ int easyhtmleditor::commander(int argc,char* argv[]){
             	}
             	language = language.substr(bit+1,language.size()-1);
             	if (language == "c" || language == "cpp"){
-<<<<<<< HEAD
 					ret_fileread2 = select("../data/data.db","HIGHLITE_C");
         			ret_fileread1 = select("../data/data.db","COMPANY");
-=======
-					ret_fileread2 = select("../data/user_file.db","HIGHLITE_C");
-        			ret_fileread1 = select("../data/user_file.db","COMPANY");
->>>>>>> b24a99005622586b615081b668379f6a380e5bbc
 				}
             	if(open_files(key_words)){
                 	Edit_kernal();

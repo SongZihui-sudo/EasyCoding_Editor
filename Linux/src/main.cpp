@@ -5,12 +5,8 @@
 #include <curses.h>
 #include <stdio.h>
 #include "../include/sql.h"
-<<<<<<< HEAD
 #include <locale.h>
 //你好
-=======
-
->>>>>>> b24a99005622586b615081b668379f6a380e5bbc
 using namespace edt;
 using namespace std;
 using namespace cht;

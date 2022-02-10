@@ -45,15 +45,9 @@ int easyhtmleditor::Edit_kernal(){
         char ch3 = '0';
         //printf("key asill %d\n", ch2);
             switch (ch2){
-<<<<<<< HEAD
                 //case BACKSPACE :
                 //如果退格键失效删下面的注释，注释上面
                 case 7:
-=======
-                case BACKSPACE :
-                //如果退格键失效删下面的注释，注释上面
-                //case 7:
->>>>>>> b24a99005622586b615081b668379f6a380e5bbc
                     if (cc2.c_str.empty());
                         else{
                             cc2.c_str.pop_back();
@@ -132,14 +126,10 @@ int easyhtmleditor::Edit_kernal(){
                     }
                     else;
                     refresh();
-<<<<<<< HEAD
                     if (ZH_CH_BIT==0){
                         C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);
                     }
                     ZH_CH_BIT = 0;
-=======
-                    C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);
->>>>>>> b24a99005622586b615081b668379f6a380e5bbc
                     SetPos(pos_x,pos_y -  (page_now-1)*(page_y-2)+1);
                     break;
                 //回车
@@ -179,13 +169,9 @@ int easyhtmleditor::Edit_kernal(){
                             }
                         refresh();
                     }
-<<<<<<< HEAD
                     if (ZH_CH_BIT==0){
                         C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);
                     }
-=======
-                    C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);
->>>>>>> b24a99005622586b615081b668379f6a380e5bbc
                     pos_x = 0;
                     last_x = 0;
                     pos_y++;
@@ -233,7 +219,6 @@ int easyhtmleditor::Edit_kernal(){
                     clrtoeol();
                     SetPos(0,pos_y -  (page_now-1)*(page_y-2)+1);
                     //cout<<page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)];
-<<<<<<< HEAD
                     //printw("%s",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].c_str());
                     for (int n = 0; n < page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].size(); ){
                                 if (page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]<-1&&page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]>-128){
@@ -251,10 +236,6 @@ int easyhtmleditor::Edit_kernal(){
                     if (ZH_CH_BIT==0){
                         C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);                                
                     }
-=======
-                    printw("%s",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].c_str());
-                    C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);                                
->>>>>>> b24a99005622586b615081b668379f6a380e5bbc
                     SetPos(pos_x,pos_y -  (page_now-1)*(page_y-2)+1);
                     refresh();    
                     ZH_CH_BIT = 0;                
@@ -279,7 +260,6 @@ int easyhtmleditor::Edit_kernal(){
                     SetPos(0,pos_y -  (page_now-1)*(page_y-2)+1);
                     clrtoeol();
                     SetPos(0,pos_y -  (page_now-1)*(page_y-2)+1);
-<<<<<<< HEAD
                     //printw("%s",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].c_str());
                     for (int n = 0; n < page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].size(); ){
                         if (page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]<-1&&page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]>-128){
@@ -296,10 +276,6 @@ int easyhtmleditor::Edit_kernal(){
                     if (ZH_CH_BIT==0){
                         C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);                                
                     }
-=======
-                    printw("%s",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].c_str());
-                    C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);                                
->>>>>>> b24a99005622586b615081b668379f6a380e5bbc
                     SetPos(pos_x,pos_y -  (page_now-1)*(page_y-2)+1);
                     refresh();
                     ZH_CH_BIT = 0;
@@ -316,7 +292,6 @@ int easyhtmleditor::Edit_kernal(){
                     move(1,0);
                     mvprintw(0,page_x/2,"EasyCodingEditor(Linux) version1.0 ");                    
                     for (int i = 0; i < page_arr[page_now-1].size(); i++){
-<<<<<<< HEAD
                         //mvprintw(i+1,0,"%s",page_arr[page_now-1][i].c_str());
                         for (int n = 0; n < page_arr[page_now-1][i].size(); ){
                                 if (page_arr[page_now-1][i][n]<-1&&page_arr[page_now-1][i][n]>-128){
@@ -336,11 +311,6 @@ int easyhtmleditor::Edit_kernal(){
                     if (ZH_CH_BIT==0){
                         C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);
                     }
-=======
-                        mvprintw(i+1,0,"%s",page_arr[page_now-1][i].c_str());
-                    }					
-                    C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);
->>>>>>> b24a99005622586b615081b668379f6a380e5bbc
                     mvprintw(page_y-1,page_x-10,"Page:%d",page_now);
                     SetPos(0,1);
                     if (exact_buffer.size()){
@@ -365,7 +335,6 @@ int easyhtmleditor::Edit_kernal(){
                     mvprintw(0,page_x/2,"EasyCodingEditor(Linux) version1.0 ");
                     //mvprintw(1,0,"%d",page_arr[page_now-1].size());                        
                     for (int i = 0; i < page_arr[page_now-1].size(); i++){
-<<<<<<< HEAD
                         //mvprintw(i+1,0,"%s",page_arr[page_now-1][i].c_str());
                         for (int n = 0; n < page_arr[page_now-1][i].size(); ){
                                 if (page_arr[page_now-1][i][n]<-1&&page_arr[page_now-1][i][n]>-128){
@@ -384,11 +353,6 @@ int easyhtmleditor::Edit_kernal(){
                     if (ZH_CH_BIT==0){
                         C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);
                     }
-=======
-                        mvprintw(i+1,0,"%s",page_arr[page_now-1][i].c_str());
-                    }					
-                    C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);
->>>>>>> b24a99005622586b615081b668379f6a380e5bbc
                     mvprintw(page_y-1,page_x-10,"Page:%d",page_now);
                     move(1,0);
                     if (exact_buffer.size()){
@@ -596,7 +560,6 @@ int easyhtmleditor::Edit_kernal(){
                                 }
                             }
                             else;  
-<<<<<<< HEAD
                             if (bit_c){
                                 string code_compl = cc2.Lexical_analysis(ch2,pos_y -  (page_now-1)*(page_y-2),last_x,ret_fileread1,page_y,page_x);
                                 if (last_x-1  <= cc2.c_str.size()){   
@@ -629,33 +592,6 @@ int easyhtmleditor::Edit_kernal(){
                             pos_x+=1;                            
                             move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x);
                         }
-=======
-                            string code_compl = cc2.Lexical_analysis(ch2,pos_y -  (page_now-1)*(page_y-2),last_x,ret_fileread1,page_y,page_x);
-                            if (last_x-1  <= cc2.c_str.size()){   
-                                if (code_compl[code_compl.length()-1]!=ch2){
-                                    SetPos(0,pos_y - (page_now-1)*(page_y-2)+1);   
-                                    clrtoeol();                                
-                                    page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)].clear();
-                                    last_str+=code_compl;                            
-                                    page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)] = last_str ;
-                                    SetPos(0 ,pos_y - (page_now-1)*(page_y-2)+1);    
-                                    //cout<<page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)];
-                                    printw("%s",page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)].c_str());
-                                    C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y); 
-                                    pos_x = page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)].size(); 
-                                    mvprintw(0,page_x/2,"EasyCodingEditor(Linux) version1.0 ");
-                                    SetPos(pos_x,pos_y -  (page_now-1)*(page_y-2)+1);     
-                                    refresh();                         
-                                    break;
-                                }
-                                else;
-                            }       
-                            else;                                          
-                        }							
-                        C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);
-                        mvprintw(0,page_x/2,"EasyCodingEditor(Linux) version1.0 ");                            
-                        move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x);	
->>>>>>> b24a99005622586b615081b668379f6a380e5bbc
                         refresh();
                         break;
                     }
