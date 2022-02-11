@@ -1,0 +1,10 @@
+EASYHTML LANGUANGE
+img
+url
+```
+---
+***
+#
+__
+>
+::

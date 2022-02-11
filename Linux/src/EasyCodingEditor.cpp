@@ -98,7 +98,7 @@ int easyhtmleditor::commander(int argc,char* argv[]){
 			string language;
         	language = key_words;
         	int bit = 0;
-        	for (int i = 0; i < language.size(); i++){
+        	for (int i = language.size(); i >0 ; i--){
             	if (language[i] == '.'&& i!=0&&i!=1){
                 	bit = i;
                 	break;
@@ -110,6 +110,14 @@ int easyhtmleditor::commander(int argc,char* argv[]){
 			if (language == "c" || language == "cpp"){
 				ret_fileread2 = select("../data/data.db","HIGHLITE_C");
         		ret_fileread1 = select("../data/data.db","COMPANY");
+			}
+			else if (language == "eh" || language == "e"){
+				ret_fileread2 = select("../data/data.db","HIGHLITE_E");
+				ret_fileread1 = select("../data/data.db","COMPLETE_E");
+			}
+			else if (language == "h" || language == "html"){
+				ret_fileread2 = select("../data/data.db","HIGHLITE_H");
+				ret_fileread1 = select("../data/data.db","COMPLETE_H");
 			}
         	open_files(key_words);
         	Edit_kernal();
@@ -160,7 +168,21 @@ int easyhtmleditor::commander(int argc,char* argv[]){
 			else if(input == key[6]){
             	erase();
             	for (int i = 0; i < page_arr[page_now-1].size(); i++){
-					mvprintw(i+1,0,"%s",page_arr[page_now-1][i]);
+					//mvprintw(i+1,0,"%s",page_arr[page_now-1][i]);
+					for (int i = 0; i < page_arr[page_now-1].size(); i++){
+                        for (int n = 0; n < page_arr[page_now-1][i].size(); ){
+                            if (page_arr[page_now-1][i][n]<=-1&&page_arr[page_now-1][i][n]>=-128){
+                                mvprintw(i+1,n,"%c%c%c",page_arr[page_now-1][i][n],page_arr[page_now-1][i][n+1],page_arr[page_now-1][i][n+2]);                                                                   
+                                n+=3;
+                            }
+                            else{                                            
+                                mvprintw(i+1,n,"%c",page_arr[page_now-1][i][n]);
+                                n++;
+                            }                                            
+                            move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x+1);                                            
+                            refresh();
+                        }
+                    }	
             	}
             	C.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);
             	SetPos(0,0);
@@ -196,6 +218,14 @@ int easyhtmleditor::commander(int argc,char* argv[]){
 					ret_fileread2 = select("../data/data.db","HIGHLITE_C");
         			ret_fileread1 = select("../data/data.db","COMPANY");
 				} 
+				else if (language == "eh" || language == "e"){
+					ret_fileread2 = select("../data/data.db","HIGHLITE_E");
+					ret_fileread1 = select("../data/data.db","COMPLETE_E");
+				}
+				else if (language == "h" || language == "html"){
+					ret_fileread2 = select("../data/data.db","HIGHLITE_H");
+					ret_fileread1 = select("../data/data.db","COMPLETE_H");
+				}
             	//while((getchar()!='\n'));
             	printw("Edit mode\n");
 				refresh();
@@ -206,17 +236,25 @@ int easyhtmleditor::commander(int argc,char* argv[]){
             	CLEAR();
             	language = key_words;
             	int bit = 0;
-            	for (int i = 0; i < language.size(); i++){
-                	if (language[i] == '.'&& i!=0&&i!=1){
-                    		bit = i;
-                    		break;
-                	}
-                	else;
-            	}
+            	for (int i = language.size(); i >0 ; i--){
+            		if (language[i] == '.'&& i!=0&&i!=1){
+                		bit = i;
+                		break;
+            		}
+            		else;
+        		}
             	language = language.substr(bit+1,language.size()-1);
             	if (language == "c" || language == "cpp"){
 					ret_fileread2 = select("../data/data.db","HIGHLITE_C");
         			ret_fileread1 = select("../data/data.db","COMPANY");
+				}
+				else if (language == "eh" || language == "e"){
+					ret_fileread2 = select("../data/data.db","HIGHLITE_E");
+					ret_fileread1 = select("../data/data.db","COMPLETE_E");
+				}
+				else if (language == "h" || language == "html"){
+					ret_fileread2 = select("../data/data.db","HIGHLITE_H");
+					ret_fileread1 = select("../data/data.db","COMPLETE_H");
 				}
             	if(open_files(key_words)){
                 	Edit_kernal();

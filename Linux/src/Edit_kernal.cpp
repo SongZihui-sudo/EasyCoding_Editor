@@ -297,7 +297,7 @@ int easyhtmleditor::Edit_kernal(){
                                 if (page_arr[page_now-1][i][n]<=-1&&page_arr[page_now-1][i][n]>=-128){
                                     mvprintw(i+1,n,"%c%c%c",page_arr[page_now-1][i][n],page_arr[page_now-1][i][n+1],page_arr[page_now-1][i][n+2]);                                                                   
                                   n+=3;
-                                    ZH_CH_BIT = 1;
+                                    //ZH_CH_BIT = 1;
                                 }
                                 else{                                            
                                     mvprintw(i+1,n,"%c",page_arr[page_now-1][i][n]);
@@ -338,7 +338,7 @@ int easyhtmleditor::Edit_kernal(){
                                 if (page_arr[page_now-1][i][n]<=-1&&page_arr[page_now-1][i][n]>=-128){
                                     mvprintw(i+1,n,"%c%c%c",page_arr[page_now-1][i][n],page_arr[page_now-1][i][n+1],page_arr[page_now-1][i][n+2]);                                                                   
                                   n+=3;
-                                    ZH_CH_BIT = 0;
+                                    //ZH_CH_BIT = 0;
                                 }
                                 else{                                            
                                     mvprintw(i+1,n,"%c",page_arr[page_now-1][i][n]);
