@@ -45,9 +45,9 @@ int easyhtmleditor::Edit_kernal(){
         char ch3 = '0';
         //printf("key asill %d\n", ch2);
             switch (ch2){
-                //case BACKSPACE :
+                case BACKSPACE :
                 //如果退格键失效删下面的注释，注释上面
-                case 7:
+                //case 7:
                     if (cc2.c_str.empty());
                         else{
                             cc2.c_str.pop_back();
@@ -76,9 +76,9 @@ int easyhtmleditor::Edit_kernal(){
                             SetPos(0,pos_y -  (page_now-1)*(page_y-2)+1);
                             //printw("%s",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].c_str());
                             for (int n = 0; n < page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].size(); ){
-                                if (page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]<-1&&page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]>-128){
-                                    mvprintw(pos_y -  (page_now-1)*(page_y-2)+1,n-1,"%c%c%c",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+1],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+2]);                                                                   
-                                    n +=3;
+                                if (page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]<=-1&&page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]>=-128){
+                                    mvprintw(pos_y -  (page_now-1)*(page_y-2)+1,n,"%c%c%c",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+1],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+2]);                                                                   
+                                  n+=3;
                                     ZH_CH_BIT = 1;
                                 }
                                 else{                                            
@@ -109,9 +109,9 @@ int easyhtmleditor::Edit_kernal(){
                             move(i+1,0);
                             //printw("%s",page_arr[page_now-1][i].c_str());
                             for (int n = 0; n < page_arr[page_now-1][i].size(); ){
-                                if (page_arr[page_now-1][i][n]<-1&&page_arr[page_now-1][i][n]>-128){
+                                if (page_arr[page_now-1][i][n]<=-1&&page_arr[page_now-1][i][n]>=-128){
                                     mvprintw(i+1,n,"%c%c%c",page_arr[page_now-1][i][n],page_arr[page_now-1][i][n+1],page_arr[page_now-1][i][n+2]);                                                                   
-                                    n +=3;
+                                  n+=3;
                                     ZH_CH_BIT = 1;
                                 }
                                 else{                                            
@@ -155,9 +155,9 @@ int easyhtmleditor::Edit_kernal(){
                         move(i+1,0);
                         //printw("%s",page_arr[page_now-1][i].c_str());
                         for (int n = 0; n < page_arr[page_now-1][i].size(); ){
-                                if (page_arr[page_now-1][i][n]<-1&&page_arr[page_now-1][i][n]>-128){
+                                if (page_arr[page_now-1][i][n]<=-1&&page_arr[page_now-1][i][n]>=-128){
                                     mvprintw(i+1,n,"%c%c%c",page_arr[page_now-1][i][n],page_arr[page_now-1][i][n+1],page_arr[page_now-1][i][n+2]);                                                                   
-                                    n +=3;
+                                  n+=3;
                                     ZH_CH_BIT = 1;
                                 }
                                 else{                                            
@@ -221,9 +221,9 @@ int easyhtmleditor::Edit_kernal(){
                     //cout<<page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)];
                     //printw("%s",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].c_str());
                     for (int n = 0; n < page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].size(); ){
-                                if (page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]<-1&&page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]>-128){
-                                    mvprintw(pos_y -  (page_now-1)*(page_y-2)+1,n-1,"%c%c%c",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+1],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+2]);                                                                   
-                                    n +=3;
+                                if (page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]<=-1&&page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]>=-128){
+                                    mvprintw(pos_y -  (page_now-1)*(page_y-2)+1,n,"%c%c%c",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+1],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+2]);                                                                   
+                                  n+=3;
                                     ZH_CH_BIT = 1;
                                 }
                                 else{                                            
@@ -262,9 +262,9 @@ int easyhtmleditor::Edit_kernal(){
                     SetPos(0,pos_y -  (page_now-1)*(page_y-2)+1);
                     //printw("%s",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].c_str());
                     for (int n = 0; n < page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].size(); ){
-                        if (page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]<-1&&page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]>-128){
-                            mvprintw(pos_y -  (page_now-1)*(page_y-2)+1,n-1,"%c%c%c",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+1],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+2]);                                                                   
-                                    n +=3;
+                        if (page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]<=-1&&page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]>=-128){
+                            mvprintw(pos_y -  (page_now-1)*(page_y-2)+1,n,"%c%c%c",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+1],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+2]);                                                                   
+                                  n+=3;
                         }
                         else{                                            
                                 mvprintw(pos_y -  (page_now-1)*(page_y-2)+1,n,"%c",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]);
@@ -294,9 +294,9 @@ int easyhtmleditor::Edit_kernal(){
                     for (int i = 0; i < page_arr[page_now-1].size(); i++){
                         //mvprintw(i+1,0,"%s",page_arr[page_now-1][i].c_str());
                         for (int n = 0; n < page_arr[page_now-1][i].size(); ){
-                                if (page_arr[page_now-1][i][n]<-1&&page_arr[page_now-1][i][n]>-128){
+                                if (page_arr[page_now-1][i][n]<=-1&&page_arr[page_now-1][i][n]>=-128){
                                     mvprintw(i+1,n,"%c%c%c",page_arr[page_now-1][i][n],page_arr[page_now-1][i][n+1],page_arr[page_now-1][i][n+2]);                                                                   
-                                    n +=3;
+                                  n+=3;
                                     ZH_CH_BIT = 1;
                                 }
                                 else{                                            
@@ -333,13 +333,11 @@ int easyhtmleditor::Edit_kernal(){
                     pos_y+=(page_y-2);
                     erase();
                     mvprintw(0,page_x/2,"EasyCodingEditor(Linux) version1.0 ");
-                    //mvprintw(1,0,"%d",page_arr[page_now-1].size());                        
                     for (int i = 0; i < page_arr[page_now-1].size(); i++){
-                        //mvprintw(i+1,0,"%s",page_arr[page_now-1][i].c_str());
                         for (int n = 0; n < page_arr[page_now-1][i].size(); ){
-                                if (page_arr[page_now-1][i][n]<-1&&page_arr[page_now-1][i][n]>-128){
+                                if (page_arr[page_now-1][i][n]<=-1&&page_arr[page_now-1][i][n]>=-128){
                                     mvprintw(i+1,n,"%c%c%c",page_arr[page_now-1][i][n],page_arr[page_now-1][i][n+1],page_arr[page_now-1][i][n+2]);                                                                   
-                                    n +=3;
+                                  n+=3;
                                     ZH_CH_BIT = 0;
                                 }
                                 else{                                            
@@ -393,31 +391,45 @@ int easyhtmleditor::Edit_kernal(){
                         break;
                         //左
                 case LEFT:
-                    if(page_arr[page_now][pos_y-  (page_now-1)*(page_y-2)][pos_x-1]<-1&&page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)][pos_x-1] >-128&&pos_x>0){
-                        pos_x = pos_x-2;
-                    }
-                    else if (pos_x){
-                        pos_x--;
-                        last_x--;
-                    }
-                    else;           
+                    if (pos_x<0){
+                        pos_x = 0;
                         mvprintw(page_y-1,page_x-30,"%dth",pos_x);                        
                         move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x);
                         refresh();
                         break;
+                    }
+                    else if(page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)][pos_x-1]<=-1&&page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)][pos_x-1] >=-128&&pos_x>0){
+                        pos_x = pos_x-3;
+                        mvprintw(page_y-1,page_x-30,"%dth",pos_x);                        
+                        move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x);
+                        refresh();
+                    }
+                    else{
+                        pos_x--;
+                        last_x--; 
+                        mvprintw(page_y-1,page_x-30,"%dth",pos_x);                        
+                        move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x);
+                        refresh();
+                    }
+                    break;
                         //右
                 case RIGHT:
-                        if (pos_x>=page_arr[page_now+1][pos_y-  (page_now-1)*(page_y-2)].size()) pos_x = page_arr[page_now-1][pos_y-  (page_now+1)*(page_y-2)].size()+1;
-                        else if(page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)][pos_x]<-1&&page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)][pos_x]>-128){
-                           pos_x = pos_x+2;
+                        if (pos_x>=page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)].size()) 
+                            pos_x = page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)].size();     
+                        else if(page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)][pos_x+1]<=-1&&page_arr[page_now-1][pos_y-  (page_now-1)*(page_y-2)][pos_x+1]>=-128){
+                            pos_x = pos_x+3;
+                            mvprintw(page_y-1,page_x-30,"%dth",pos_x);                        
+                            move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x);
+                            refresh();
                         }
                         else{
                             pos_x++;
-                            last_x++;                    
+                            last_x++;  
+                            mvprintw(page_y-1,page_x-30,"%dth",pos_x);
+                            move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x);
+                            refresh();                  
                         }
-                        mvprintw(page_y-1,page_x-30,"%dth",pos_x);
-                        move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x);
-                        refresh();
+                        
                         break;     
                     case ESC:
                         erase();
@@ -432,16 +444,16 @@ int easyhtmleditor::Edit_kernal(){
                         int bit_zhCN = 0;
                         int bit_c = 0;
                         string input_str;
-                        if(-128<=ch2&&ch2<-1){
+                        if(-128<=ch2&&ch2<=-1){
                             ch1=getch();
                             ch3 =getch();
                             ch[0]=ch2;
 			                ch[1]=ch1;   
                             ch[2]=ch3;                      
-                            mvprintw(pos_y -  (page_now-1)*(page_y-2)+1,pos_x,"%c%c%c",ch[0],ch[1],ch[2]);                
+                            mvprintw(pos_y-(page_now-1)*(page_y-2)+1,pos_x,"%c%c%c",ch[0],ch[1],ch[2]);                
                             //fflush(stdin); 
-                            pos_x+=2;                            
-                            move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x-1);
+                            pos_x+=3;                            
+                            move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x);
                             refresh();
                             bit_zhCN = 1;
 	                    }
@@ -502,12 +514,12 @@ int easyhtmleditor::Edit_kernal(){
                                     page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].insert(page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].begin()+1,ch[2]);   
                                     move(pos_y -  (page_now-1)*(page_y-2)+1,0);
                                     for (int n = 0; n < page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].size(); ){
-                                        if (page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]<-1&&page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]>-128){
-                                            mvprintw(pos_y -  (page_now-1)*(page_y-2)+1,n,"%c%c%c",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+1],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+2]);                                                                   
-                                            n +=3;
+                                        if (page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]<=-1&&page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]>=-128){
+                                            mvprintw(pos_y-(page_now-1)*(page_y-2)+1,n,"%c%c%c",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+1],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+2]);                                                                   
+                                            n+=3;
                                         }
                                         else{                                            
-                                            mvprintw(pos_y -  (page_now-1)*(page_y-2)+1,n,"%c",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]);
+                                            mvprintw(pos_y-(page_now-1)*(page_y-2)+1,n,"%c",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]);
                                             n++;
                                         }
                                     }                                            
@@ -517,9 +529,9 @@ int easyhtmleditor::Edit_kernal(){
                                 else;
                                 
                             }                 
-                            else if(pos_y-  (page_now-1)*(page_y-2)<=page_arr[page_now-1].size()&&pos_x<=page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].size()){
+                            else if(pos_y-  (page_now-1)*(page_y-2)<=page_arr[page_now-1].size()&&pos_x<=page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].size()){                                    
                                 num = int(pos_x);
-                                if (bit_c){
+                                if (bit_c){                                
                                     page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].insert(page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].begin()+num-1,ch2);
                                     move(pos_y -  (page_now-1)*(page_y-2)+1,0);                                
                                     clrtoeol();
@@ -528,21 +540,21 @@ int easyhtmleditor::Edit_kernal(){
                                 }
                                 else if (bit_zhCN){
                                     page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].insert(page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].begin()+num-1,ch[0]);
-                                    page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].insert(page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].begin()+num-1+1,ch[1]);
-                                    page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].insert(page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].begin()+num-1+2,ch[2]);
+                                    page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].insert(page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].begin()+num+1-1,ch[1]);
+                                    page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].insert(page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].begin()+num+2-1,ch[2]);
                                     move(pos_y -  (page_now-1)*(page_y-2)+1,0);                                
                                     clrtoeol();
                                     move(pos_y -  (page_now-1)*(page_y-2)+1,0);
-                                    for (int n = 0; n < page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)].size(); ){
-                                        if (page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]<-1&&page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]>-128){
-                                            mvprintw(pos_y -  (page_now-1)*(page_y-2)+1,n-1,"%c%c%c",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+1],page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n+2]);                                                                   
-                                            n +=3;
+                                    for (int n = 0; n < page_arr[page_now-1][pos_y-(page_now-1)*(page_y-2)].size(); ){
+                                        if (page_arr[page_now-1][pos_y-(page_now-1)*(page_y-2)][n]<=-1&&page_arr[page_now-1][pos_y-(page_now-1)*(page_y-2)][n]>=-128){
+                                            mvprintw(pos_y-(page_now-1)*(page_y-2)+1,n,"%c%c%c",page_arr[page_now-1][pos_y-(page_now-1)*(page_y-2)][n],page_arr[page_now-1][pos_y-(page_now-1)*(page_y-2)][n+1],page_arr[page_now-1][pos_y-(page_now-1)*(page_y-2)][n+2]);                                                                   
+                                            n+=3;
                                         }
                                         else{                                            
-                                            mvprintw(pos_y -  (page_now-1)*(page_y-2)+1,n,"%c",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]);
+                                            mvprintw(pos_y-(page_now-1)*(page_y-2)+1,n,"%c",page_arr[page_now-1][pos_y -  (page_now-1)*(page_y-2)][n]);
                                             n++;
                                         }                                            
-                                        move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x+1);                                            
+                                        move(pos_y-(page_now-1)*(page_y-2)+1,pos_x+1);                                            
                                         refresh();
                                     }
                                 }
@@ -561,7 +573,7 @@ int easyhtmleditor::Edit_kernal(){
                             }
                             else;  
                             if (bit_c){
-                                string code_compl = cc2.Lexical_analysis(ch2,pos_y -  (page_now-1)*(page_y-2),last_x,ret_fileread1,page_y,page_x);
+                                string code_compl = cc2.Lexical_analysis(ch2,pos_y-(page_now-1)*(page_y-2),last_x,ret_fileread1,page_y,page_x);
                                 if (last_x-1  <= cc2.c_str.size()){   
                                     if (code_compl[code_compl.length()-1]!=ch2){
                                         SetPos(0,pos_y - (page_now-1)*(page_y-2)+1);   
@@ -570,7 +582,6 @@ int easyhtmleditor::Edit_kernal(){
                                         last_str+=code_compl;                            
                                         page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)] = last_str ;
                                         SetPos(0 ,pos_y - (page_now-1)*(page_y-2)+1);    
-                                        //cout<<page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)];
                                         printw("%s",page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)].c_str());
                                         C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y); 
                                         pos_x = page_arr[page_now-1][pos_y - (page_now-1)*(page_y-2)].size(); 
@@ -583,15 +594,10 @@ int easyhtmleditor::Edit_kernal(){
                             }                                 
                         }
                         if (bit_c){
-                            C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y);
-                            mvprintw(0,page_x/2,"EasyCodingEditor(Linux) version1.0 ");                            
-                            move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x);	
+                            C3.Lexical_analysis(page_arr[page_now-1],ret_fileread2,pos_y); 
                         }
-                        else if (bit_zhCN){
-                            mvprintw(0,page_x/2,"EasyCodingEditor(Linux) version1.0 ");
-                            pos_x+=1;                            
-                            move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x);
-                        }
+                        mvprintw(0,page_x/2,"EasyCodingEditor(Linux) version1.0 ");                            
+                        move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x);	
                         refresh();
                         break;
                     }

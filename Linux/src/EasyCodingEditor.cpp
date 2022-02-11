@@ -19,13 +19,27 @@ bool easyhtmleditor::open_files(string filename){
     fstream out;
     int i = 0;
     int j = 0;
+	int line_num = 0;
     out.open(filename);
     string file_data;
     if (out){
         while (getline(out,file_data)){
             if (i<(page_y-1)){
-				mvprintw(i+1,0,"%s",file_data.c_str()); 
-                out_data.push_back(file_data);  
+				//mvprintw(i+1,0,"%s",file_data.c_str()); 
+                for (int n = 0; n < file_data.size(); ){
+                    if (file_data[n]<=-1&&file_data[n]>=-128){
+                    	mvprintw(i+1,n,"%c%c%c",file_data[n],file_data[n+1],file_data[n+2]);                                                                   
+                        n+=3;
+                        ZH_CH_BIT = 1;
+                    }
+                    else{                                            
+                        mvprintw(i+1,n,"%c",file_data[n]);
+                        n++;
+                    }                                            
+                    move(pos_y -  (page_now-1)*(page_y-2)+1,pos_x+1);                                            
+                    refresh();
+                }
+				out_data.push_back(file_data);
             }
             else{
                 out_data.push_back(file_data);  
