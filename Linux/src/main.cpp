@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include "../include/sql.h"
 #include <locale.h>
-//你好
+
 using namespace edt;
 using namespace std;
 using namespace cht;
