@@ -6,8 +6,11 @@
 #include <stdio.h>
 #include "../include/sql.h"
 #include <locale.h>
+<<<<<<< HEAD
 #include <zlib.h>
 #include <boost/timer.hpp>
+=======
+>>>>>>> 3ccd8e8ce5da919b9527f782736a4cd4c540bab3
 
 using namespace edt;
 using namespace std;
