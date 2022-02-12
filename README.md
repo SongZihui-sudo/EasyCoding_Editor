@@ -12,7 +12,7 @@ C/C++
 HTML   
 ![img](https://github.com/SongZihui-sudo/EasyCoding_Editor/blob/Windows/%E6%88%AA%E5%9B%BE/Screenshot%202022-02-12%20204050.png)
 EASYHTML   
-![img](https://github.com/SongZihui-sudo/EasyCoding_Editor/blob/Windows/%E6%88%AA%E5%9B%BE/Screenshot%202022-02-12%20204630.pngP)
+![img](https://github.com/SongZihui-sudo/EasyCoding_Editor/blob/Windows/%E6%88%AA%E5%9B%BE/Screenshot%202022-02-12%20204630.png)
 
 ## 开发环境与开发工具
 Vscode
