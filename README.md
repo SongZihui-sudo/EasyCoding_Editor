@@ -7,11 +7,11 @@
 
 ## 截图
 C/C++   
-![img](https://raw.fastgit.org/SongZihui-sudo/EasyCoding_Editor/Windows/%E6%88%AA%E5%9B%BE/Screenshot%202022-02-12%20204140.png)  
+![img](https://github.com/SongZihui-sudo/EasyCoding_Editor/blob/Windows/%E6%88%AA%E5%9B%BE/Screenshot%202022-02-12%20204140.png)  
 HTML   
-![img](https://raw.fastgit.org/SongZihui-sudo/EasyCoding_Editor/Windows/%E6%88%AA%E5%9B%BE/Screenshot%202022-02-12%20204050.png)    
+![img](https://github.com/SongZihui-sudo/EasyCoding_Editor/blob/Windows/%E6%88%AA%E5%9B%BE/Screenshot%202022-02-12%20204050.png)
 EASYHTML   
-![img](https://raw.fastgit.org/SongZihui-sudo/EasyCoding_Editor/Windows/%E6%88%AA%E5%9B%BE/Screenshot%202022-02-12%20204630.png)
+![img](https://github.com/SongZihui-sudo/EasyCoding_Editor/blob/Windows/%E6%88%AA%E5%9B%BE/Screenshot%202022-02-12%20204630.pngP)
 ## 开发环境与开发工具
 Vscode
 
