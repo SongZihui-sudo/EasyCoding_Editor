@@ -26,14 +26,17 @@ class easyhtmleditor{
 private:
     int         page_now = 1;
     int         page = 0;
+    int         overflow_pagey = 0;
+private:    
+    stack<string>      save_pop;
     deque <string> ret_fileread1;
     deque <string> ret_fileread2;
-private:
     deque < deque <string> > page_arr;
+    stack <string> up_do_buffer;
     deque <string> parr3;
     string       key[10] = {"q","i","a","/","wq","v","b","g","h","help"};
     string       language[2] = {"c","cpp"};
-    stack <string> exact_buffer;
+    deque < deque <string> > exact_buffer;
 public:    
     string      last_str = "";    
     deque <string> out_data;
@@ -61,6 +64,32 @@ public:
     void print_size();    
     //获得键盘事件
     int Edit_kernal();
+    // 输出
+    void printl(string ready_print,int x,int bit);
+    //方向键上
+    void up();
+    //方向键下
+    void down();
+    //方向键左
+    void left();
+    //方向键右
+    void right();
+    //page up
+    void page_up_();
+    //page down
+    void page_down_();
+    //ESC 
+    void ESC_();
+    //space
+    void space();
+    //tab
+    void tab();
+    //enter
+    void enter();
+    //backspace
+    void backspace();
+    //default
+    int default_(char ch2);
     void CLEAR(){
         erase();
     }

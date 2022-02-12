@@ -6,7 +6,9 @@
 #include <stdio.h>
 #include "../include/sql.h"
 #include <locale.h>
-//你好
+#include <zlib.h>
+#include <boost/timer.hpp>
+
 using namespace edt;
 using namespace std;
 using namespace cht;

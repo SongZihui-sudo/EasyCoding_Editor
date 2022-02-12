@@ -18,7 +18,11 @@
                 "${fileDirname}/${fileBasenameNoExtension}",
                 "-fstack-protector",
 				" -lsqlite3",
-				"-lncursesw"
+				"-lncursesw",
+                "-lz",
+                "-L",
+                "-lpthread",
+                "-DBOOST_BIND_GLOBAL_PLACEHOLDERS"
             ],
             "options": {
                 "cwd": "${fileDirname}"
