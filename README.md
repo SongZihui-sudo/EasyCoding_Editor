@@ -4,7 +4,10 @@
 
 1.支持对C/C++关键词的高亮与补全。（把可高亮与可补全的关键词放入了数据库，可以自定义添加关键字）。  
 2.Html标签简化，可导出标准的Html，在服务器上可用此编辑器转换文章（用简化的标签写的）为Html，建立小型博客网站。在该编辑器中已经集成了[EASH-HTML-MAKER](https://github.com/SongZihui-sudo/Easy-HTML-MAKER)   
-
+## 进展
+### 桌面版
+基于Electron    
+![img](https://github.com/SongZihui-sudo/EasyCoding_Editor/blob/Windows/%E6%88%AA%E5%9B%BE/Screenshot%202022-02-14%20223528.png)
 ## 截图
 
 C/C++   
