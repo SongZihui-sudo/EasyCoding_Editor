@@ -7,7 +7,7 @@
 ## 进展
 ### 桌面版
 基于Electron    
-![img](https://github.com/SongZihui-sudo/EasyCoding_Editor/blob/Windows/%E6%88%AA%E5%9B%BE/Screenshot%202022-02-14%20223528.png)
+![img](https://github.com/SongZihui-sudo/EasyCoding_Editor/blob/Windows/%E6%88%AA%E5%9B%BE/Screenshot%202022-02-19%20230518.png)
 ## 截图
 
 C/C++   
