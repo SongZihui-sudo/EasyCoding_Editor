@@ -1,0 +1,12 @@
+body{
+    background-color: rgba(36, 66, 110, 0.986);
+}
+#menu_start{
+    width: 400px;
+    height: 130px;
+    position: absolute;
+    background: rgba(36, 66, 110, 0.986);
+    top: 100px;
+    left: 90px;
+    margin: auto;
+}

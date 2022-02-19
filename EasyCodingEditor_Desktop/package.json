@@ -1,0 +1,17 @@
+{
+  "name": "easycodingeditor_desktop",
+  "version": "1.1.0",
+  "description": "一个文本编辑器(桌面版)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "编辑器"
+  ],
+  "author": "Song Zihui",
+  "license": "MIT",
+  "dependencies": {
+    "css.gg": "^2.0.0"
+  }
+}

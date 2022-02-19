@@ -1,0 +1,167 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.shell {
+  min-width: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.shell a {
+  width: 30px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease-in-out;
+  border-radius: 2px;
+  text-decoration: none;
+}
+.shell a:hover {
+  padding: 0 5px;
+}
+
+.shell a span.name {
+  opacity: 0;
+  display: none;
+}
+
+.dark {
+  background-color: rgba(20, 54, 105, 0.986);
+}
+.dark a:first-child {
+  border-bottom: 1px solid #fff;
+}
+.dark a:nth-last-child(3) {
+  border-bottom: 1px solid #fff;
+}
+.dark a {
+  color: white;
+}
+.dark a:hover {
+  background-color: #2d64b6;
+}
+
+#list5{
+  position: absolute;
+  top: 90%;
+}
+/*# sourceMappingURL=index.css.map */
+.top_menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgba(20, 54, 105, 0.986);
+  position: absolute;
+  left: 40px;
+  top: 0px;
+  width: 98%;
+  height: 30px;
+}
+
+.top_menu li {
+  float: left;
+}
+
+.top_menu li a {
+  line-height: 5px;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+/*鼠标移动到选项上修改背景颜色 */
+.top_menu li a:hover {
+  background-color: rgb(82, 128, 226);
+  height: 30px;
+}
+
+#top7{
+  position: fixed;
+  top: 0px;
+  right: 10px;
+}
+
+#top5{
+  position: fixed;
+  top: 0px;
+  right:50px;
+}
+
+#top6{
+  position: fixed;
+  top: 0px;
+  right: 90px;
+}
+
+#top7:hover{
+  background-color: red;
+}
+
+.bottom_menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgba(20, 54, 105, 0.986);
+  position: absolute;
+  left: 40px;
+  top: 96.5%;
+  width: 96%;
+}
+
+.bottom_menu li {
+  float: left;
+}
+
+.bottom_menu li a {
+  line-height: 1px;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+.right_menu{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgba(20, 54, 105, 0.986);
+  position: absolute;
+  right: 0;
+  top: 30px;
+  width: 15px;
+  height: 100%;
+}
+
+.right_menu li {
+  float: left;
+}
+
+.right_menu li a {
+  line-height: 1px;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+html{
+  overflow-x: hidden;
+  overflow-y: hidden;
+  } 

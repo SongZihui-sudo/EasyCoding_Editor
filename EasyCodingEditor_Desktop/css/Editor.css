@@ -1,0 +1,12 @@
+#Editor{
+  position: absolute;
+  left: 45px;
+  top: 40px;
+  width: 95%;
+  height: 95%;
+}
+
+#win{
+  background-color: aliceblue;
+  background: local;
+}

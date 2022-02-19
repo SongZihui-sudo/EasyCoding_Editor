@@ -1,0 +1,9 @@
+#input_area{
+    position: absolute;
+    width: 0px;
+    height:0px;
+    left: 90%;
+    top: 90%;
+    display: hidden;
+    background: rgba(8, 8, 8, 0.986);
+}
