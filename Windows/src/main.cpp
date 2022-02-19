@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include "../include/Code_highlighting.h"
 #include "../include/Code_completion.h"
+#include "../include/wke.h"
 
 using namespace edt;
 using namespace std;
@@ -12,6 +13,9 @@ using namespace cct;
 void SetSize(unsigned uCol,unsigned uLine);
 
 int main(){
+    wstring strWkeFilePath = L"EasycodingEditor";
+    wkeSetWkeDllPath(strWkeFilePath.c_str());
+    wkeInitialize();
     SetConsoleOutputCP(65001);
     system("title EasyCodingEditor");
     unsigned x = 150;

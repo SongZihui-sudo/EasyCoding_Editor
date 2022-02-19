@@ -4,17 +4,14 @@
 #include <Windows.h>
 #include "../include/Code_highlighting.h"
 #include "../include/Code_completion.h"
-#include "../include/Markdown_parser.h"
 
 using namespace edt;
 using namespace std;
 using namespace cht;
 using namespace cct;
-using namespace mpt;
 
 cht::Code_highlighting C;
 cct::Code_completion cc;
-mpt::Markdown_parser mp;
 
 //打开文件
 bool easyhtmleditor::open_files(string filename){
@@ -150,7 +147,7 @@ int easyhtmleditor::commander(){
         }
         else if(input == key[8]){
             deque <deque <string>> html;
-            html = mp.syntax_conversion(mp.Lexical_analysis(page_arr),page_arr);
+            //html = mp.syntax_conversion(mp.Lexical_analysis(page_arr),page_arr);
             save_files(key_words,html);
             return 1;
         }
