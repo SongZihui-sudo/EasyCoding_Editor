@@ -7,3 +7,6 @@
     display: hidden;
     background: rgba(8, 8, 8, 0.986);
 }
+#text{
+    white-space:pre;
+}

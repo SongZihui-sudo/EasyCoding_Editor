@@ -65,13 +65,15 @@ function down(){
 }
 //回车
 function Enter(){
-  FileBuf.push_insert('/n');
+  FileBuf.push_insert('/n');  
+  FileBuf.Text_Show(FileBuf.piece_link_root);
   pos_y++;
-  FileBuf.Text_Show();
   return 0;
 }
 //退格键
 function BackSpace(){
+  FileBuf.pop_delete();
+  FileBuf.Text_Show(FileBuf.piece_link_root);
   return 0;
 }
 //Tab键
@@ -81,8 +83,7 @@ function Tab(){
   FileBuf.push_insert("/s");
   FileBuf.push_insert("/s");
   pos_x++;
-  FileBuf.Text_Show();
-  return 0;
+  FileBuf.Text_Show(FileBuf.piece_link_root);
 }
 //空格键
 function Space(){

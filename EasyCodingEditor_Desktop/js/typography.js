@@ -1,3 +1,5 @@
+var text_cursor = document.getElementById("text_cursor");    
+var cursor = document.getElementById("cursor");
 var pos_buf;
 pos_buf = new Array;
 pos_buf = [];
@@ -21,18 +23,19 @@ function SetPos(x,y){
   //输出函数
   function printh(str){
     id++;  
-    str = "<span"+" "+"id="+id+">"+str+"</span>";
+    str = "<span"+" "+"id="+"text"+">"+str+"</span>";
     text_cursor.innerHTML =str; 
     //debugger
-    span = document.getElementById(id);
+    span = document.getElementById("text");
     var len = span.offsetWidth;
     //debugger
     cursor.style.left = len+w_bit + "px";        
     cursor.style.top = parseInt(text_cursor.offsetTop) + "px";
     //debugger
-    pos_buf.push(len+w_bit);
+    //debugger
+    pos_buf.push(len+w_bit);      
     pos_buf = unique(pos_buf);
-    pos_x = pos_buf.length;
+    pos_x = pos_buf.length;    
     return 0;
   }
   //获取光标位置

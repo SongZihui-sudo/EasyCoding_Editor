@@ -22,7 +22,7 @@
 </body>
   <script type="text/javascript" src="../js/piece_tables.js" language = javaScript charset="UTF-8"></script>   
   <script>      
-    var FileBuf = new piece_table();
+    var FileBuf = new piece_table_link();
     window.onload = function(){      
       //mvprinth(0,0,"text");
     }
@@ -39,7 +39,8 @@
       console.log(char);
       connect_main(char.toString());
       FileBuf.push_insert(char);
-      FileBuf.Text_Show();
+      //debugger
+      FileBuf.Text_Show(FileBuf.piece_link_root);
     }
     function uniKeyCode(event) {
       var key = event.keyCode;

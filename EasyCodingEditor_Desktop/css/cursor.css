@@ -16,7 +16,7 @@
   display: block;
   width: 8px;
   height:20px;
-  animation: blink 1s infinite steps(1, start)
+  animation: blink 0.5s infinite steps(1, start)
 }
 @keyframes blink {
  0%{
