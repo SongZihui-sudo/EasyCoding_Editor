@@ -1,0 +1,31 @@
+#cursor{
+    width: 1px;
+    height:20px;
+    position: absolute;
+    background: rgb(0, 0, 0);
+    font-size: 16px; 
+    font-family: Consolas, Monaco, monospace;
+    position: absolute;
+    left: 5px;
+    top: 5px; 
+}
+
+#cursor{
+  font-size: 16px; 
+  content:'';
+  display: block;
+  width: 1px;
+  height:20px;
+  animation: blink 0.5s infinite steps(1, start)
+}
+@keyframes blink {
+ 0%{
+   background-color: rgba(36, 66, 110, 0.986);
+ }
+ 50% {
+   background-color: rgba(4, 243, 56, 0.986);
+ }
+ 100% {
+   background-color: rgba(36, 66, 110, 0.986);
+ }
+}

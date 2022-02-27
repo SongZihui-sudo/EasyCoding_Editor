@@ -1,0 +1,18 @@
+#text_cursor{
+    width: auto;
+    height: auto;
+    position: absolute;    
+    letter-spacing:1px;  
+    background: rgba(36, 66, 110, 0.986);
+    color: aliceblue;
+    text-align:justify;
+    font-family: Consolas, Monaco, monospace;
+    line-break: anywhere;
+    left: 0px;
+    top: 0px;
+}
+.text{
+   width: auto;
+   height: auto;
+   white-space:pre;
+}
