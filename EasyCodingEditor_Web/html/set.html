@@ -11,6 +11,7 @@
     <link rel = "stylesheet" type="text/css" href="../css/input_area.css"> 
     <link rel = "stylesheet" type="text/css" href="../css/set_menu.css"> 
     <link rel="stylesheet" href="../css/index.css"> 
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <title>Set</title>
 </head>
 <body>
@@ -23,7 +24,7 @@
                 <br><br>
                 <select id="_theme_select">
                   <option value="dark">黑暗</option>
-                  <option value="liget">明亮</option>
+                  <option value="light">明亮</option>
                   <option value="darkblue">黑蓝</option>
                   <option value="pinklight">粉白</option>
                  </select>
@@ -85,21 +86,31 @@
           <li><a></a></li>
         </ul>
     </div>
-</body>
-    <script>
-      var a = document.getElementsByTagName("list4");        
-      var a2 = document.getElementsByTagName("list2");
-      var a3 = document.getElementsByTagName("list5");        
-        list4.onclick = function(){
-        //connect_main("end");
-      }
-        list2.onclick = function(){
-        window.location.href="./EasyHtmlEditor.html";
-        //connect_main("edit");
-      }
-      list5.onclick = function(){
-        window.location.href="./set.html";
-        //connect_main("set");
-      }
-      </script>      
+</body>      
+  <script type="text/javascript" src="../js/edit/theme_chose.js"></script>
+  <script>
+    var a = document.getElementsByTagName("list4");        
+    var a2 = document.getElementsByTagName("list2");
+    var a3 = document.getElementsByTagName("list5");        
+      list4.onclick = function(){
+      //connect_main("end");
+    }
+      list2.onclick = function(){
+      window.location.href="./EasyHtmlEditor.html";
+      //connect_main("edit");
+    }
+    list5.onclick = function(){
+      window.location.href="./set.html";
+      //connect_main("set");
+    }
+     //监听选中事件
+     $('#_theme_select').change(function(data){
+            //获取选中项的值
+            var value = $("#_theme_select option:selected").attr("value");
+            theme_chose(value);
+            //输出日志
+            console.log("value=%s",value);
+        });
+
+  </script>      
 </html>

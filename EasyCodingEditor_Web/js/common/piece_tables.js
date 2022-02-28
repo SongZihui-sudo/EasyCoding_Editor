@@ -90,7 +90,7 @@ class piece_table_link{//表结构
   //push_back
   push_insert(char){
     //创建一个新结点
-    debugger
+    //debugger
     var new_child = new pieces_node();
     var res = 0;
     if(res = this.find_str(this.#_add,char)){
@@ -330,7 +330,13 @@ class piece_table_link{//表结构
     this.head = this.#linkbuffer[pos_y-1];
     this.head.len =this.head.len+this.#linkbuffer[pos_y].len-2;
     let _end = this.end();
-    _end.right = this.#linkbuffer[pos_y];
+    if(_end!=null){
+      _end.right = this.#linkbuffer[pos_y];
+    }
+    else{
+      _end = new pieces_node();
+      _end = this.#linkbuffer[pos_y];
+    }
     this.#linkbuffer.splice(pos_y,1);
     var p_end = _end;
     while (p_end!=null) {
@@ -339,7 +345,7 @@ class piece_table_link{//表结构
     }
     this.clearPrintBuf();
     delete_aspan();
-    debugger
+    //debugger
     var new_pos_buf = [];
     var last = line_pos_buf[line_pos_buf.length-1][line_pos_buf[line_pos_buf.length-1].length-1];
     for (let index = 0; index < line_pos_buf[pos_y].length+1; index++) {

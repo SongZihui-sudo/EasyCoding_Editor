@@ -149,6 +149,7 @@ function Enter(){
 }
 //退格键
 function BackSpace(){
+  //debugger
   FileBuf.pop_delete();
   return 0;
 }

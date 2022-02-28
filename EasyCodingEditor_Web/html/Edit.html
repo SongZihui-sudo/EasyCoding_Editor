@@ -13,16 +13,17 @@
 </head>
 <body>
   <div id = "win">
-    <div id="text_cursor">
-    </div> 
+      <div id="text_cursor"></div> 
     <div id="cursor" class="animation"></div> 
-    <input id = "input_area" type = "text" onkeypress="uniCharCode(event)" onkeydown="uniKeyCode(event)" style="outline:none;border:0"></div>
+    <input id = "input_area" type = "text" onkeypress="uniCharCode(event)" onkeydown="uniKeyCode(event)" style="outline:none;border:0;ime-mode:disabled"></div>
   </div>
 </body>
+  <script type="text/javascript" src="../js/database/hightlight_data.js" language = javaScript charset="UTF-8"></script>   
   <script type="text/javascript" src="../js/input/Edit_kernel.js" language = javaScript charset="UTF-8"></script>     
   <script type="text/javascript" src="../js/edit/typography.js" language = javaScript charset="UTF-8"></script>
   <script type="text/javascript" src="../js/common/piece_tables.js" language = javaScript charset="UTF-8"></script>   
   <script>      
+    //hljs.initHighlighting();
     var FileBuf = new piece_table_link();
     text=document.getElementById("input_area");
     text.focus();
@@ -37,7 +38,6 @@
       console.log(char);
       if(char!='\r')
         FileBuf.push_insert(char);
-      //debugger
     }
     function uniKeyCode(event) {
       var key = event.keyCode;

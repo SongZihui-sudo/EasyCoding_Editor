@@ -209,6 +209,58 @@ function refresh(){
     else{
       continue;
     }
+    //在刷新屏幕数进行代码高亮
+    Codehightlight(c,childs[index].innerHTML);
+  }
+  return 0;
+}
+//分割span，进行代码高亮显示
+function span_sqlite(start,len){
+  var new_head = FileBuf.head;
+  var start_ = FileBuf.iterator(new_head,start-1);
+  var end = FileBuf.iterator(new_head,start+len);
+  var last_line = end.rigth;
+  var hightlight = "";
+  var nohightlight = "";
+  let mid = FileBuf.iterator(start_,len);
+  mid.rigth = null;
+  while (start_!=null) {
+    hightlight = FileBuf._toString(start_);
+    start_ = start_.rigth;
+  } 
+  var mid_str = "";
+  var it_mid = mid;
+  while (it_mid!=null) {
+    mid_str = FileBuf._toString(it_mid);
+    it_mid = it_mid.rigth;
+  }
+  var nohightlight = FileBuf._toString(last_line);
+  CLEAR();
+  //debugger
+  //pre_line = "<span class = \"text\" id="+"y"+pos_y+">"+pre_line+"</span>";
+  for (let index = 0; index < pos_y; index++) {
+    const element = FileBuf.buffer[index];
+    text_cursor.innerHTML+=element+"<br>";
+    var _changespaicalchar = document.getElementById("y"+index);
+        //处理一下特殊字符
+    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/,/g, "");    
+    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/" "/g, "&nbsp;"); 
+    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/</g, "&lt;");    
+    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/>/g, "&gt;");   
+  }
+  text_cursor.innerHTML += "<span class=\"text\" id="+"y"+pos_y+"hglg"+">"+hightlight+"</span>"+"<span class=\"text\" id="+"y"+pos_y+">"+mid_str+"</span>"+"<span class=\"text\" id="+"y"+pos_y+">"+nohightlight+"<span/>"+"<br>";
+  var code_hightlight = document.getElementById("y"+pos_y+"hglg");
+  code_hightlight.style.color = "red";
+  //var insert_span = document.getElementById("y"+pos_y); 
+  for (let index = pos_y; index < FileBuf.buffer.length; index++) {
+    const element = FileBuf.buffer[index];
+    text_cursor.innerHTML+=element+"<br>";
+    var _changespaicalchar = document.getElementById("y"+index);
+        //处理一下特殊字符
+    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/,/g, "");    
+    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/" "/g, "&nbsp;"); 
+    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/</g, "&lt;");    
+    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/>/g, "&gt;");   
   }
   return 0;
 }
