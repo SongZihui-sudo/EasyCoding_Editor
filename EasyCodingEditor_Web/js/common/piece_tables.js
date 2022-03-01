@@ -197,6 +197,7 @@ class piece_table_link{//表结构
     //将内容打印输出到打印缓冲区
     printh(this.#Print_str);  
     //debugger
+    //refresh();
     //判断是否需要刷新屏幕缓冲区
     update_buffer(this.#Print_str);
   //移动x光标

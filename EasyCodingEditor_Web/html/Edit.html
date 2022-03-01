@@ -9,16 +9,19 @@
     <link rel = "stylesheet" type="text/css" href="../css/text_cursor.css"> 
     <link rel = "stylesheet" type="text/css" href="../css/input_area.css"> 
     <link rel = "stylesheet" type="text/css" href="../css/body.css"> 
+    <link rel = "stylesheet" type="text/css" href="../css/code_highlight.css"> 
     <title>Edit</title>
 </head>
 <body>
   <div id = "win">
-      <div id="text_cursor"></div> 
+    <div id ="code_highlight"></div>  
+    <div id="text_cursor"></div> 
     <div id="cursor" class="animation"></div> 
     <input id = "input_area" type = "text" onkeypress="uniCharCode(event)" onkeydown="uniKeyCode(event)" style="outline:none;border:0;ime-mode:disabled"></div>
   </div>
 </body>
-  <script type="text/javascript" src="../js/database/hightlight_data.js" language = javaScript charset="UTF-8"></script>   
+  <script type="text/javascript" src="../js/database/hightlight_data.js" language = javaScript charset="UTF-8"></script>
+  <script type="text/javascript" src="../js/edit/Codehighlighting.js" language = javaScript charset="UTF-8"></script>    
   <script type="text/javascript" src="../js/input/Edit_kernel.js" language = javaScript charset="UTF-8"></script>     
   <script type="text/javascript" src="../js/edit/typography.js" language = javaScript charset="UTF-8"></script>
   <script type="text/javascript" src="../js/common/piece_tables.js" language = javaScript charset="UTF-8"></script>   
@@ -38,6 +41,10 @@
       console.log(char);
       if(char!='\r')
         FileBuf.push_insert(char);
+      //在刷新屏幕数进行代码高亮
+      var get_lint = document.getElementById("y"+pos_y);
+      if(char!='\n'&&char!='\r')
+        to_Code_highlight();
     }
     function uniKeyCode(event) {
       var key = event.keyCode;
@@ -49,14 +56,11 @@
         case 39: right(); break;//右
         case 40: down(); break;//下
         case 13: Enter(); break;
-        case 8:  BackSpace(); break; //退格键
-        case 9: Tab(); break;//Tab键
-        case 33: Page_up(); break;//上翻页
-        case 34: Page_down();break;//下翻页
+        case 8:  BackSpace();to_Code_highlight();break; //退格键
+        case 9:  Tab(); break;//Tab键
         case 27: window.location.href="./index.html"; break;
-        case 32: Space(); break;//空格
-        default: //var char = String.fromCharCode(key);FileBuf.push_back(char);FileBuf.Text_Show();
-        break; 
+        case 32: Space();to_Code_highlight();break;//空格
+        default: break; 
       } 
     }  
   </script> 

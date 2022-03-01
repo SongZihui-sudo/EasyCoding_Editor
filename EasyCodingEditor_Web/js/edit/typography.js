@@ -209,59 +209,52 @@ function refresh(){
     else{
       continue;
     }
-    //在刷新屏幕数进行代码高亮
-    Codehightlight(c,childs[index].innerHTML);
   }
   return 0;
 }
+var code_highlight_buffer = [];
+var chl_num = 0;
 //分割span，进行代码高亮显示
-function span_sqlite(start,len){
-  var new_head = FileBuf.head;
-  var start_ = FileBuf.iterator(new_head,start-1);
-  var end = FileBuf.iterator(new_head,start+len);
-  var last_line = end.rigth;
-  var hightlight = "";
-  var nohightlight = "";
-  let mid = FileBuf.iterator(start_,len);
-  mid.rigth = null;
-  while (start_!=null) {
-    hightlight = FileBuf._toString(start_);
-    start_ = start_.rigth;
-  } 
-  var mid_str = "";
-  var it_mid = mid;
-  while (it_mid!=null) {
-    mid_str = FileBuf._toString(it_mid);
-    it_mid = it_mid.rigth;
+function span_cover(fstart,cur_str,y){
+  debugger
+  chl_num++;
+  var code_highlight_span = "<span class=\"codehightlight\" id="+chl_num+">"+cur_str+"</span>";
+  var div_codehighlight = document.getElementById("code_highlight");
+  if(code_highlight_buffer[chl_num]){
+    code_highlight_buffer[chl_num] = code_highlight_span;
   }
-  var nohightlight = FileBuf._toString(last_line);
-  CLEAR();
-  //debugger
-  //pre_line = "<span class = \"text\" id="+"y"+pos_y+">"+pre_line+"</span>";
-  for (let index = 0; index < pos_y; index++) {
-    const element = FileBuf.buffer[index];
-    text_cursor.innerHTML+=element+"<br>";
-    var _changespaicalchar = document.getElementById("y"+index);
-        //处理一下特殊字符
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/,/g, "");    
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/" "/g, "&nbsp;"); 
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/</g, "&lt;");    
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/>/g, "&gt;");   
+  else{
+    code_highlight_buffer.push(code_highlight_span);
   }
-  text_cursor.innerHTML += "<span class=\"text\" id="+"y"+pos_y+"hglg"+">"+hightlight+"</span>"+"<span class=\"text\" id="+"y"+pos_y+">"+mid_str+"</span>"+"<span class=\"text\" id="+"y"+pos_y+">"+nohightlight+"<span/>"+"<br>";
-  var code_hightlight = document.getElementById("y"+pos_y+"hglg");
-  code_hightlight.style.color = "red";
-  //var insert_span = document.getElementById("y"+pos_y); 
-  for (let index = pos_y; index < FileBuf.buffer.length; index++) {
-    const element = FileBuf.buffer[index];
-    text_cursor.innerHTML+=element+"<br>";
-    var _changespaicalchar = document.getElementById("y"+index);
-        //处理一下特殊字符
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/,/g, "");    
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/" "/g, "&nbsp;"); 
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/</g, "&lt;");    
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/>/g, "&gt;");   
-  }
+  div_codehighlight.innerHTML+=code_highlight_span;
+  location_code_highlight(fstart,y);
   return 0;
 }
-
+var code_highlight_y_buffer = [];
+//确定代码高亮位置
+function location_code_highlight(sstart,y){
+  debugger
+  var Get_code_highlight_span = document.getElementById(chl_num);
+  Get_code_highlight_span.style.left = pos_buf[sstart]+"px";
+  Get_code_highlight_span.style.top = y+"px";
+    //在设计上高亮颜色跟随编辑器主题
+  Get_code_highlight_span.style.color = "#FFD700";
+  return 0;
+}
+//进行代码高亮
+function to_Code_highlight(){
+  debugger
+  Clear_code_highlight();
+  var element_childs = text_cursor.childNodes;
+  for (let index = 0; index < element_childs.length; index++) {
+    var y_site = document.getElementById("y"+index);
+    Codehightlight("c",y_site.innerHTML,y_site.offsetTop);
+  }
+  //return 0;
+}
+//代码高亮清除
+function Clear_code_highlight(){
+  var highlight = document.getElementById("code_highlight");
+  highlight.innerHTML = "";
+  return 0;
+}

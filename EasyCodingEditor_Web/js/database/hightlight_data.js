@@ -5,5 +5,7 @@
  * 
  */
 var hight_light = [
-    "int","char","string","main","cout","cin","return","while","for","if","else","long","vector","deque","stack"
+    "int","char","string","main","cout","cin","return","while","for","if",
+    "else","long","vector","deque","stack","using","namespace","#include",
+    "cin","cout"
 ]

@@ -15,4 +15,13 @@
    width: auto;
    height: auto;
    white-space:pre;
+   z-index: 1;
+}
+.codehightlight{
+    position:absolute;
+    letter-spacing:1px;  
+    z-index: 2;
+    font-family: Consolas, Monaco, monospace;
+    width:auto;
+    height: auto;
 }
