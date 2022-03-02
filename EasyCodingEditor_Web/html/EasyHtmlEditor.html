@@ -12,7 +12,7 @@
   <iframe src="./Edit.html" id = "Editor" frameborder="no"></iframe>
   <div id = "body">
     <ul class="top_menu">
-      <li><a href="#home" id="top1"><font size="2">文件</font></a></li>
+      <li><a href="#home" id="top1"><font size="2">保存</font></a></li>
       <li><a href="#news" id="top2"><font size="2">编辑</font></a></li>
       <li><a href="#contact" id = "top3"><font size="2">选择</font></a></li>
       <li><a href="#about" id = "top4"><font size="2">关于</font></a></li>
@@ -55,22 +55,29 @@
     </li>
   </ul>
   <ul class="right_menu"></ul>
-  <script>
-      var a = document.getElementsByTagName("list4");        
-      var a2 = document.getElementsByTagName("list2");
-      var a3 = document.getElementsByTagName("list5");        
-        list4.onclick = function(){
-        //connect_main("end");
-      }
-        list2.onclick = function(){
-        window.location.href="./EasyHtmlEditor.html";
-        //connect_main("edit");
-      }
-      list5.onclick = function(){
-        window.location.href="./set.html";
-        //connect_main("set");
-      }
-    </script>
 </div>
 </body>
+<script type="text/javascript" src="../js/filesystem/output_file.js" language = javaScript charset="UTF-8"></script>   
+<script>
+  //import FileSaver from 'file-saver';
+  var a = document.getElementsByTagName("list4");        
+  var a2 = document.getElementsByTagName("list2");
+  var a3 = document.getElementsByTagName("list5");        
+    list4.onclick = function(){
+    //connect_main("end");
+  }
+    list2.onclick = function(){
+    window.location.href="./EasyHtmlEditor.html";
+    //connect_main("edit");
+  }
+  list5.onclick = function(){
+    window.location.href="./set.html";
+    //connect_main("set");
+  }
+  var save = document.getElementById("top1");
+  top1.onclick = function(){
+    var filepath = prompt("文件保存到：");
+    _Output_file(filepath);
+  }
+</script>
 </html>
