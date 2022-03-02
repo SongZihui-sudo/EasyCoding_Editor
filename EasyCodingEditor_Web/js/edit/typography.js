@@ -216,7 +216,7 @@ var code_highlight_buffer = [];
 var chl_num = 0;
 //分割span，进行代码高亮显示
 function span_cover(fstart,cur_str,y){
-  debugger
+  //debugger
   chl_num++;
   var code_highlight_span = "<span class=\"codehightlight\" id="+chl_num+">"+cur_str+"</span>";
   var div_codehighlight = document.getElementById("code_highlight");
@@ -233,7 +233,7 @@ function span_cover(fstart,cur_str,y){
 var code_highlight_y_buffer = [];
 //确定代码高亮位置
 function location_code_highlight(sstart,y){
-  debugger
+  //debugger
   var Get_code_highlight_span = document.getElementById(chl_num);
   Get_code_highlight_span.style.left = pos_buf[sstart]+"px";
   Get_code_highlight_span.style.top = y+"px";
@@ -243,7 +243,7 @@ function location_code_highlight(sstart,y){
 }
 //进行代码高亮
 function to_Code_highlight(){
-  debugger
+  //debugger
   Clear_code_highlight();
   var element_childs = text_cursor.childNodes;
   for (let index = 0; index < element_childs.length; index++) {

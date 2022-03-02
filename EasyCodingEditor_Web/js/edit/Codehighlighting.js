@@ -5,7 +5,7 @@
  */
 var str_bit = [];
 function Codehightlight(language,str,y){
-  debugger
+  //debugger
   var len = 0;
   var fstart = 0;
   if(language == "c"||"cpp"||"c++"||"cc"){
