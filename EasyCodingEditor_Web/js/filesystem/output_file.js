@@ -6,7 +6,7 @@
 //import { createRequire } from 'module';
 //const require = createRequire(import.meta.url); 
 //var FileSaver = require('file-saver');  
-document.write("<script language=javascript src="+"..\/..\/node_modules/file-saver/dist/FileSaver.min.js"+"></script>");
+document.write("<script language=javascript src="+"../node_modules/file-saver/dist/FileSaver.min.js"+"></script>");
 var file_data = "";
 function _Output_file(filename){
   //debugger

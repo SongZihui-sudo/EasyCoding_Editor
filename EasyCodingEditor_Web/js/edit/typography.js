@@ -247,8 +247,15 @@ function to_Code_highlight(){
   Clear_code_highlight();
   var element_childs = text_cursor.childNodes;
   for (let index = 0; index < element_childs.length; index++) {
-    var y_site = document.getElementById("y"+index);
-    Codehightlight("c",y_site.innerHTML,y_site.offsetTop);
+    if(element_childs[index].localName=="span"){
+      var y_site = document.getElementById(element_childs[index].id);
+      //debugger
+      language = Get_cookie("language");
+      Codehightlight(language,y_site.innerHTML,y_site.offsetTop);
+    }
+    else{
+      continue;
+    }
   }
   //return 0;
 }

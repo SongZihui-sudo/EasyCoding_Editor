@@ -134,7 +134,7 @@ function Enter(){
       }
     }
     pos_y++;  
-    text_cursor.innerHTML+="<span class = \"text\" id="+"y"+pos_y+">"+"</span>";
+    text_cursor.innerHTML+="<span class = \"text\" id="+"y"+pos_y+">"+""+"</span>";
     pos_x = 1;
     //SetPos(pos_x,pos_y);
     cursor.style.left = 0 + "px";

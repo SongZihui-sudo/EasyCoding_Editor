@@ -50,7 +50,8 @@
   <ul class="right_menu"></ul>
 </div>
 </body>
-<script type="text/javascript" src="../js/filesystem/output_file.js" language = javaScript charset="UTF-8"></script>   
+<script type="text/javascript" src="../js/filesystem/output_file.js" language = javaScript charset="UTF-8"></script>
+<!--<script  type ="module" src ="../node_modules/js-cookie/dist/js.cookie.js"> </script> -->
 <script>
   //import FileSaver from 'file-saver';
   var a = document.getElementsByTagName("list4");        
@@ -59,7 +60,9 @@
     list4.onclick = function(){
     //connect_main("end");
   }
+    var language = "";
     list2.onclick = function(){
+    language = prompt("选择语言：");
     window.location.href="./EasyHtmlEditor.html";
     //connect_main("edit");
   }
