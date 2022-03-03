@@ -5,7 +5,8 @@
 1.支持对C/C++关键词的高亮与补全。（把可高亮与可补全的关键词放入了数据库，可以自定义添加关键字）。  
 2.Html标签简化，可导出标准的Html，在服务器上可用此编辑器转换文章（用简化的标签写的）为Html，建立小型博客网站。在该编辑器中已经集成了[EASH-HTML-MAKER](https://github.com/SongZihui-sudo/Easy-HTML-MAKER)   
 ## 进展
-### Web版
+### Web版   
+[在线使用](http://s-zh.space/Blog/editor/html/index.html)    
 在Web版中已经通过模拟光标，实现了基本的编辑操作。      
 采用了pieces table的数据结构，底层使用链表实现。   
 实现了C/C++简单的代码高亮   
