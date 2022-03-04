@@ -9,4 +9,5 @@ body{
     top: 100px;
     left: 90px;
     margin: auto;
+    counter-reset: rgb(255, 255, 255);
 }

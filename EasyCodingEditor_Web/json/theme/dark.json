@@ -1,5 +1,9 @@
 {
-    "background-culor": "#000000",
-    "side-menu-color": "#808080",
-    "font-color:":"#FFFFFF"
+    "bit":"1",
+    "backgroundculor": "#000000",
+    "sidemenucolor": "#808080",
+    "fontcolor":"#FFFFFF",
+    "hightcorlor":"#FF9900",
+    "hovercolor":"#00FA9A",
+    "cursorcolor":"#FFD700"
 }

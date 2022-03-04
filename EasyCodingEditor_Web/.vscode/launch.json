@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Launch Chrome against localhost",
             "url": "file://C:/Users/songz/Desktop/EasyCoding_Editor/EasyCodingEditor_Web/html/index.html",
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}",
         }
     ]
 }

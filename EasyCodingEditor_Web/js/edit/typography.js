@@ -232,13 +232,14 @@ function span_cover(fstart,cur_str,y){
 }
 var code_highlight_y_buffer = [];
 //确定代码高亮位置
+var font_color;
 function location_code_highlight(sstart,y){
   //debugger
   var Get_code_highlight_span = document.getElementById(chl_num);
   Get_code_highlight_span.style.left = pos_buf[sstart]+"px";
   Get_code_highlight_span.style.top = y+"px";
     //在设计上高亮颜色跟随编辑器主题
-  Get_code_highlight_span.style.color = "#FFD700";
+  Get_code_highlight_span.style.color = font_color;
   return 0;
 }
 //进行代码高亮

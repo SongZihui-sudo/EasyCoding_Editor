@@ -47,9 +47,10 @@
 .dark a {
   color: white;
 }
+/*
 .dark a:hover {
   background-color: #2d64b6;
-}
+}*/
 
 #list5{
   position: absolute;
@@ -82,11 +83,11 @@
   text-decoration: none;
 }
 
-/*鼠标移动到选项上修改背景颜色 */
+/*鼠标移动到选项上修改背景颜色 
 .top_menu li a:hover {
   background-color: rgb(82, 128, 226);
   height: 30px;
-}
+}*/
 
 #top7{
   position: fixed;
@@ -105,11 +106,11 @@
   top: 0px;
   right: 90px;
 }
-
+/*
 #top7:hover{
   background-color: red;
 }
-
+*/
 .bottom_menu {
   list-style-type: none;
   margin: 0;
