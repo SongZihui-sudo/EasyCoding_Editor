@@ -34,29 +34,7 @@ Windows
 ## 安装 
 
 该程序主要应用于Linux平台，也有Windows版本。
-
-### 文件目录
-EasyCodingEditor 
-	             ---- .vscode 里面是Vscode中调试与编译配置文件  
-	             ---- Linux   
-                            ---bin 可执行文件  
-                            ---build makefile文件  
-                            ---data 数据库  
-                            ---include 头文件  
-                            ---src 源文件  
-                            ---test 几个测试文件  
-                            ---Website   
-                                ---生成html的目录  
-                                ---conf 拓展列表  
-                                ---expand 拓展的具体内容  
-                                ---theme css主题  
-	             ----- Windows   
-                            ---build makefile文件  
-                            ---Code_completion 代码补全的关键字  
-                            ---Code_highlighting 代码高亮的关键字  
-                            ---include 头文件  
-                            ---src 源文件  
-                            ---test 测试文件  
+  
 ### Linux  
 
 解开压缩包
@@ -115,10 +93,33 @@ h \n 文件名 转换导出html
 图像标签：img 图片的链接  
 链接标签：url 网址 名称  
 代码块标签：  
-三个` 表示开始  
+三个\` 表示开始  
 三个* 表示结束  
 中间的内容表示代码  
 引用标签 > 
 分割线标签 --- 再单独一行  
 强调（加粗） __ 两个_  
 [会导致崩溃，有问题] 拓展标签 :: 拓展名  
+
+## 关于Web版的主题配置  
+json:
+```
+{
+    "bit":"1",
+    "backgroundculor": "#000000",
+    "sidemenucolor": "#808080",
+    "fontcolor":"#FFFFFF",
+    "hightcorlor":"#FF9900",
+    "hovercolor":"#00FA9A",
+    "cursorcolor":"#FFD700"
+}
+```
+```
+bit 保存标志位     
+backgroundculor 背景颜色   
+sidemenucolor 边栏和顶部菜单，边框颜色   
+fontcolor 字体颜色   
+highcorlor 高亮颜色      
+hovercolor 鼠标悬浮颜色      
+cursorcolor 光标颜色   
+```
