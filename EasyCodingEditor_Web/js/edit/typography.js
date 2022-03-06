@@ -72,75 +72,26 @@ var pre_line = null;
 var cur_line = null;
 function insert_new_span(){
   CLEAR();
-  //debugger
-  //pre_line = "<span class = \"text\" id="+"y"+pos_y+">"+pre_line+"</span>";
-  for (let index = 0; index < pos_y; index++) {
-    const element = FileBuf.buffer[index];
-    text_cursor.innerHTML+=element+"<br>";
-    var _changespaicalchar = document.getElementById("y"+index);
-        //处理一下特殊字符
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/,/g, "");    
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/" "/g, "&nbsp;"); 
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/</g, "&lt;");    
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/>/g, "&gt;");   
+  if(cur_line==null){
+    cur_line = "";
   }
-  if(cur_line!=null&&pre_line!=null){
-    cur_line = "<span class = \"text\" id="+"y"+pos_y+">"+cur_line+"</span>";
-    text_cursor.innerHTML += cur_line +"<br>";
-    //var insert_span = document.getElementById("y"+pos_y); 
-    pos_y++;
-    text_cursor.innerHTML+="<span class = \"text\" id="+"y"+pos_y+">"+"</span>"+"<br>";
-    var change_lastspan = document.getElementById("y"+pos_y);
-    change_lastspan.innerHTML = pre_line;
+  if(pre_line==null){
+    pre_line = "";
   }
-  else{
-    cur_line = "<span class = \"text\" id="+"y"+pos_y+">"+"</span>";
-    pos_y++;
-    pre_line = "<span class = \"text\" id="+"y"+pos_y+">"+"</span>";
-    text_cursor.innerHTML+=cur_line+"<br>"+pre_line+"<br>";
-  }  
-  for (let index = pos_y; index < FileBuf.buffer.length; index++) {
-    const element = FileBuf.buffer[index];
-    text_cursor.innerHTML.id = "y"+index;
-    text_cursor.innerHTML+=element+"<br>";
-    var _changespaicalchar = document.getElementById("y"+index);
-        //处理一下特殊字符
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/,/g, "");    
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/" "/g, "&nbsp;"); 
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/</g, "&lt;");    
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/>/g, "&gt;");   
-  }
+  update_screen(pre_line,cur_line,1);
+  refresh();
+  pos_y++;
   return 0;
 }
 var cur_str = "";
 function delete_aspan(){
   //debugger
   CLEAR();
-  for (let index = 0; index < pos_y-1; index++) {
-    const element = FileBuf.buffer[index];
-    text_cursor.innerHTML+=element+"<br>";
-    var _changespaicalchar = document.getElementById("y"+index);
-          //处理一下特殊字符
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/,/g, "");    
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/" "/g, "&nbsp;"); 
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/</g, "&lt;");    
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/>/g, "&gt;");   
+  if(cur_str==null){
+    cur_str = "";
   }
-  if(cur_str!=null){
-    cur_str = "<span class = \"text\" id="+"y"+(pos_y-1)+">"+cur_str+"</span>";
-    text_cursor.innerHTML+=cur_str+"<br>";
-  }
-  for (let index = pos_y+1; index < FileBuf.buffer.length; index++) {
-    const element = FileBuf.buffer[index];
-    text_cursor.innerHTML.id = "y"+index -1;
-    text_cursor.innerHTML+=element+"<br>";
-    var _changespaicalchar = document.getElementById("y"+index);
-          //处理一下特殊字符
-     _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/,/g, "");    
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/" "/g, "&nbsp;"); 
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/</g, "&lt;");    
-    _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/>/g, "&gt;");   
-  }
+  update_screen("",cur_str,2);
+  refresh();
   return 0;
 }
 //去除0以前的元素
@@ -160,7 +111,7 @@ function shift_before_zero(array){
   return array;
 }
 //显示
-function update_buffer(str){
+function show_str(str){
   var ischange = str;
   FileBuf.clearPrintBuf();
   var get_text = document.getElementById("y"+pos_y);
@@ -193,14 +144,15 @@ function update_buffer(str){
 function refresh(){
   //debugger
   var childs = text_cursor.childNodes;
+  FileBuf.buffer.length = 0;
   var j = 0;
   for (let index = 0; index < childs.length; index++) {
     var element = "<span class = \"text\" id="+"y"+j+">"+childs[index].innerHTML+"</span>"
     if(childs[index].localName == "br"){
       continue;
     }
-    else if(FileBuf.buffer[j]!=element){
-      FileBuf.buffer[j] = element;
+    else if(childs[index].localName == "span"){
+      FileBuf.buffer.push(element);
       j++;
     }
     else if(FileBuf.buffer[j]==element){
@@ -251,18 +203,94 @@ function to_Code_highlight(){
     if(element_childs[index].localName=="span"){
       var y_site = document.getElementById(element_childs[index].id);
       //debugger
-      language = Get_cookie("language");
+      language = Get_storge ("language");
       Codehightlight(language,y_site.innerHTML,y_site.offsetTop);
     }
     else{
       continue;
     }
   }
-  //return 0;
 }
 //代码高亮清除
 function Clear_code_highlight(){
   var highlight = document.getElementById("code_highlight");
   highlight.innerHTML = "";
+  return 0;
+}
+//刷新屏幕
+function update_screen(pre,cur,bit){
+  FileBuf.buffer = unique(FileBuf.buffer);
+  //debugger
+  if(bit==1){
+   end = pos_y;
+  }
+  else{
+    end = pos_y+1;
+  }
+  for (let index = 0; index < end; index++){
+    const element = FileBuf.buffer[index];
+    if(element!=""){
+      text_cursor.innerHTML+=element+"<br>";
+      var _changespaicalchar = document.getElementById("y"+index);
+      //处理一下特殊字符
+      _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/,/g, "");    
+      _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/" "/g, "&nbsp;"); 
+      _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/</g, "&lt;");    
+      _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/>/g, "&gt;");   
+    }
+  }
+  if(bit==1){
+    text_cursor.innerHTML+="<span class = 'text' id = "+"y"+pos_y+">"+cur+"</span>"+"<br>";
+    const next = pos_y+1;
+    text_cursor.innerHTML+="<span class = 'text' id = "+"y"+next+">"+pre+"</span>"+"<br>";
+  }
+  else if(bit==2){
+    text_cursor.innerHTML+="<span class = 'text' id = "+"y"+pos_y+">"+cur+"</span>"+"<br>";
+  }
+  else if(!bit){
+    const next = pos_y+1;
+    text_cursor.innerHTML+="<span class = 'text' id = "+"y"+next+">"+cur+"</span>"+"<br>";
+  }
+  var index = pos_y+1;
+  debugger
+  while(index!=FileBuf.buffer.length&&FileBuf.buffer.length){
+    const element = FileBuf.buffer[index];
+    var add_id = 0;
+    if(element!=""){
+      text_cursor.innerHTML+=element+"<br>";
+      if(bit==1||!bit){
+        var _changespaicalchar = document.getElementById("y"+index);
+        add_id = index+1;
+        text_cursor.innerHTML.id = "y"+add_id;
+      }
+      else if(bit==2){
+        add_id = index-1;
+        var _changespaicalchar = document.getElementById("y"+index);
+        text_cursor.innerHTML.id = "y"+add_id;
+      }
+      //处理一下特殊字符
+      _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/,/g, "");    
+      _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/" "/g, "&nbsp;"); 
+      _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/</g, "&lt;");    
+      _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/>/g, "&gt;");   
+    }
+    index++;
+  }
+  return 0;
+}
+//按顺序排列每行span的id
+function sort_id(){
+  //debugger
+  var j = 0;
+  var childs = text_cursor.childNodes;
+  for (let index = 0; index < childs.length; index++) {
+    if (childs[index].localName == "span") {
+      childs[index].id ="y"+j;
+      j++;
+    }
+    else{
+      continue;
+    }
+  }
   return 0;
 }

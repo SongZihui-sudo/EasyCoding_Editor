@@ -70,7 +70,7 @@ function theme_chose(_json_data){
     }
     else if(body_childs[index].id == "menu_start"){
       body_childs[index].style.backgroundColor = _json_data.backgroundculor;
-      debugger
+      //debugger
       body_childs[index].style.color = _json_data.fontcolor;
     }
     else if(body_childs[index].id == "cursur"){
@@ -143,7 +143,7 @@ function assignment(_theme_data,data){
 }
 //保存主题信息
 function save_theme(change_data){
-  debugger
+  //debugger
   window.sessionStorage.setItem("bit",change_data.bit);
   window.sessionStorage.setItem("backgroundculor", change_data.backgroundculor);
   window.sessionStorage.setItem("cursorcolor", change_data.cursorcolor);

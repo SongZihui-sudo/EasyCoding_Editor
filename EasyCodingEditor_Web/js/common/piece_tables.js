@@ -184,6 +184,7 @@ class piece_table_link{//表结构
 }
 //遍历输出
   Text_Show(){
+    //debugger
     var root = null;
     //debugger
     root = this.#linkbuffer[pos_y];  
@@ -199,7 +200,9 @@ class piece_table_link{//表结构
     //debugger
     //refresh();
     //判断是否需要刷新屏幕缓冲区
-    update_buffer(this.#Print_str);
+    show_str(this.#Print_str);
+    sort_id();
+    refresh();
   //移动x光标
     if(this.#move_bit){
       //debugger
@@ -219,6 +222,7 @@ class piece_table_link{//表结构
       bit_enter = 0;
     }
     this.clearPrintBuf(); //清空打印缓冲区
+    refresh();
     return 0;
   }
   #_link_index
@@ -264,18 +268,20 @@ class piece_table_link{//表结构
   }
   //换行 断开这一行的表
   Sqilt(){
+    //debugger
     if(!pos_x){
       pos_x++;
     }
     if(pos_x>=this.head.len&&pos_x!=1){
-      if(pos_y){
-        this.#linkbuffer.push(this.head);
-      }
       this.clear(this.head);
+      this.isnull(this.head);
+      this.#linkbuffer = this.update_linkbuffer(this.#linkbuffer,pos_y,this.head);
+      //this.#linkbuffer.slice(pos_y,0,this.head);
     }
     else{
       //从中间切开链表
       //debugger
+      var length_link = this.head.len;
       link_len = this.length();
       var a_head = new pieces_node();
       a_head.source = "head";
@@ -288,30 +294,24 @@ class piece_table_link{//表结构
       this.#linkbuffer[pos_y] = this.head;
       var buf_var = this.head;
       this.head = a_head;
-      this.head.len = pos_x;
+      this.head.len =length_link - pos_x;
+      if(!this.head.len){
+        this.head.len = 1;
+      }
       //debugger
       while(buf_var!=null){
         cur_line = this._toString(buf_var);
         buf_var = buf_var.right;
       }
       this.clearPrintBuf(); //清空打印缓冲区
-      if (pos_x!=1) {
-        pre_line = this._toString(cur);
-      }
-      else{
         while (cur!=null) {
           pre_line = this._toString(cur);
           cur = cur.right;
         }
-      }
       this.clearPrintBuf(); //清空打印缓冲区    
       //debugger
       //this.head = this.#linkbuffer[pos_y+1];
-    }
-    if(this.head.right==null&&!this.head.len){
-      this.head.len = 1;
-      this.head.right = new pieces_node();
-      this.head.right.len = 1;
+      this.isnull(this.head);
     }
     return 0;
   }
@@ -324,6 +324,20 @@ class piece_table_link{//表结构
     new_head.source = "head";
     this.head = new_head;
     return 0;
+  }
+  //创建空节点
+  isnull(link){
+    if(link.right==null&&link.len==1){
+      link.len = 1;
+      link.right = new pieces_node();
+      link.right.len = 1;
+    }
+    return 0;
+  }
+  //更新piecestable表缓冲区
+  update_linkbuffer(link,local,data){
+    link.splice(local+1,0,data)
+    return link;
   }
   //合并同一行上的链表
   Link_mrege(){
@@ -347,7 +361,6 @@ class piece_table_link{//表结构
     this.clearPrintBuf();
     delete_aspan();
     //debugger
-    var new_pos_buf = [];
     var last = line_pos_buf[line_pos_buf.length-1][line_pos_buf[line_pos_buf.length-1].length-1];
     for (let index = 0; index < line_pos_buf[pos_y].length+1; index++) {
       line_pos_buf[pos_y-1].push(Number(last+line_pos_buf[pos_y].shift()));
@@ -390,5 +403,10 @@ class piece_table_link{//表结构
       this.#Print_str = this.#Print_str.replace(/>/g, "&gt;");     
     }
     return this.#Print_str;
+  }
+  //由字符串转换piecetable表
+  _topiece_table(str){
+    var link = new pieces_node();
+    return link;
   }
 }

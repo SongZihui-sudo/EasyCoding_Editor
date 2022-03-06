@@ -52,7 +52,6 @@
     <li><a></a></li>
   </ul>
 </body>
-<script  type ="module" src ="../node_modules/js-cookie/dist/js.cookie.js"> </script> 
 <script type="text/javascript" src="../js/edit/theme_chose.js"></script>
 <script>
   refresh_theme();
@@ -61,12 +60,7 @@
   var a3 = document.getElementsByTagName("list5");        
   list2.onclick = function (){
     language = prompt("选择语言：");    
-    //创建简单的cookie
-    Cookies.set('language', language);
-    //创建有效期为7天的cookie
-    Cookies.set('language', language, { expires: 7 });
-    //为当前页创建有效期7天的cookie
-    Cookies.set('language', language, { expires: 7, path: '' });
+    window.sessionStorage.setItem("language",language);
     window.location.href="./EasyHtmlEditor.html";
   }
   list5.onclick = function(){

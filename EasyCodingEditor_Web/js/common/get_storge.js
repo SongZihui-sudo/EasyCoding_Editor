@@ -5,8 +5,7 @@
 */
 //debugger
 //import Cookies from '../../node_modules/js-cookie/dist/js.cookie';
-document.write("<script type ='text/javascript' src ='../../node_modules/js-cookie/dist/js.cookie.js'></script> ");
-function Get_cookie(name){
-  var res = Cookies.get(name);
+function Get_storge(name){
+  var res = window.sessionStorage.getItem(name);
   return res;
 }

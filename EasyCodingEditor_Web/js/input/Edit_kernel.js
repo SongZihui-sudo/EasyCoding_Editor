@@ -51,26 +51,32 @@ function left(){
   console.log("x"+pos_x);
   return 0;
 }
-function up() {  
+function up() {
+  //debugger
   cursor.style.top = cursor.offsetTop-h_bit+"px";
-  pos_y = parseInt((cursor.offsetTop)/h_bit);
   if (pos_y<=0) {
     pos_y=0;
     SetPos(pos_x,0);
   }  
-  line_pos_buf.splice(pos_y-1,0,pos_buf);  
-  pos_buf = line_pos_buf[pos_y+1];
+  line_pos_buf[pos_y] = pos_buf;
+  //line_pos_buf.splice(pos_y,0,pos_buf);  
+  pos_buf = line_pos_buf[pos_y-1];
   pos_x = pos_buf.length;
+  cursor.style.left = pos_buf[pos_x-1]+'px';
+  pos_y = parseInt((cursor.offsetTop)/h_bit);
+  //pos_y--;
   FileBuf.change_head();
-  console.log("x"+pos_x);
   return 0;
 }
 function down(){
   cursor.style.top = cursor.offsetTop+h_bit+"px";
-  pos_y = parseInt((cursor.offsetTop)/h_bit);  
-  line_pos_buf.splice(pos_y,0,pos_buf);  
+  //line_pos_buf.splice(pos_y,0,pos_buf);  
+  line_pos_buf[pos_y] = pos_buf;
   pos_buf = line_pos_buf[pos_y+1];
   pos_x = pos_buf.length;
+  cursor.style.left = pos_buf[pos_x-1]+'px';
+  pos_y = parseInt((cursor.offsetTop)/h_bit);  
+  //pos_y++;
   FileBuf.change_head();
   return 0;
 }
@@ -105,15 +111,18 @@ function Enter(){
       index--;
     }
     //debugger
-    line_pos_buf.splice(pos_y,0,new_linebuf);
+    line_pos_buf.splice(pos_y+1,0,new_linebuf);
     pos_buf = line_pos_buf[pos_y];
     //解决换行的偏移
     for (let index = 0; index < pos_buf.length; index++) {
       pos_buf[index] = pos_buf[index] - line_pos_buf[pos_y-1][line_pos_buf[pos_y-1].length-1];
     }
     pos_buf.unshift(0);
+    pos_buf = unique(pos_buf);
     cursor.style.left = pos_buf[pos_buf.length-1]+"px";
     pos_x = pos_buf.length;
+    var get_text = document.getElementById("y"+pos_y);
+    h_bit = get_text.offsetHeight;
     SetPos(pos_x-1,pos_y);
   }
   else{
@@ -121,29 +130,23 @@ function Enter(){
     CLEAR();
     span_buffer="";
     FileBuf.Sqilt();
-    for (let index = 0; index < FileBuf.buffer.length; index++){
-      const element = FileBuf.buffer[index];
-      if(element!=""){
-        text_cursor.innerHTML+=element+"<br>";
-        var _changespaicalchar = document.getElementById("y"+index);
-        //处理一下特殊字符
-        _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/,/g, "");    
-        _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/" "/g, "&nbsp;"); 
-        _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/</g, "&lt;");    
-        _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/>/g, "&gt;");   
-      }
-    }
+    update_screen("","",0);
     pos_y++;  
-    text_cursor.innerHTML+="<span class = \"text\" id="+"y"+pos_y+">"+""+"</span>";
     pos_x = 1;
-    //SetPos(pos_x,pos_y);
     cursor.style.left = 0 + "px";
+    var get_text = document.getElementById("y"+pos_y);
+    h_bit = get_text.offsetHeight;
     cursor.style.top = pos_y*h_bit+"px";
-    line_pos_buf[pos_y] = pos_buf;
+    pos_buf = unique(pos_buf);
+    debugger
+    line_pos_buf[pos_y-1] = pos_buf;
+    //debugger
+    line_pos_buf.splice(pos_y,0,[0]);
     pos_buf = [];
     pos_buf.push(0);
   }
   bit_enter++;
+  sort_id();
   refresh(); 
   return 0;
 }

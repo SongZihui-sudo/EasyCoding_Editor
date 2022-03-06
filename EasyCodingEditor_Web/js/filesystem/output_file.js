@@ -2,10 +2,7 @@
  *  日期：2022-3-2
  *  作者：宋子慧
  *  简介：主要涉及文件的保存
- */
-//import { createRequire } from 'module';
-//const require = createRequire(import.meta.url); 
-//var FileSaver = require('file-saver');  
+ */ 
 document.write("<script language=javascript src="+"../node_modules/file-saver/dist/FileSaver.min.js"+"></script>");
 var file_data = "";
 function _Output_file(filename){
