@@ -141,7 +141,6 @@ class piece_table_link{//表结构
    if(pos_x==1){
      this.Link_mrege();     
      refresh();
-     pos_y--;
      return 1;
    }
    if(this.head.len == 1){
@@ -341,10 +340,9 @@ class piece_table_link{//表结构
   }
   //合并同一行上的链表
   Link_mrege(){
-    //debugger
     this.head = this.#linkbuffer[pos_y-1];
-    this.head.len =this.head.len+this.#linkbuffer[pos_y].len-2;
     let _end = this.end();
+    //debugger
     if(_end!=null){
       _end.right = this.#linkbuffer[pos_y];
     }
@@ -353,25 +351,32 @@ class piece_table_link{//表结构
       _end = this.#linkbuffer[pos_y];
     }
     this.#linkbuffer.splice(pos_y,1);
-    var p_end = _end;
+    this.buffer.splice(pos_y,1);
+    var p_end = this.head;
     while (p_end!=null) {
       cur_str = this._toString(p_end);
       p_end = p_end.right;
     }
     this.clearPrintBuf();
-    delete_aspan();
     //debugger
-    var last = line_pos_buf[line_pos_buf.length-1][line_pos_buf[line_pos_buf.length-1].length-1];
-    for (let index = 0; index < line_pos_buf[pos_y].length+1; index++) {
-      line_pos_buf[pos_y-1].push(Number(last+line_pos_buf[pos_y].shift()));
+    pos_y--;
+    delete_aspan();
+    sort_id();
+    refresh();
+    debugger
+    line_pos_buf.splice(pos_y+1,0,pos_buf);
+    var last = line_pos_buf[pos_y][line_pos_buf[pos_y].length-1];
+    while(line_pos_buf[pos_y+1].length>0){
+      line_pos_buf[pos_y].push(Number(last+line_pos_buf[pos_y+1].shift()));
     }
-    line_pos_buf.splice(pos_y,1);
-    line_pos_buf[pos_y-1].unshift(0);    
-    line_pos_buf[pos_y-1] = unique(line_pos_buf[pos_y-1]);
-    pos_buf = line_pos_buf[pos_y-1];
+    line_pos_buf.splice(pos_y+1,1);
+    line_pos_buf[pos_y].unshift(0);    
+    line_pos_buf[pos_y] = unique(line_pos_buf[pos_y]);
+    pos_buf = line_pos_buf[pos_y];
+    cursor.style.top = (pos_y)*h_bit+"px";
     pos_x = pos_buf.length;
-    cursor.style.top = (pos_y-1)*h_bit+"px";
-    cursor.style.left = pos_x*w_bit+"px";
+    cursor.style.left = pos_buf[pos_x-1]+"px";
+    this.head.len =pos_x-1;
     return 0;
   }
   change_head(){

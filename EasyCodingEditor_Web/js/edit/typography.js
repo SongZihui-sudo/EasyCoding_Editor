@@ -221,7 +221,7 @@ function Clear_code_highlight(){
 function update_screen(pre,cur,bit){
   FileBuf.buffer = unique(FileBuf.buffer);
   //debugger
-  if(bit==1){
+  if(bit==1||bit==2){
    end = pos_y;
   }
   else{
@@ -245,14 +245,16 @@ function update_screen(pre,cur,bit){
     text_cursor.innerHTML+="<span class = 'text' id = "+"y"+next+">"+pre+"</span>"+"<br>";
   }
   else if(bit==2){
+    //debugger
     text_cursor.innerHTML+="<span class = 'text' id = "+"y"+pos_y+">"+cur+"</span>"+"<br>";
+    refresh();
   }
   else if(!bit){
     const next = pos_y+1;
     text_cursor.innerHTML+="<span class = 'text' id = "+"y"+next+">"+cur+"</span>"+"<br>";
   }
   var index = pos_y+1;
-  debugger
+  //debugger
   while(index!=FileBuf.buffer.length&&FileBuf.buffer.length){
     const element = FileBuf.buffer[index];
     var add_id = 0;
@@ -268,11 +270,14 @@ function update_screen(pre,cur,bit){
         var _changespaicalchar = document.getElementById("y"+index);
         text_cursor.innerHTML.id = "y"+add_id;
       }
+      debugger
       //处理一下特殊字符
-      _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/,/g, "");    
-      _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/" "/g, "&nbsp;"); 
-      _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/</g, "&lt;");    
-      _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/>/g, "&gt;");   
+      if(_changespaicalchar.innerHTML!=null&&_changespaicalchar.innerHTML!=undefined){
+        _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/,/g, "");    
+        _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/" "/g, "&nbsp;"); 
+        _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/</g, "&lt;");    
+        _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/>/g, "&gt;");   
+      }
     }
     index++;
   }

@@ -138,7 +138,7 @@ function Enter(){
     h_bit = get_text.offsetHeight;
     cursor.style.top = pos_y*h_bit+"px";
     pos_buf = unique(pos_buf);
-    debugger
+    //debugger
     line_pos_buf[pos_y-1] = pos_buf;
     //debugger
     line_pos_buf.splice(pos_y,0,[0]);
