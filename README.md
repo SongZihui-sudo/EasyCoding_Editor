@@ -10,7 +10,7 @@
 在Web版中已经通过模拟光标，实现了基本的编辑操作。      
 采用了pieces table的数据结构，底层使用链表实现。   
 实现了C/C++简单的代码高亮   
-![img](https://github.com/SongZihui-sudo/EasyCoding_Editor/blob/Windows/%E6%88%AA%E5%9B%BE/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-01%20234820.jpg)
+![img](https://cdn.jsdelivr.net/gh/SongZihui-sudo/EasyCoding_Editor@Windows/%E6%88%AA%E5%9B%BE/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-08%20230436.jpg)
 ## 截图
 
 C/C++   
