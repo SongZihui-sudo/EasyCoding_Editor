@@ -344,7 +344,7 @@ class piece_table_link{//表结构
     let _end = this.end();
     //debugger
     if(_end!=null){
-      _end.right = this.#linkbuffer[pos_y];
+      _end.right = this.#linkbuffer[pos_y];  
     }
     else{
       _end = new pieces_node();

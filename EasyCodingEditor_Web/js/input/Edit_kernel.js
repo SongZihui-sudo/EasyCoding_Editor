@@ -148,12 +148,16 @@ function Enter(){
   bit_enter++;
   sort_id();
   refresh(); 
+  save_linenum(pos_y);
+  show_linenum(get_SessionSeorge('linenum'));
   return 0;
 }
 //退格键
 function BackSpace(){
   //debugger
   FileBuf.pop_delete();
+  save_linenum(pos_y);
+  show_linenum(get_SessionSeorge('linenum'));
   return 0;
 }
 //Tab键

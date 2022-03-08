@@ -20,6 +20,7 @@
     <input id = "input_area" type = "text" onkeypress="uniCharCode(event)" onkeydown="uniKeyCode(event)" autocomplete="off" style="outline:none;border:0;"></div>
   </div>
 </body>
+  <script type="text/javascript" src="../js/edit/line_num.js"></script>
   <script type="text/javascript" src="../js/edit/theme_chose.js"></script>
   <script type="text/javascript" src="../js/common/get_storge.js" language = javaScript charset="UTF-8"></script>   
   <script type="text/javascript" src="../js/data/hightlight_data.js" language = javaScript charset="UTF-8"></script>
@@ -29,6 +30,7 @@
   <script type="text/javascript" src="../js/common/piece_tables.js" language = javaScript charset="UTF-8"></script>   
   <script> 
     refresh_theme();     
+    show_linenum(get_SessionSeorge('linenum'));
     //hljs.initHighlighting();
     var FileBuf = new piece_table_link();
     text=document.getElementById("input_area");
