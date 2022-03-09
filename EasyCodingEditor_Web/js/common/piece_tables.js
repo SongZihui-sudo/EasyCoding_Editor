@@ -146,7 +146,10 @@ class piece_table_link{//表结构
       refresh();
       if (!this.head.len){
         this.clear();
+        this
       }
+      save_linenum(pos_y);
+      show_linenum(get_SessionSeorge('linenum'));
       return 1;     
     }
     else{

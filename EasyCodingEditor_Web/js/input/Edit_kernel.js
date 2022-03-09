@@ -156,8 +156,6 @@ function Enter(){
 function BackSpace(){
   //debugger
   FileBuf.pop_delete();
-  save_linenum(pos_y);
-  show_linenum(get_SessionSeorge('linenum'));
   return 0;
 }
 //Tab键
