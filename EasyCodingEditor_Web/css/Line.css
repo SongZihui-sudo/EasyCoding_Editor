@@ -6,6 +6,8 @@
     width: auto;
     height:auto;
     background-color: rgb(0, 0, 0);
+    letter-spacing:1px;  
+    font-family: Consolas, Monaco, monospace;
 }
 .Line{
     color: rgb(255, 230, 0);

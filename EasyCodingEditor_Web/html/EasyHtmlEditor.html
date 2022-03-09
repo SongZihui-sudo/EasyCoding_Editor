@@ -58,17 +58,19 @@
 <!--<script  type ="module" src ="../node_modules/js-cookie/dist/js.cookie.js"> </script> -->
 <script>
   refresh_theme();
+  var clear_linenum = document.getElementById("line_num");
+  clear_linenum.innerHTML =""; 
   //import FileSaver from 'file-saver';
   var a = document.getElementsByTagName("list4");        
   var a2 = document.getElementsByTagName("list2");
   var a3 = document.getElementsByTagName("list5");        
-    list4.onclick = function(){
+  list4.onclick = function(){
     //connect_main("end");
   }
-    var language = "";
-    list2.onclick = function(){
-    language = prompt("选择语言：");
-    window.location.href="./EasyHtmlEditor.html";
+  var language = "";
+  list2.onclick = function(){
+  language = prompt("选择语言：");
+  window.location.href="./EasyHtmlEditor.html";
     //connect_main("edit");
   }
   list5.onclick = function(){

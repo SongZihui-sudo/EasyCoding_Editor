@@ -270,7 +270,7 @@ function update_screen(pre,cur,bit){
         var _changespaicalchar = document.getElementById("y"+index);
         text_cursor.innerHTML.id = "y"+add_id;
       }
-      debugger
+      //debugger
       //处理一下特殊字符
       if(_changespaicalchar.innerHTML!=null&&_changespaicalchar.innerHTML!=undefined){
         _changespaicalchar.innerHTML = _changespaicalchar.innerHTML.replace(/,/g, "");    

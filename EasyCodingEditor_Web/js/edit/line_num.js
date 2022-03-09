@@ -19,7 +19,7 @@ function get_SessionSeorge(name) {
 }
 //显示当前行标
 function show_linenum(number){ 
-  debugger
+  //debugger
   var linenum = window.parent.document.getElementById('line_num');
   linenum.innerHTML = "";
   for(var i=0; i<number; i++){

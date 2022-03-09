@@ -138,13 +138,26 @@ class piece_table_link{//表结构
   }
 //pop_back
  pop_delete(){
-   if(pos_x==1){
-     this.Link_mrege();     
-     refresh();
-     return 1;
-   }
+  debugger
+  if(pos_x==1){
+    if(pos_y!=0){
+      this.Link_mrege();
+      sort_id();
+      refresh();
+      if (!this.head.len){
+        this.clear();
+      }
+      return 1;     
+    }
+    else{
+      if (!this.head.len){
+        this.clear();
+      }
+      return 0;
+    }
+   }  
    if(this.head.len == 1){
-     return 1;
+      return 1;
    }
   //debugger
   //中间删除
@@ -172,7 +185,9 @@ class piece_table_link{//表结构
   }
   pos_x--;
   this.head.len--;
+  debugger
   if(this.head.len==1){
+    debugger
     var _getlinespan = document.getElementById("y"+pos_y);
     _getlinespan.innerHTML = "";
     SetPos(0,pos_y);
@@ -363,7 +378,7 @@ class piece_table_link{//表结构
     delete_aspan();
     sort_id();
     refresh();
-    debugger
+    //debugger
     line_pos_buf.splice(pos_y+1,0,pos_buf);
     var last = line_pos_buf[pos_y][line_pos_buf[pos_y].length-1];
     while(line_pos_buf[pos_y+1].length>0){
