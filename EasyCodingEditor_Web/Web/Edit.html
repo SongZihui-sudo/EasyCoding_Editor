@@ -30,7 +30,8 @@
   <script type="text/javascript" src="./js/common/piece_tables.js" language = javaScript charset="UTF-8"></script>   
   <script type="text/javascript" src="./js/common/websocket.js" language = javaScript charset="UTF-8"></script>   
   <script> 
-    refresh_theme();     
+    refresh_theme(); 
+    Websocket_init();    
     show_linenum(get_SessionSeorge('linenum'));
     //hljs.initHighlighting();
     var FileBuf = new piece_table_link();
@@ -50,7 +51,8 @@
       var get_lint = document.getElementById("y"+pos_y);
       if(char!='\n'&&char!='\r')
         to_Code_highlight();
-      Websocket(get_lint.innerHTML);
+      send(get_lint.innerHTML);
+      accept();
     }
     function uniKeyCode(event) {
       var key = event.keyCode;
