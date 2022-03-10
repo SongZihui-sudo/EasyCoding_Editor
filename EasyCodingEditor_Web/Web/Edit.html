@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type="text/css" href="../css/Editor.css"> 
-    <link rel = "stylesheet" type="text/css" href="../css/cursor.css"> 
-    <link rel = "stylesheet" type="text/css" href="../css/text_cursor.css"> 
-    <link rel = "stylesheet" type="text/css" href="../css/input_area.css"> 
-    <link rel = "stylesheet" type="text/css" href="../css/body.css"> 
-    <link rel = "stylesheet" type="text/css" href="../css/code_highlight.css"> 
+    <link rel = "stylesheet" type="text/css" href="./css/Editor.css"> 
+    <link rel = "stylesheet" type="text/css" href="./css/cursor.css"> 
+    <link rel = "stylesheet" type="text/css" href="./css/text_cursor.css"> 
+    <link rel = "stylesheet" type="text/css" href="./css/input_area.css"> 
+    <link rel = "stylesheet" type="text/css" href="./css/body.css"> 
+    <link rel = "stylesheet" type="text/css" href="./css/code_highlight.css"> 
     <title>Edit</title>
 </head>
 <body>
@@ -20,14 +20,15 @@
     <input id = "input_area" type = "text" onkeypress="uniCharCode(event)" onkeydown="uniKeyCode(event)" autocomplete="off" style="outline:none;border:0;"></div>
   </div>
 </body>
-  <script type="text/javascript" src="../js/edit/line_num.js"></script>
-  <script type="text/javascript" src="../js/edit/theme_chose.js"></script>
-  <script type="text/javascript" src="../js/common/get_storge.js" language = javaScript charset="UTF-8"></script>   
-  <script type="text/javascript" src="../js/data/hightlight_data.js" language = javaScript charset="UTF-8"></script>
-  <script type="text/javascript" src="../js/edit/Codehighlighting.js" language = javaScript charset="UTF-8"></script>    
-  <script type="text/javascript" src="../js/input/Edit_kernel.js" language = javaScript charset="UTF-8"></script>     
-  <script type="text/javascript" src="../js/edit/typography.js" language = javaScript charset="UTF-8"></script>
-  <script type="text/javascript" src="../js/common/piece_tables.js" language = javaScript charset="UTF-8"></script>   
+  <script type="text/javascript" src="./js/edit/line_num.js"></script>
+  <script type="text/javascript" src="./js/edit/theme_chose.js"></script>
+  <script type="text/javascript" src="./js/common/get_storge.js" language = javaScript charset="UTF-8"></script>   
+  <script type="text/javascript" src="./js/data/hightlight_data.js" language = javaScript charset="UTF-8"></script>
+  <script type="text/javascript" src="./js/edit/Codehighlighting.js" language = javaScript charset="UTF-8"></script>    
+  <script type="text/javascript" src="./js/input/Edit_kernel.js" language = javaScript charset="UTF-8"></script>     
+  <script type="text/javascript" src="./js/edit/typography.js" language = javaScript charset="UTF-8"></script>
+  <script type="text/javascript" src="./js/common/piece_tables.js" language = javaScript charset="UTF-8"></script>   
+  <script type="text/javascript" src="./js/common/websocket.js" language = javaScript charset="UTF-8"></script>   
   <script> 
     refresh_theme();     
     show_linenum(get_SessionSeorge('linenum'));
@@ -49,6 +50,7 @@
       var get_lint = document.getElementById("y"+pos_y);
       if(char!='\n'&&char!='\r')
         to_Code_highlight();
+      Websocket(get_lint.innerHTML);
     }
     function uniKeyCode(event) {
       var key = event.keyCode;
