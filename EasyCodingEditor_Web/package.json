@@ -1,6 +1,33 @@
 {
   "dependencies": {
     "file-saver": "^2.0.5",
-    "js-cookie": "^3.0.1"
+    "js-cookie": "^3.0.1",
+    "lite-server": "^2.6.1"
+
+  },
+  "name": "easycodingeditor_web",
+  "description": "这是一个简单的文本编辑器，在操作上类似vim。",
+  "version": "1.1.1",
+  "main": "main.js",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SongZihui-sudo/EasyCoding_Editor.git"
+  },
+  "keywords": [
+    "Editor",
+    "Web"
+  ],
+  "author": "SongZihui",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SongZihui-sudo/EasyCoding_Editor/issues"
+  },
+  "homepage": "https://github.com/SongZihui-sudo/EasyCoding_Editor#readme",
+  "scripts": {    
+    "dev": "lite-server"
   }
 }
