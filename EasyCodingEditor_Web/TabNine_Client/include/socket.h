@@ -13,11 +13,9 @@ class socket_{
     private:
 
     public:
-        SOCKET servSock;
-        SOCKET clntSock;
-        int send_message(SOCKET servSock,string message);
+        SOCKET send_message(SOCKET servSock,string message);
         int close_socket(SOCKET servSock,SOCKET clntSock);
-        bool init_server();
+        SOCKET init_server();
         socket_() = default;
         ~socket_() = default;
 };

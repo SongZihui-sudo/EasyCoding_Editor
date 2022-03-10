@@ -13,15 +13,17 @@ winexec::External_program ep;
 socket_server::socket_ s;
 
 int main(int argc, char const *argv[]){
+    SOCKET servSock;
+    SOCKET clntSock;
     cout<<"Socket Server start successfully!!!"<<endl;
     if(ep.open_program("../bin/TabNine.exe")){
         cout<<"Language start successfully!!!"<<endl; 
-        if(s.init_server()){
+        if(servSock = s.init_server()){
             while(true){
-                s.send_message(s.servSock,"hello");
+                clntSock = s.send_message(servSock,"hello");
             }
         }           
-        s.close_socket(s.servSock,s.clntSock);
+        s.close_socket(servSock,clntSock);
     }
     else{
         cout<<"Language start false!!!"<<endl;
