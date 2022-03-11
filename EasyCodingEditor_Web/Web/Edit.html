@@ -31,7 +31,6 @@
   <script type="text/javascript" src="./js/common/websocket.js" language = javaScript charset="UTF-8"></script>   
   <script> 
     refresh_theme(); 
-    Websocket_init();    
     show_linenum(get_SessionSeorge('linenum'));
     //hljs.initHighlighting();
     var FileBuf = new piece_table_link();
@@ -48,11 +47,19 @@
       if(char!='\r')
         FileBuf.push_insert(char);
       //在刷新屏幕数进行代码高亮
-      var get_lint = document.getElementById("y"+pos_y);
       if(char!='\n'&&char!='\r')
         to_Code_highlight();
-      send(get_lint.innerHTML);
-      accept();
+      var file = document.getElementById("text_cursor").childNodes;
+      ws = Websocket_("1");
+      var get_lint = file[pos_y];
+      console.log('cur:%s',get_lint.innerHTML);
+      ws = Websocket_(get_lint.innerHTML);    
+      ws = Websocket_("0");      
+      var ws = Websocket_('2');
+      for(var i = 0;i<file.length;i++){
+        ws = Websocket_(file[i].innerHTML);
+      }
+      ws = Websocket_("0");
     }
     function uniKeyCode(event) {
       var key = event.keyCode;

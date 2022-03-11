@@ -10,7 +10,7 @@
 				"-g",
 				"${file}",
 				"../src/exec.cpp",
-				"../src/socket.cpp",
+				"../src/connect.cpp",
 				"-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe",
 				"-lws2_32"

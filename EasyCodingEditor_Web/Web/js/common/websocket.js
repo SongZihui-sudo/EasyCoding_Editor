@@ -3,25 +3,25 @@
  * date: 2022-3-10
  * about:关于web socket客户端
  */
-var ws;
-function Websocket_init(){
-  debugger
-  ws = new WebSocket('ws://121.40.165.18:8800');
-  ws.onopen = function () {
-    console.log('ws onopen');
-  };
-  return 0;
+function Websocket_(message){
+  // 初始化一个 WebSocket 对象
+  var ws = new WebSocket('ws://127.0.0.1:8080');
+// 建立 web socket 连接成功触发事件
+  ws.onopen = function() {
+    // 使用 send() 方法发送数据
+    ws.send(message);
+    console.log('数据发送中...');
+};
+  // 接收服务端数据时触发事件
+  ws.onmessage = function(evt) {
+    var received_msg = evt.data;
+    console.log('数据已接收...'+received_msg);
+};
+  return ws;
 }
-
-function send(message){
-  ws.send('from client:'+message);
-  return 0;
-}
-
-function accept(){
-  ws.onmessage = function (e) {
-    console.log('ws onmessage');
-    console.log('from server: ' + e.data);
-  };
+function close(ws){
+    ws.close() = function(){
+      console.log('from client:close!!!');
+  }
   return 0;
 }
