@@ -1,7 +1,6 @@
 #include<iostream>
 #include"../include/exec.h"
 #include"../include/connect.h"
-#include <WS2tcpip.h>
 
 using namespace winexec;
 using namespace std;
