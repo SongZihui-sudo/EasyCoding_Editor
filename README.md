@@ -7,6 +7,7 @@
 ## 进展
 ### Web版   
 [在线使用](http://s-zh.space/Blog/editor/html/index.html)    
+本地运行 输入命令 ```npm run dev ```    
 在Web版中已经通过模拟光标，实现了基本的编辑操作。      
 采用了pieces table的数据结构，底层使用链表实现。   
 实现了C/C++简单的代码高亮   
