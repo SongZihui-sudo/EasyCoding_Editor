@@ -31,7 +31,10 @@ wss.on('connection', function connection(ws) {
       }
       //console.log('_path: %s',_path);
       if(str&&bit==2) {
-        clps.connection("./TabNine_Client/bin/TabNine.exe",str,_path);
+        if(language=="null")  
+          _path = "null";
+        clps.connection("./4.1.16/bin/TabNine.exe",str,_path);
+        ws.send('1');
       }
       bit = 0;
     }
@@ -52,6 +55,5 @@ wss.on('connection', function connection(ws) {
       bit = 3;
     }
   });
-  ws.send('ok!!!');
 });
 

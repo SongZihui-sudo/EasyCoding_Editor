@@ -10,6 +10,7 @@
 function read_json(url,file,bit){
   var json_data;
   var Uurl;
+  debugger
   if(bit==1){
     Uurl = "../json/theme/"+file+".json";
   }
