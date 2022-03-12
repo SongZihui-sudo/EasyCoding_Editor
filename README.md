@@ -1,7 +1,7 @@
 # 简·编辑器 
 ## 简介  
 这是一个简单的文本编辑器，在操作上类似vim。    
-
+Web版编辑器正在开发中。。。。。。。    
 1.支持对C/C++关键词的高亮与补全。（把可高亮与可补全的关键词放入了数据库，可以自定义添加关键字）。  
 2.Html标签简化，可导出标准的Html，在服务器上可用此编辑器转换文章（用简化的标签写的）为Html，建立小型博客网站。在该编辑器中已经集成了[EASH-HTML-MAKER](https://github.com/SongZihui-sudo/Easy-HTML-MAKER)   
 ## 进展
@@ -15,10 +15,11 @@ node server.js
 ```    
 在Web版中已经通过模拟光标，实现了基本的编辑操作。      
 采用了pieces table的数据结构，底层使用链表实现。   
-实现了C/C++简单的代码高亮   
+实现了C/C++简单的代码高亮      
+基于TabNine的代码补全正在开发中。。。。。。       
+支持自动保存，文件保存在```Temporary_Files```目录下    
 ![img](https://cdn.jsdelivr.net/gh/SongZihui-sudo/EasyCoding_Editor@Windows/%E6%88%AA%E5%9B%BE/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-08%20230436.jpg)
 ## 截图
-
 C/C++   
 ![img](https://github.com/SongZihui-sudo/EasyCoding_Editor/blob/Windows/%E6%88%AA%E5%9B%BE/Screenshot%202022-02-12%20204140.png)  
 HTML   
