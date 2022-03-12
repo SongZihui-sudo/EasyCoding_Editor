@@ -7,17 +7,29 @@
  * 
  */
 //读取相应的json文件
-function read_json(file){
+function read_json(url,file,bit){
   var json_data;
+  var Uurl;
+  if(bit==1){
+    Uurl = "../json/theme/"+file+".json";
+  }
+  else if(bit==2){
+    Uurl = url+file;
+  }
   $.ajax({
-      url: "../json/theme/"+file+".json",
+      url: Uurl,
       type: "GET",
       dataType: "json",
       success: 
       function (data) {
         json_data = data;
         displayData(json_data);
-        theme_chose(json_data);
+        if(bit==1){
+          theme_chose(json_data);
+        }        
+        else if(bit==2){
+          code_complete();
+        }
       }
   });
 }

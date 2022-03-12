@@ -20,6 +20,7 @@
     <input id = "input_area" type = "text" onkeypress="uniCharCode(event)" onkeydown="uniKeyCode(event)" autocomplete="off" style="outline:none;border:0;"></div>
   </div>
 </body>
+<script type="text/javascript" src="./js/edit/code_complete.js" language = javaScript charset="UTF-8"></script>   
   <script type="text/javascript" src="./js/edit/line_num.js"></script>
   <script type="text/javascript" src="./js/edit/theme_chose.js"></script>
   <script type="text/javascript" src="./js/common/get_storge.js" language = javaScript charset="UTF-8"></script>   
@@ -49,17 +50,24 @@
       //在刷新屏幕数进行代码高亮
       if(char!='\n'&&char!='\r')
         to_Code_highlight();
+      var ws = Websocket_("3");
+      console.log('language:'+window.sessionStorage.getItem('language'));
+      ws = Websocket_(window.sessionStorage.getItem('language'));
+      ws = Websocket_("0");  
       var file = document.getElementById("text_cursor").childNodes;
-      ws = Websocket_("1");
-      var get_lint = file[pos_y];
-      console.log('cur:%s',get_lint.innerHTML);
-      ws = Websocket_(get_lint.innerHTML);    
-      ws = Websocket_("0");      
-      var ws = Websocket_('2');
+      ws = Websocket_('2');
       for(var i = 0;i<file.length;i++){
         ws = Websocket_(file[i].innerHTML);
       }
       ws = Websocket_("0");
+      ws = Websocket_("1");
+      //console.log('cur:%s',get_lint.innerHTML); 
+      debugger 
+      ws = Websocket_(file[pos_y].innerHTML);    
+      ws = Websocket_("0");
+      SetTimeout(1000);
+      read_json('./json','code_complete.json',2);   
+      //close(ws); 
     }
     function uniKeyCode(event) {
       var key = event.keyCode;

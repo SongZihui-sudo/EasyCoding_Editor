@@ -69,8 +69,9 @@
   }
   var language = "";
   list2.onclick = function(){
-  language = prompt("选择语言：");
-  window.location.href="./EasyHtmlEditor.html";
+    language = prompt("选择语言：");
+    window.sessionStorage.setItem("language",language);
+    window.location.href="./EasyHtmlEditor.html";
     //connect_main("edit");
   }
   list5.onclick = function(){

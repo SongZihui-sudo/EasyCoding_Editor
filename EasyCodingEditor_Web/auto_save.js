@@ -14,7 +14,7 @@ function auto_save(){
       }
       //文件写入成功。
       else{
-        console.log('write succesfully!!!');
+        console.log('auto_save:write succesfully!!!');
       }
     })
   }

@@ -107,7 +107,7 @@
      $('#_theme_select').change(function(data){
             //获取选中项的值
             var value = $("#_theme_select option:selected").attr("value");
-            read_json(value);
+            read_json(null,value,1);
             //输出日志
             console.log("value=%s",value);
         });
