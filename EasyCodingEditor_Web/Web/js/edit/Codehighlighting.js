@@ -15,7 +15,7 @@ function Codehightlight(language,str,y){
     for(let i = 0;i < hight_light.length;i++){
       fstart = str.search(hight_light[i]);
       if(fstart!=-1){
-        debugger
+        //debugger
         find_bit = 1;
         len = hight_light[i].length;
         span_cover(fstart,hight_light[i],y);

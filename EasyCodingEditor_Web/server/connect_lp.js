@@ -12,7 +12,9 @@ function connect_lp(){
     server.stdout.on('data', (data) => {     
       console.log('language server:start success!!!'); 
       var context = data.toString();
-      ass.write('./Web/json/code_complete.json',context);
+      if(context!='null'){
+        ass.write('../Web/json/codecomplete/code_complete.json',context);
+      }
       console.log(`language server: ${data}`);
     });
     server.stderr.on('data', (data) => {
@@ -26,7 +28,7 @@ function connect_lp(){
     });
     //test example
     //str = 'Hello H';
-    path = 'null';
+    //path = 'null';
     var message = '{"version": "1.0.0", "request": {"Autocomplete": {"before":'+'"'+str+'"'+', "after": "", "region_includes_beginning": true, "region_includes_end": true, "filename":'+path+', "correlation_id": 1}}}'//./Temporary_Files/file.out
     server.stdin.write(message+"\n");
     return server;

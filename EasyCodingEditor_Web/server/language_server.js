@@ -7,7 +7,7 @@
 const WebSocket = require('ws');
 const as = require('./auto_save');
 const clp = require('./connect_lp');
-const wss = new WebSocket.Server({ port: 8080 });
+const wss = new WebSocket.Server({ port: 8081 });
 const ass = new as();
 const clps = new clp();
 var bit = 0;
@@ -16,25 +16,26 @@ var language;
 wss.on('connection', function connection(ws) {
   //console.log('socket connect success!!!');
   ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
+    console.log('language server received: %s', message);
     if(message=="0"){
       //console.log('str: %s',str);
       //console.log('bit:%d',bit);
       var _path;
       if (bit == 1) {
-        _path = "./Temporary_Files/file."+language;
+        _path = "../Temporary_Files/file."+language;
         ass.write(_path,str);
       }
       else if(bit == 2) {
-        _path = "./Temporary_Files/cur."+language;
+        _path = "../Temporary_Files/cur."+language;
         ass.write(_path,str);
       }
       //console.log('_path: %s',_path);
       if(str&&bit==2) {
         if(language=="null")  
           _path = "null";
-        clps.connection("./4.1.16/bin/TabNine.exe",str,_path);
+        clps.connection("../4.1.16/bin/TabNine.exe",str,_path);
         ws.send('1');
+        console.log('language server:send success!!!');
       }
       bit = 0;
     }

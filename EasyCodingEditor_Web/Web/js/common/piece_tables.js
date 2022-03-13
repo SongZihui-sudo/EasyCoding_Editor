@@ -138,7 +138,7 @@ class piece_table_link{//表结构
   }
 //pop_back
  pop_delete(){
-  debugger
+  //debugger
   if(pos_x==1){
     if(pos_y!=0){
       this.Link_mrege();
@@ -188,9 +188,9 @@ class piece_table_link{//表结构
   }
   pos_x--;
   this.head.len--;
-  debugger
+  //debugger
   if(this.head.len==1){
-    debugger
+    //debugger
     var _getlinespan = document.getElementById("y"+pos_y);
     _getlinespan.innerHTML = "";
     SetPos(0,pos_y);
