@@ -11,7 +11,7 @@ Web版编辑器正在开发中。。。。。。。
 输入命令    
 ```
 npm run dev 
-node server.js
+node language_server.js
 ```    
 在Web版中已经通过模拟光标，实现了基本的编辑操作。      
 采用了pieces table的数据结构，底层使用链表实现。   
