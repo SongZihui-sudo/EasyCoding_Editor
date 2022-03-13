@@ -10,7 +10,7 @@
 function read_json(url,file,bit){
   var json_data;
   var Uurl;
-  debugger
+  //debugger
   if(bit==1){
     Uurl = "../json/theme/"+file+".json";
   }
@@ -29,7 +29,7 @@ function read_json(url,file,bit){
           theme_chose(json_data);
         }        
         else if(bit==2){
-          code_complete();
+          show_results(code_complete(json_data));
         }
       }
   });

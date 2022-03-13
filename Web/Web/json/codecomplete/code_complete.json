@@ -1,1 +1,1 @@
-{"old_prefix":"","results":[{"new_prefix":"from","old_suffix":"","new_suffix":"","detail":"23%"},{"new_prefix":"from the","old_suffix":"","new_suffix":"","detail":" 4%"},{"new_prefix":"world","old_suffix":"","new_suffix":"","detail":"10%"},{"new_prefix":"Web","old_suffix":"","new_suffix":"","detail":"10%"},{"new_prefix":"from the server","old_suffix":"","new_suffix":"","detail":" 1%"}],"user_message":[],"docs":[],"correlation_id":1}
+{"old_prefix":"H","results":[{"new_prefix":"Hello","old_suffix":"","new_suffix":""}],"user_message":[],"docs":[],"correlation_id":1}
