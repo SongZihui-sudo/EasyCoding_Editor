@@ -1,9 +1,10 @@
 #code_complete{
     position:absolute;
-    left: 75px;
+    left: 0px;
     top: 40px;
     letter-spacing:1px;  
     color: aliceblue;
     text-align:justify;
     font-family: Consolas, Monaco, monospace;
+    background-color:dodgerblue;
 }

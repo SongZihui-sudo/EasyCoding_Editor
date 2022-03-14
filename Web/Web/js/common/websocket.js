@@ -15,7 +15,7 @@ function Websocket_(message){
   // 接收服务端数据时触发事件
   ws.onmessage = function(evt) {
     var received_msg = evt.data;
-    console.log('数据已接收...'+received_msg);
+    console.log('EasyHtmlEditor Clint: '+received_msg);
     if(received_msg=="1"){
       read_json('../json/codecomplete/','code_complete.json',2);
     }

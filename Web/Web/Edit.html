@@ -54,23 +54,7 @@
       if(char!='\n'&&char!='\r')
         to_Code_highlight();
       if(char!=null){
-         var ws = Websocket_("3");
-        console.log('language:'+window.sessionStorage.getItem('language'));
-        ws = Websocket_(window.sessionStorage.getItem('language'));
-        ws = Websocket_("0");  
-        var file = document.getElementById("text_cursor").childNodes;
-        ws = Websocket_('2');
-        for(var i = 0;i<file.length;i++){
-          if(file[i].localName=='span'){
-            ws = Websocket_(file[i].innerHTML);
-          }
-        }
-        ws = Websocket_("0");
-        ws = Websocket_("1");
-        //console.log('cur:%s',get_lint.innerHTML); 
-        //debugger 
-        ws = Websocket_(file[pos_y].innerHTML);    
-        ws = Websocket_("0");
+        send_message();        
         //close(ws); 
         char = null;
       }
@@ -83,10 +67,10 @@
         case 37: left(); break;//左
         case 39: right(); break;//右
         case 40: down(); break;//下
-        case 13: Enter(); break;
-        case 8:  BackSpace();to_Code_highlight();break; //退格键
+        case 13: Enter(); break;//回车
+        case 8:  BackSpace();to_Code_highlight();send_message();break; //退格键
         case 9:  Tab(); break;//Tab键
-        case 27: window.location.href="./index.html"; break;
+        case 27: window.location.href="./index.html"; break;//esc
         case 32: Space();to_Code_highlight();break;//空格
         default: break; 
       } 
