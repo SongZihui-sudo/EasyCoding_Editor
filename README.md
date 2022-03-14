@@ -8,9 +8,13 @@ Web版编辑器正在开发中。。。。。。。
 ### Web版   
 [在线使用](http://s-zh.space/Blog/editor/html/index.html)    
 本地运行   
-输入命令    
+输入命令   
 ```
+···········
+如果没有nodejs要安装nodejs   
+············
 npm run dev 
+cd server   
 node language_server.js
 ```    
 在Web版中已经通过模拟光标，实现了基本的编辑操作。      
